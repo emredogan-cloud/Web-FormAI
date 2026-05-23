@@ -61,9 +61,33 @@ export default function AntrenmanPage() {
           <Reveal>
             <div className="relative overflow-hidden rounded-[2.5rem] border border-violet-400/15 bg-gradient-to-b from-ink-800 to-ink-900 shadow-[0_60px_120px_-20px_rgba(124,92,255,0.4)]">
               <div className="grid lg:grid-cols-[1.1fr_1fr]">
-                <div className="relative aspect-[4/5] lg:aspect-auto lg:min-h-[640px]">
-                  <Image src="/images/pose-analysis.webp" alt="FormAI pose analizi" fill sizes="(max-width: 1024px) 100vw, 50vw" className="object-cover" />
-                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-ink-950/80 via-ink-950/20 to-ink-900" />
+                {/* MP.3 — image area framed as a centered phone-style mock.
+                    Source is 853×1844 (FormAI app ceiling); a phone-bounded
+                    display (max-w 320 mobile / 360 desktop) keeps the
+                    rendered CSS pixels close to source-native so the browser
+                    barely upscales, removing the perceived blur. Combined
+                    with the q95 webp re-encode this brings the HUD text
+                    overlays back to crisp. */}
+                <div className="relative flex items-center justify-center bg-gradient-to-b from-ink-950/40 via-transparent to-ink-950/60 py-10 sm:py-12 lg:py-16">
+                  <div className="relative aspect-[9/19.5] w-full max-w-[300px] overflow-hidden rounded-[2.4rem] border border-violet-400/25 bg-ink-900 p-[3px] shadow-[0_40px_100px_-20px_rgba(124,92,255,0.45)] sm:max-w-[320px] lg:max-w-[360px]">
+                    <div className="relative h-full w-full overflow-hidden rounded-[2.15rem] bg-ink-950">
+                      <Image
+                        src="/images/pose-analysis.webp"
+                        alt="FormAI pose analizi — gerçek zamanlı form ölçümü"
+                        fill
+                        sizes="(max-width: 640px) 300px, (max-width: 1024px) 320px, 360px"
+                        className="object-cover object-center"
+                      />
+                      <div
+                        aria-hidden
+                        className="pointer-events-none absolute left-1/2 top-2 z-10 h-5 w-24 -translate-x-1/2 rounded-full bg-ink-950 ring-1 ring-white/5"
+                      />
+                      <div
+                        aria-hidden
+                        className="pointer-events-none absolute inset-0 rounded-[2.15rem] bg-gradient-to-tr from-transparent via-white/[0.03] to-white/[0.07]"
+                      />
+                    </div>
+                  </div>
                 </div>
                 <div className="relative flex flex-col justify-center gap-6 p-10 sm:p-14">
                   <Eyebrow tone="violet">Live readout</Eyebrow>
