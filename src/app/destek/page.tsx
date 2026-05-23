@@ -7,6 +7,7 @@ import { Reveal, RevealItem, RevealStagger } from '@/components/ui/Reveal';
 import { Card } from '@/components/ui/Card';
 import { FaqAccordion } from '@/components/sections/FaqAccordion';
 import { CtaBlock } from '@/components/sections/CtaBlock';
+import { FounderStrip } from '@/components/sections/FounderStrip';
 import { Button } from '@/components/ui/Button';
 import { faqGroups } from '@/data/faq';
 
@@ -54,6 +55,8 @@ export default function DestekPage() {
           </RevealStagger>
         </Container>
       </section>
+
+      <FounderStrip />
 
       {/* FAQ groups */}
       <section className="relative py-16" id="sss">

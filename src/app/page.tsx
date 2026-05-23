@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Hero } from '@/components/sections/Hero';
 import { MarqueeBand } from '@/components/sections/MarqueeBand';
+import { FounderStrip } from '@/components/sections/FounderStrip';
 import { ProductPillars } from '@/components/sections/ProductPillars';
 import { CoachShowcase } from '@/components/sections/CoachShowcase';
 import { NutritionShowcase } from '@/components/sections/NutritionShowcase';
@@ -20,6 +21,7 @@ export default function HomePage() {
     <>
       <Hero />
       <MarqueeBand className="mt-24 sm:mt-32" />
+      <FounderStrip />
       <ProductPillars />
       <CoachShowcase />
       <NutritionShowcase />

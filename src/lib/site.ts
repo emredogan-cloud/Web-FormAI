@@ -43,6 +43,34 @@ export const site = {
     primaryCta: 'Erken erişim al',
     primaryCtaShort: 'Erken erişim',
   },
+
+  // ────────────────────────────────────────────────────────────────────────
+  // Team / human presence
+  //
+  // The FounderStrip component renders two variants based on this config:
+  //   1. ANONYMOUS-CRAFT (default, what ships today): no face, no name —
+  //      truthful "made by a small independent team" positioning that
+  //      avoids fabrication. Ships when `founder.name` is null.
+  //   2. NAMED-FOUNDER: real photo + name + signature line. Activates
+  //      automatically when `founder.name` AND `founder.photoSrc` are set.
+  //      No code change required — just fill the four fields below.
+  // ────────────────────────────────────────────────────────────────────────
+  team: {
+    founder: {
+      name: null as string | null,
+      role: null as string | null,
+      photoSrc: null as string | null,
+      signatureLine: null as string | null,
+    },
+    location: 'Türkiye',
+    status: 'Bağımsız · pre-launch',
+    contact: {
+      email: 'support@formai.app',
+      // Set to a real handle to surface a footer link in the strip; null hides it.
+      github: null as string | null,
+      twitter: null as string | null,
+    },
+  },
 } as const;
 
 export type SiteConfig = typeof site;
