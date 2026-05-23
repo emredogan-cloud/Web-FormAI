@@ -10,6 +10,7 @@ import { StatRing } from '@/components/ui/StatRing';
 import { GlowOrb } from '@/components/ui/GlowOrb';
 import { CtaBlock } from '@/components/sections/CtaBlock';
 import { ProgressShowcase } from '@/components/sections/ProgressShowcase';
+import { SparkChart } from '@/components/ui/SparkChart';
 
 export const metadata: Metadata = {
   title: 'Gelişim — Disiplinini ölçen değil, sürdüren bir zekâ',
@@ -83,6 +84,71 @@ export default function GelisimPage() {
               </div>
             </Card>
           </Reveal>
+        </Container>
+      </section>
+
+      {/* Charted progression — PR 3.4
+          Pure-SVG line chart of a representative form-score curve over 30
+          days. Deepens the transformation-card argument from a snapshot
+          (Gün 1 / Gün 30 + 3 mini stats) into a continuous trajectory. */}
+      <section className="relative py-20 sm:py-28" id="form-egrisi">
+        <Container>
+          <div className="grid items-start gap-12 lg:grid-cols-[1fr_1.4fr] lg:gap-16">
+            <Reveal>
+              <div>
+                <div className="mb-5 flex items-center gap-2">
+                  <span className="h-px w-12 bg-violet-400/70" />
+                  <Eyebrow tone="violet">Form skoru · 30 gün</Eyebrow>
+                </div>
+                <h2 className="text-display-lg font-display text-balance text-gradient">
+                  Bir günde değil — <span className="text-gradient-violet">otuz günde.</span>
+                </h2>
+                <p className="mt-6 max-w-md text-base leading-relaxed text-white/65">
+                  İlk hafta öğrenme: kamera kalibre olur, hareket tanıdık gelmeye
+                  başlar. İkinci hafta hız: motor öğrenme oturur. Üçüncü hafta
+                  rafine: küçük düzeltmeler büyük farklar üretir. Aşağıdaki eğri
+                  on günde bir noktayla temsili — gerçek senin verin.
+                </p>
+                <div className="mt-8 inline-flex items-center gap-3 rounded-full border border-violet-400/25 bg-violet-500/[0.08] px-4 py-2">
+                  <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-violet-300/80">
+                    Temsili eğri
+                  </span>
+                  <span aria-hidden className="text-white/25">·</span>
+                  <span className="text-xs text-white/55">Gerçek veri uygulama içinde</span>
+                </div>
+              </div>
+            </Reveal>
+
+            <Reveal delay={0.12}>
+              <div className="relative overflow-hidden rounded-3xl border border-white/[0.06] bg-gradient-to-b from-white/[0.025] to-white/[0.01] p-5 sm:p-7">
+                <SparkChart
+                  data={[
+                    { x: 1, y: 64, label: 'Başlangıç' },
+                    { x: 4, y: 68 },
+                    { x: 7, y: 74 },
+                    { x: 10, y: 80 },
+                    { x: 13, y: 83 },
+                    { x: 16, y: 85 },
+                    { x: 19, y: 86 },
+                    { x: 22, y: 88 },
+                    { x: 25, y: 90 },
+                    { x: 28, y: 91 },
+                    { x: 30, y: 91, label: 'Şimdi' },
+                  ]}
+                  yMin={50}
+                  yMax={100}
+                  xMin={1}
+                  xMax={30}
+                  yTicks={[60, 70, 80, 90, 100]}
+                  xTicks={[1, 7, 14, 21, 30]}
+                  yLabel="Form skoru"
+                  xLabel="Gün"
+                  tone="violet"
+                  ariaLabel="Form skorunun 30 gün boyunca 64'ten 91'e yükselen temsili eğrisi"
+                />
+              </div>
+            </Reveal>
+          </div>
         </Container>
       </section>
 
