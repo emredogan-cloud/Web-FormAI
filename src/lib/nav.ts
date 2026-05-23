@@ -10,7 +10,7 @@ export const footerNav = {
     { label: 'Antrenman', href: '/antrenman' },
     { label: 'Beslenme', href: '/beslenme' },
     { label: 'Gelişim', href: '/gelisim' },
-    { label: 'Uygulamayı indir', href: '/baslat' },
+    { label: 'Erken erişim', href: '/baslat#waitlist' },
   ],
   Şirket: [
     { label: 'Hakkımızda', href: '/#manifesto' },

@@ -8,15 +8,16 @@ import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
 import { Pill } from '@/components/ui/Pill';
 import { GlowOrb } from '@/components/ui/GlowOrb';
+import { site } from '@/lib/site';
 
 export const metadata: Metadata = {
-  title: 'Başla — Koçunla 90 saniyede tanış',
+  title: 'Başla — Erken erişime katıl',
   description:
-    'FormAI uygulamasını yükle, 90 saniyede ilk antrenmana başla. Yedi gün ücretsiz; ödeme bilgisi gerekmez.',
+    'FormAI şu anda kapalı beta’da. Bekleme listesine katıl, mağazalar açıldığında ilk sen haber al. Lansmanda 7 gün ücretsiz.',
 };
 
 const steps = [
-  { no: '01', title: 'Uygulamayı indir', body: 'iOS App Store veya Google Play. Tek dokunuş.' },
+  { no: '01', title: 'Bekleme listesine katıl', body: 'E-posta bırak. Mağazalar açılır açılmaz davet linkini gönderiyoruz.' },
   { no: '02', title: 'Profilini oluştur', body: 'Hedef, vücut tipi, alerji, damak zevki. 60 saniye.' },
   { no: '03', title: 'İlk antrenmana başla', body: 'Kamerayı kalibre et. 12 dakika. Form skorunu canlı gör.' },
 ];
@@ -56,8 +57,8 @@ export default function BaslatPage() {
         align="center"
       >
         <div className="flex flex-wrap justify-center gap-3">
-          <Button href="#install" variant="primary" size="lg" arrow>
-            Uygulamayı al
+          <Button href="#waitlist" variant="primary" size="lg" arrow>
+            Bekleme listesine katıl
           </Button>
           <Button href="#plans" variant="secondary" size="lg">
             Planları karşılaştır
@@ -72,22 +73,27 @@ export default function BaslatPage() {
             <Card padding="lg" className="overflow-hidden">
               <div className="grid items-center gap-10 lg:grid-cols-[1.3fr_1fr]">
                 <div>
-                  <Mono>Uygulama mağazaları</Mono>
+                  <Mono>Erken erişim · pre-launch</Mono>
                   <h2 className="mt-4 font-display text-display-md text-balance text-gradient">
-                    iOS ve Android — tek kod tabanı.
+                    iOS ve Android · <span className="text-gradient-violet">yakında.</span>
                   </h2>
                   <p className="mt-4 max-w-md text-sm leading-relaxed text-white/60">
-                    Flutter ile tek kaynaktan derlenir. iOS&apos;ta Dynamic Island Live Activity,
-                    Android&apos;te home-screen widget seninle anlık iletişimde olur.
+                    FormAI şu anda kapalı beta&apos;da: Internal Testing &amp; TestFlight üzerinden test ediyoruz.
+                    Mağazalar açıldığında ilk önce sana haber vereceğiz.
                   </p>
                   <div className="mt-8 flex flex-wrap gap-3">
-                    <StoreBadge label="App Store" sub="iOS 15+" href="/destek#sss" icon={<AppleIcon />} />
-                    <StoreBadge label="Google Play" sub="Android 10+" href="/destek#sss" icon={<PlayIcon />} />
+                    <StoreBadge label="App Store" sub="iOS 15+" icon={<AppleIcon />} status={site.stores.appStore} />
+                    <StoreBadge label="Google Play" sub="Android 10+" icon={<PlayIcon />} status={site.stores.play} />
+                  </div>
+                  <div className="mt-6">
+                    <Button href="#waitlist" variant="primary" size="md" arrow>
+                      Bekleme listesine katıl
+                    </Button>
                   </div>
                   <div className="mt-6 flex flex-wrap items-center gap-2 text-xs text-white/45">
-                    <Pill tone="lime">7 gün ücretsiz</Pill>
+                    <Pill tone="lime">Lansmanda 7 gün ücretsiz</Pill>
                     <Pill tone="scan">Şimdi ödeme yok</Pill>
-                    <Pill tone="violet">İstediğinde iptal et</Pill>
+                    <Pill tone="violet">Erken erişim önceliği</Pill>
                   </div>
                 </div>
                 <div className="relative">
@@ -223,18 +229,56 @@ export default function BaslatPage() {
   );
 }
 
-function StoreBadge({ label, sub, href, icon }: { label: string; sub: string; href: string; icon: React.ReactNode }) {
+type StoreBadgeStatus = {
+  url: string | null;
+  live: boolean;
+  comingSoonLabel: string;
+};
+
+function StoreBadge({
+  label,
+  sub,
+  icon,
+  status,
+}: {
+  label: string;
+  sub: string;
+  icon: React.ReactNode;
+  status: StoreBadgeStatus;
+}) {
+  // Render as a live anchor only when the store is genuinely live and a URL is set.
+  if (status.live && status.url) {
+    return (
+      <a
+        href={status.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="group inline-flex items-center gap-3 rounded-2xl border border-white/[0.1] bg-white/[0.04] px-5 py-3 transition-all hover:border-violet-400/30 hover:bg-white/[0.06] hover:shadow-glow-subtle"
+      >
+        <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-white/10 text-white">{icon}</span>
+        <span>
+          <span className="block font-mono text-[9px] uppercase tracking-widest text-white/45">{sub}</span>
+          <span className="block font-display text-base font-semibold text-white">{label}</span>
+        </span>
+      </a>
+    );
+  }
+
+  // Pre-launch: render an honest, non-interactive "coming soon" card.
   return (
-    <a
-      href={href}
-      className="group inline-flex items-center gap-3 rounded-2xl border border-white/[0.1] bg-white/[0.04] px-5 py-3 transition-all hover:border-violet-400/30 hover:bg-white/[0.06] hover:shadow-glow-subtle"
+    <div
+      aria-disabled="true"
+      className="relative inline-flex cursor-not-allowed items-center gap-3 rounded-2xl border border-dashed border-white/[0.12] bg-white/[0.02] px-5 py-3 opacity-80"
     >
-      <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-white/10 text-white">{icon}</span>
+      <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-white/[0.06] text-white/55">{icon}</span>
       <span>
         <span className="block font-mono text-[9px] uppercase tracking-widest text-white/45">{sub}</span>
-        <span className="block font-display text-base font-semibold text-white">{label}</span>
+        <span className="block font-display text-base font-semibold text-white/70">{label}</span>
       </span>
-    </a>
+      <span className="ml-2 rounded-full border border-violet-400/30 bg-violet-500/10 px-2 py-0.5 font-mono text-[9px] uppercase tracking-widest text-violet-200">
+        {status.comingSoonLabel}
+      </span>
+    </div>
   );
 }
 function AppleIcon() {

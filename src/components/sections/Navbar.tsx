@@ -68,8 +68,8 @@ export function Navbar() {
           </ul>
 
           <div className="hidden items-center gap-2 md:flex">
-            <Button href="/baslat" variant="primary" size="sm" arrow>
-              Uygulamayı al
+            <Button href="/baslat#waitlist" variant="primary" size="sm" arrow>
+              Erken erişim
             </Button>
           </div>
 
@@ -122,8 +122,8 @@ export function Navbar() {
               ))}
             </ul>
             <div className="mt-4 px-1">
-              <Button href="/baslat" variant="primary" size="md" arrow className="w-full">
-                Uygulamayı al
+              <Button href="/baslat#waitlist" variant="primary" size="md" arrow className="w-full">
+                Erken erişim
               </Button>
             </div>
           </div>
