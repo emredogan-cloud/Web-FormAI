@@ -134,6 +134,23 @@
     opacity: 0;
   }
 
+  /* ── PR 4.4 · MotionGate pause hook ──────────────────────────────
+     The MotionGate client utility sets [data-motion-paused] on a host
+     element when it scrolls out of the viewport (or permanently under
+     prefers-reduced-data). Freezing animation-play-state holds the
+     animation's current position so it resumes seamlessly on scroll-
+     back — no snap, no restart. The direct rule covers element-level
+     animations (text-gradient-violet, conic-ring, animate-ticker,
+     animate-scan). The descendant rules cover the Akış card, whose
+     animations live on its children. */
+  [data-motion-paused] {
+    animation-play-state: paused !important;
+  }
+  [data-motion-paused] .akis-accent,
+  [data-motion-paused] .akis-dot-ping {
+    animation-play-state: paused !important;
+  }
+
   /* ── Reveal — CSS-driven (PR 4.3 — replaces Framer Motion) ──────── */
   /* The Reveal/RevealStagger/RevealItem components add these classes after
      the IntersectionObserver fires. SSR ships hidden state; client flips
@@ -165,6 +182,14 @@
     background: conic-gradient(from 180deg at 50% 50%, #7C5CFF 0deg, #5FE3FF 90deg, #C8FF00 180deg, #FF7A1A 270deg, #7C5CFF 360deg);
     filter: blur(40px);
     opacity: 0.4;
+    /* PR 4.4 · promote the rotating ring to its own compositor layer so
+       the 18s spin doesn't repaint the hero behind it. */
+    will-change: transform;
+  }
+  /* Release the layer when the ring is paused off-screen (MotionGate),
+     so the GPU memory isn't held while the hero is out of view. */
+  [data-motion-paused].conic-ring {
+    will-change: auto;
   }
 }
 
