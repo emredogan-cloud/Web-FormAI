@@ -1,0 +1,258 @@
+import type { Metadata } from 'next';
+import Image from 'next/image';
+import { PageHero } from '@/components/sections/PageHero';
+import { Container } from '@/components/ui/Container';
+import { Mono } from '@/components/ui/Mono';
+import { Reveal, RevealItem, RevealStagger } from '@/components/ui/Reveal';
+import { Button } from '@/components/ui/Button';
+import { Card } from '@/components/ui/Card';
+import { Pill } from '@/components/ui/Pill';
+import { GlowOrb } from '@/components/ui/GlowOrb';
+
+export const metadata: Metadata = {
+  title: 'Başla — Koçunla 90 saniyede tanış',
+  description:
+    'FormAI uygulamasını yükle, 90 saniyede ilk antrenmana başla. Yedi gün ücretsiz; ödeme bilgisi gerekmez.',
+};
+
+const steps = [
+  { no: '01', title: 'Uygulamayı indir', body: 'iOS App Store veya Google Play. Tek dokunuş.' },
+  { no: '02', title: 'Profilini oluştur', body: 'Hedef, vücut tipi, alerji, damak zevki. 60 saniye.' },
+  { no: '03', title: 'İlk antrenmana başla', body: 'Kamerayı kalibre et. 12 dakika. Form skorunu canlı gör.' },
+];
+
+const plans = [
+  {
+    label: '1 Ay',
+    price: '179,99₺',
+    sub: '/ ay',
+    note: 'Aylık esneklik',
+    popular: false,
+  },
+  {
+    label: '12 Ay',
+    price: '959,99₺',
+    sub: '/ yıl',
+    note: '2.999,99₺ idi · %68 indirim',
+    popular: true,
+  },
+  {
+    label: '3 Ay',
+    price: '359,99₺',
+    sub: '/ 3 ay',
+    note: '90 günlük taahhüt',
+    popular: false,
+  },
+];
+
+export default function BaslatPage() {
+  return (
+    <>
+      <PageHero
+        eyebrow="Başla · 90 saniye"
+        title={<>Tek karar.<br /><span className="text-gradient-violet">30 günlük dönüşüm.</span></>}
+        description="Yapay zekâ koçun seni bekliyor. İlk yedi gün ücretsiz; ödeme bilgisi şimdi alınmaz."
+        tone="violet"
+        align="center"
+      >
+        <div className="flex flex-wrap justify-center gap-3">
+          <Button href="#install" variant="primary" size="lg" arrow>
+            Uygulamayı al
+          </Button>
+          <Button href="#plans" variant="secondary" size="lg">
+            Planları karşılaştır
+          </Button>
+        </div>
+      </PageHero>
+
+      {/* Install row */}
+      <section className="relative pt-4 pb-24" id="install">
+        <Container>
+          <Reveal>
+            <Card padding="lg" className="overflow-hidden">
+              <div className="grid items-center gap-10 lg:grid-cols-[1.3fr_1fr]">
+                <div>
+                  <Mono>Uygulama mağazaları</Mono>
+                  <h2 className="mt-4 font-display text-display-md text-balance text-gradient">
+                    iOS ve Android — tek kod tabanı.
+                  </h2>
+                  <p className="mt-4 max-w-md text-sm leading-relaxed text-white/60">
+                    Flutter ile tek kaynaktan derlenir. iOS&apos;ta Dynamic Island Live Activity,
+                    Android&apos;te home-screen widget seninle anlık iletişimde olur.
+                  </p>
+                  <div className="mt-8 flex flex-wrap gap-3">
+                    <StoreBadge label="App Store" sub="iOS 15+" href="/destek#sss" icon={<AppleIcon />} />
+                    <StoreBadge label="Google Play" sub="Android 10+" href="/destek#sss" icon={<PlayIcon />} />
+                  </div>
+                  <div className="mt-6 flex flex-wrap items-center gap-2 text-xs text-white/45">
+                    <Pill tone="lime">7 gün ücretsiz</Pill>
+                    <Pill tone="scan">Şimdi ödeme yok</Pill>
+                    <Pill tone="violet">İstediğinde iptal et</Pill>
+                  </div>
+                </div>
+                <div className="relative">
+                  <div className="pointer-events-none absolute -inset-8 rounded-full bg-violet-500/25 blur-3xl" aria-hidden />
+                  <div className="relative mx-auto aspect-[9/19.5] w-full max-w-[300px] overflow-hidden rounded-[2.6rem] border border-violet-400/25 bg-ink-900 p-1.5">
+                    <div className="relative h-full w-full overflow-hidden rounded-[2.2rem] bg-ink-950">
+                      <Image src="/screenshots/welcome.jpg" alt="FormAI karşılama ekranı" fill sizes="300px" className="object-cover" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </Card>
+          </Reveal>
+        </Container>
+      </section>
+
+      {/* Steps */}
+      <section className="relative py-16">
+        <Container>
+          <Reveal>
+            <div className="text-center max-w-2xl mx-auto">
+              <Mono>Üç adımda</Mono>
+              <h2 className="mt-4 font-display text-display-md text-balance text-gradient">
+                İlk antrenmana 90 saniyede.
+              </h2>
+            </div>
+          </Reveal>
+          <RevealStagger className="mt-14 grid gap-4 lg:grid-cols-3" stagger={0.08}>
+            {steps.map((s) => (
+              <RevealItem key={s.no}>
+                <div className="group relative h-full overflow-hidden rounded-3xl border border-white/[0.06] bg-white/[0.02] p-8 transition-all hover:border-violet-400/30 hover:bg-white/[0.04]">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-violet-400/40 bg-violet-500/15 font-display text-base font-semibold text-violet-300">
+                    {s.no}
+                  </div>
+                  <h3 className="mt-6 font-display text-xl font-semibold text-white">{s.title}</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-white/60">{s.body}</p>
+                </div>
+              </RevealItem>
+            ))}
+          </RevealStagger>
+        </Container>
+      </section>
+
+      {/* Plans */}
+      <section className="relative py-24 sm:py-32" id="plans">
+        <GlowOrb tone="violet" size="xl" className="-top-32 left-1/2 -translate-x-1/2 opacity-25" />
+        <Container className="relative">
+          <Reveal>
+            <div className="text-center max-w-2xl mx-auto">
+              <Mono>Planlar</Mono>
+              <h2 className="mt-4 font-display text-display-lg text-balance text-gradient">
+                Üç plan. Sıfır gizli ücret.
+              </h2>
+              <p className="mt-5 text-base leading-relaxed text-white/60">
+                Yıllık plan en uygun fiyat. Yedi gün ücretsiz; ödeme şimdi alınmaz.
+                İstediğin an mağazadan iptal edebilirsin.
+              </p>
+            </div>
+          </Reveal>
+
+          <RevealStagger className="mt-14 grid gap-5 sm:grid-cols-3" stagger={0.08}>
+            {plans.map((p) => (
+              <RevealItem key={p.label}>
+                <div
+                  className={`group relative flex h-full flex-col rounded-3xl border p-7 ${p.popular ? 'border-violet-400/40 bg-gradient-to-b from-violet-500/[0.12] to-violet-700/[0.04] shadow-[0_30px_80px_-20px_rgba(124,92,255,0.5)]' : 'border-white/[0.06] bg-white/[0.025]'}`}
+                >
+                  {p.popular && (
+                    <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full border border-violet-400/40 bg-violet-500/30 px-3 py-1 font-mono text-[10px] uppercase tracking-widest text-violet-100 backdrop-blur">
+                      Popüler
+                    </span>
+                  )}
+                  <Mono tone={p.popular ? 'violet' : 'neutral'}>{p.label}</Mono>
+                  <div className="mt-6 flex items-baseline gap-2">
+                    <span className={`font-display text-4xl font-semibold ${p.popular ? 'text-gradient-violet' : 'text-white'}`}>{p.price}</span>
+                    <span className="text-sm text-white/45">{p.sub}</span>
+                  </div>
+                  <p className="mt-3 text-sm text-white/55">{p.note}</p>
+                  <ul className="mt-6 space-y-2.5 text-sm text-white/70">
+                    <li className="flex items-start gap-2"><PlanCheck /> Sınırsız antrenman</li>
+                    <li className="flex items-start gap-2"><PlanCheck /> Pose detection (on-device)</li>
+                    <li className="flex items-start gap-2"><PlanCheck /> Beslenme zekâsı</li>
+                    <li className="flex items-start gap-2"><PlanCheck /> Streak + retrospektif</li>
+                    {p.popular && <li className="flex items-start gap-2"><PlanCheck /> Öncelikli destek</li>}
+                  </ul>
+                  <div className="mt-auto pt-8">
+                    <Button href="/destek" variant={p.popular ? 'primary' : 'secondary'} size="md" arrow className="w-full">
+                      7 gün ücretsiz dene
+                    </Button>
+                  </div>
+                </div>
+              </RevealItem>
+            ))}
+          </RevealStagger>
+
+          <Reveal delay={0.4}>
+            <div className="mt-8 text-center">
+              <span className="font-mono text-xs uppercase tracking-widest text-white/40">Hiçbir abonelik şimdi ücretlendirilmez · 7 günün sonunda hatırlatılır</span>
+            </div>
+          </Reveal>
+        </Container>
+      </section>
+
+      <section className="relative py-24" id="waitlist">
+        <Container>
+          <Reveal>
+            <div className="rounded-3xl border border-violet-400/15 bg-ink-900/60 p-10 text-center backdrop-blur-md sm:p-16">
+              <Mono>Web bekleme listesi</Mono>
+              <h2 className="mt-4 font-display text-display-md text-balance text-gradient">
+                Web koç paneline ilk erişen sen ol.
+              </h2>
+              <p className="mx-auto mt-5 max-w-xl text-base text-white/60">
+                Programını masaüstünden takip etmek istiyorsan,
+                hazır olduğunda haber vereceğiz. Spam yok, satış yok.
+              </p>
+              <form className="mx-auto mt-8 flex max-w-md flex-col gap-3 sm:flex-row" action="https://formspree.io/f/replace" method="POST">
+                <input
+                  type="email"
+                  name="email"
+                  required
+                  placeholder="ornek@formai.app"
+                  aria-label="E-posta"
+                  className="h-12 flex-1 rounded-full border border-white/[0.1] bg-white/[0.04] px-5 text-sm text-white placeholder:text-white/35 focus:border-violet-400/50 focus:outline-none focus:ring-2 focus:ring-violet-400/30"
+                />
+                <Button type="submit" variant="primary" size="md" arrow>
+                  Beni listeye ekle
+                </Button>
+              </form>
+            </div>
+          </Reveal>
+        </Container>
+      </section>
+    </>
+  );
+}
+
+function StoreBadge({ label, sub, href, icon }: { label: string; sub: string; href: string; icon: React.ReactNode }) {
+  return (
+    <a
+      href={href}
+      className="group inline-flex items-center gap-3 rounded-2xl border border-white/[0.1] bg-white/[0.04] px-5 py-3 transition-all hover:border-violet-400/30 hover:bg-white/[0.06] hover:shadow-glow-subtle"
+    >
+      <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-white/10 text-white">{icon}</span>
+      <span>
+        <span className="block font-mono text-[9px] uppercase tracking-widest text-white/45">{sub}</span>
+        <span className="block font-display text-base font-semibold text-white">{label}</span>
+      </span>
+    </a>
+  );
+}
+function AppleIcon() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor"><path d="M13.1 9.4c0-2.2 1.8-3.2 1.9-3.3-1-1.4-2.6-1.7-3.1-1.7-1.3-.1-2.6.8-3.3.8-.7 0-1.7-.8-2.8-.8C4.4 4.4 3 5.3 2.2 6.8 1.5 9.7 2.6 14 4 16.3c.7 1.1 1.4 2.3 2.4 2.3 1 0 1.4-.6 2.6-.6s1.5.6 2.6.6c1.1 0 1.8-1.1 2.4-2.2.8-1.3 1.1-2.5 1.1-2.6-.1 0-2.1-.8-2.1-3.2zM11 3.1c.5-.6.9-1.4.8-2.3-.8 0-1.7.5-2.2 1.1-.5.5-.9 1.4-.8 2.2.8.1 1.7-.4 2.2-1z"/></svg>
+  );
+}
+function PlayIcon() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor"><path d="M3 1.5 L13.5 9 L3 16.5 Z"/></svg>
+  );
+}
+function PlanCheck() {
+  return (
+    <span className="mt-1 inline-flex h-4 w-4 shrink-0 items-center justify-center rounded-full border border-violet-400/40 bg-violet-500/15 text-violet-300">
+      <svg width="8" height="8" viewBox="0 0 12 12" fill="none">
+        <path d="M3 6.5 L5 8.5 L9 4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    </span>
+  );
+}

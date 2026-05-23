@@ -1,0 +1,153 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-sans: 'Inter', system-ui, sans-serif;
+    --font-display: 'Inter', system-ui, sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    @apply bg-ink-950 text-white/85 font-sans antialiased;
+    background-image:
+      radial-gradient(ellipse 80% 50% at 50% -10%, rgba(124, 92, 255, 0.18), transparent 60%),
+      radial-gradient(ellipse 60% 40% at 80% 110%, rgba(31, 207, 255, 0.08), transparent 60%),
+      linear-gradient(180deg, #05030C 0%, #08051A 100%);
+    background-attachment: fixed;
+    min-height: 100vh;
+  }
+
+  ::selection {
+    @apply bg-violet-500/40 text-white;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #05030C;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #3E2399, #5230C2);
+    border-radius: 999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #5230C2, #7C5CFF);
+  }
+}
+
+@layer components {
+  /* ── Surface tokens ─────────────────────────────────────────── */
+  .surface {
+    @apply bg-white/[0.025] backdrop-blur-xl border border-white/[0.06];
+  }
+  .surface-strong {
+    @apply bg-white/[0.04] backdrop-blur-xl border border-white/[0.08];
+  }
+  .surface-interactive {
+    @apply surface transition-all duration-300 hover:bg-white/[0.05] hover:border-white/[0.12] hover:shadow-glow-subtle;
+  }
+
+  /* ── Glass / hud panels ────────────────────────────────────── */
+  .hud-panel {
+    @apply rounded-2xl border border-violet-400/20 bg-ink-900/60 backdrop-blur-md;
+    box-shadow:
+      0 0 0 1px rgba(124, 92, 255, 0.15) inset,
+      0 20px 50px -20px rgba(124, 92, 255, 0.4);
+  }
+
+  .ring-violet-soft {
+    box-shadow:
+      0 0 0 1px rgba(124, 92, 255, 0.35),
+      0 0 32px -4px rgba(124, 92, 255, 0.45);
+  }
+
+  /* ── Gradient text helper ──────────────────────────────────── */
+  .text-gradient {
+    @apply bg-gradient-text bg-clip-text text-transparent;
+  }
+  .text-gradient-accent {
+    @apply bg-gradient-accent-text bg-clip-text text-transparent;
+  }
+  .text-gradient-violet {
+    background-image: linear-gradient(120deg, #A98AFF 0%, #7C5CFF 50%, #5FE3FF 100%);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: gradientShift 12s ease infinite;
+  }
+
+  /* ── Section dividers ──────────────────────────────────────── */
+  .hairline {
+    @apply border-t border-white/[0.06];
+  }
+
+  /* ── Mono tag (HUD readout style) ──────────────────────────── */
+  .mono-tag {
+    @apply font-mono text-[10px] tracking-[0.2em] uppercase text-violet-300/80;
+  }
+
+  /* ── Reveal hidden state (used by Reveal client component) ──── */
+  .reveal-hidden {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+
+  /* ── Conic ring ────────────────────────────────────────────── */
+  .conic-ring {
+    background: conic-gradient(from 180deg at 50% 50%, #7C5CFF 0deg, #5FE3FF 90deg, #C8FF00 180deg, #FF7A1A 270deg, #7C5CFF 360deg);
+    filter: blur(40px);
+    opacity: 0.4;
+  }
+}
+
+@layer utilities {
+  .mask-fade-b {
+    mask-image: linear-gradient(180deg, #000 70%, transparent 100%);
+    -webkit-mask-image: linear-gradient(180deg, #000 70%, transparent 100%);
+  }
+  .mask-fade-r {
+    mask-image: linear-gradient(90deg, #000 80%, transparent 100%);
+    -webkit-mask-image: linear-gradient(90deg, #000 80%, transparent 100%);
+  }
+  .mask-radial {
+    mask-image: radial-gradient(ellipse 60% 60% at 50% 50%, #000 50%, transparent 100%);
+    -webkit-mask-image: radial-gradient(ellipse 60% 60% at 50% 50%, #000 50%, transparent 100%);
+  }
+  .perspective {
+    perspective: 1200px;
+  }
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { scrollbar-width: none; }
+}
+
+/* Reduced motion respect */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Keep gradient text animation declared in :root for non-tailwind use */
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
