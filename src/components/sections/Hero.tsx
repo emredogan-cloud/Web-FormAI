@@ -117,6 +117,19 @@ export function Hero() {
             transition={{ duration: 1.4, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
             className="relative mx-auto w-full max-w-md lg:max-w-none"
           >
+            {/* Mobile HUD ribbon — ABOVE the device (lg:hidden).
+                Restores the data-readout signaling that desktop floating
+                callouts (lg:block) carry. Mobile users now see the same
+                "live ML pose detection" claim the desktop hero makes. */}
+            <motion.div
+              {...fade(0.4)}
+              className="mx-auto mb-5 grid w-full max-w-[440px] grid-cols-2 gap-2.5 lg:hidden"
+              aria-hidden
+            >
+              <HudPanel label="ML Pose · live" value="30" unit="fps" tone="violet" status="active" className="w-full" />
+              <HudPanel label="Hip alignment" value="5°" unit="dev" tone="scan" status="warn" className="w-full" />
+            </motion.div>
+
             <div className="relative mx-auto flex h-[640px] w-full max-w-[460px] items-center justify-center lg:h-[680px]">
               {/* Conic glow ring behind everything */}
               <div className="pointer-events-none absolute inset-0 rounded-full conic-ring animate-orbit" />
@@ -188,6 +201,19 @@ export function Hero() {
                 <HudPanel label="Tracking" value="OK" tone="lime" status="active" />
               </motion.div>
             </div>
+
+            {/* Mobile HUD ribbon — BELOW the device (lg:hidden).
+                Pairs with the above-device ribbon to surface all four
+                data points the desktop hero shows. Keeps mobile hero
+                informationally on par with desktop. */}
+            <motion.div
+              {...fade(0.5)}
+              className="mx-auto mt-5 grid w-full max-w-[440px] grid-cols-2 gap-2.5 lg:hidden"
+              aria-hidden
+            >
+              <HudPanel label="Postür" value="82" unit="%" tone="violet" status="optimal" className="w-full" />
+              <HudPanel label="Tracking" value="OK" tone="lime" status="active" className="w-full" />
+            </motion.div>
           </motion.div>
         </div>
 
