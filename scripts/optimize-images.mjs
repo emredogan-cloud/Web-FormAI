@@ -32,9 +32,30 @@ const ANSI = {
 // Each row: { src, op, opts } — op = 'webp' | 'jpg-recompress'.
 const JOBS = [
   {
+    // MP.2 — canonical AI coach image. Wide 1672×941 landscape; text
+    // overlays + neon-on-dark detail need high quality. Source PNG is
+    // already optimised by FormAI's marketing pipeline, but a webp
+    // derivative cuts ~70% off without softening the "Form AI COACH"
+    // chest plate text.
+    src: 'public/images/pt-form.png',
+    op: 'webp',
+    opts: { quality: 86, effort: 6 },
+    deleteOriginal: true,
+  },
+  {
+    // MP.3 — pose-analysis source is 853×1844 (resolution ceiling from the
+    // FormAI app's marketing assets). At q78 (PR 4.1) the lossy compression
+    // softened the HUD text overlays ("ML POSE DETECTION", joint labels)
+    // on the in-app panel; the perceived blur user reported is q-loss
+    // compounding the resolution ceiling. q95 preserves text edges +
+    // accent line detail at ~6× smaller weight than full lossless (231 KB
+    // vs 1.3 MB), and next/image generates derivatives at request time.
+    // The display container is also constrained in code (Antrenman live
+    // panel + HowItWorks row) so the browser doesn't upscale the source
+    // pixels significantly.
     src: 'public/images/pose-analysis.png',
     op: 'webp',
-    opts: { quality: 78, effort: 6 },
+    opts: { quality: 95, effort: 6 },
     deleteOriginal: true,
   },
   {

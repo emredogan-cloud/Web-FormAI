@@ -13,7 +13,7 @@ export function CtaBlock({
   primaryLabel = 'Programını oluştur',
   secondaryHref,
   secondaryLabel,
-  imageSrc = '/images/coach-hero.webp',
+  imageSrc = '/images/pt-form.webp',
 }: {
   eyebrow?: string;
   title: React.ReactNode;
@@ -43,7 +43,7 @@ export function CtaBlock({
                   fill
                   sizes="(max-width: 1024px) 0px, 50vw"
                   loading="lazy"
-                  className="object-cover object-left"
+                  className="object-cover object-center"
                 />
               </div>
             )}

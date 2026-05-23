@@ -41,7 +41,13 @@ export function Manifesto() {
             <div className="relative">
               <div className="pointer-events-none absolute -inset-10 rounded-full bg-violet-500/25 blur-3xl" aria-hidden />
               <div className="relative aspect-[3/4] overflow-hidden rounded-3xl border border-violet-400/20 bg-ink-900">
-                <Image src="/images/coach-portrait.webp" alt="FormAI AI Coach portresi" fill sizes="(max-width: 1024px) 80vw, 480px" className="object-cover" />
+                <Image
+                  src="/images/pt-form.webp"
+                  alt="FormAI · AI Coach"
+                  fill
+                  sizes="(max-width: 1024px) 80vw, 480px"
+                  className="object-cover object-center"
+                />
                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink-950 via-ink-950/30 to-transparent" />
                 <div className="absolute inset-x-5 bottom-5 hud-panel p-4">
                   <Eyebrow tone="violet">Form AI · Coach Module</Eyebrow>
