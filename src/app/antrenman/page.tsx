@@ -62,7 +62,7 @@ export default function AntrenmanPage() {
             <div className="relative overflow-hidden rounded-[2.5rem] border border-violet-400/15 bg-gradient-to-b from-ink-800 to-ink-900 shadow-[0_60px_120px_-20px_rgba(124,92,255,0.4)]">
               <div className="grid lg:grid-cols-[1.1fr_1fr]">
                 <div className="relative aspect-[4/5] lg:aspect-auto lg:min-h-[640px]">
-                  <Image src="/images/pose-analysis.png" alt="FormAI pose analizi" fill sizes="(max-width: 1024px) 100vw, 50vw" className="object-cover" />
+                  <Image src="/images/pose-analysis.webp" alt="FormAI pose analizi" fill sizes="(max-width: 1024px) 100vw, 50vw" className="object-cover" />
                   <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-ink-950/80 via-ink-950/20 to-ink-900" />
                 </div>
                 <div className="relative flex flex-col justify-center gap-6 p-10 sm:p-14">

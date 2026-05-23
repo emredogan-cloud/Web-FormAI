@@ -7,14 +7,15 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "optimize-images": "node scripts/optimize-images.mjs"
   },
   "dependencies": {
+    "clsx": "2.1.1",
+    "framer-motion": "11.11.17",
     "next": "14.2.18",
     "react": "18.3.1",
     "react-dom": "18.3.1",
-    "framer-motion": "11.11.17",
-    "clsx": "2.1.1",
     "tailwind-merge": "2.5.4"
   },
   "devDependencies": {
@@ -25,6 +26,7 @@
     "eslint": "8.57.1",
     "eslint-config-next": "14.2.18",
     "postcss": "8.4.49",
+    "sharp": "^0.34.5",
     "tailwindcss": "3.4.14",
     "typescript": "5.6.3"
   }

@@ -42,7 +42,7 @@ const steps: Step[] = [
       'BlazePose ile 33 anahtar nokta saniyede 30 kez ölçülür. Omuz, dirsek, kalça, diz — açı sapması fark edildiği anda sesli komut gelir. Hareket tamamlanmadan müdahale.',
     href: '/antrenman',
     ctaLabel: 'Antrenman zekâsı',
-    imageSrc: '/images/pose-analysis.png',
+    imageSrc: '/images/pose-analysis.webp',
     imageAlt: 'FormAI plank analizi — gerçek zamanlı pose detection',
     tone: 'violet',
   },
