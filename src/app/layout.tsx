@@ -1,12 +1,28 @@
 import type { Metadata, Viewport } from 'next';
 import { Inter, JetBrains_Mono } from 'next/font/google';
+import dynamic from 'next/dynamic';
 import './globals.css';
 import { site } from '@/lib/site';
 import { Navbar } from '@/components/sections/Navbar';
 import { Footer } from '@/components/sections/Footer';
 import { ConsentProvider } from '@/components/consent/ConsentProvider';
-import { ConsentBanner } from '@/components/consent/ConsentBanner';
-import { ConsentSettings } from '@/components/consent/ConsentSettings';
+
+// PR 4.3 — ConsentBanner + ConsentSettings are the only layout-level surfaces
+// that still depend on Framer Motion (the slide-up banner + the modal use
+// AnimatePresence for enter/exit transitions, which is non-trivial to replace
+// in pure CSS). Dynamic-importing them moves the FM bundle out of every
+// page's initial load — it only ships when the consent UI actually mounts,
+// which is post-hydration. Net win: no FM bundle on the first paint of any
+// route. ConsentProvider stays in the main bundle because it sets up context
+// the rest of the tree might read.
+const ConsentBanner = dynamic(
+  () => import('@/components/consent/ConsentBanner').then((m) => m.ConsentBanner),
+  { ssr: false }
+);
+const ConsentSettings = dynamic(
+  () => import('@/components/consent/ConsentSettings').then((m) => m.ConsentSettings),
+  { ssr: false }
+);
 
 const inter = Inter({
   subsets: ['latin', 'latin-ext'],

@@ -1,10 +1,11 @@
-'use client';
-
-import { motion } from 'framer-motion';
 import { Container } from '@/components/ui/Container';
 import { Eyebrow } from '@/components/ui/Eyebrow';
 import { Reveal } from '@/components/ui/Reveal';
 import { cn } from '@/lib/cn';
+
+// PR 4.3 — was a client component with a Framer Motion `whileHover` lift on
+// each cell. CSS `:hover` does exactly the same thing in zero JS. Component is
+// now a server component again.
 
 interface Metric {
   value: string;
@@ -26,11 +27,7 @@ export function MetricGrid({ metrics, eyebrow }: { metrics: Metric[]; eyebrow?: 
         <div className="grid gap-px overflow-hidden rounded-3xl border border-white/[0.06] bg-white/[0.04] sm:grid-cols-2 lg:grid-cols-4">
           {metrics.map((m, i) => (
             <Reveal key={m.label} delay={i * 0.06}>
-              <motion.div
-                whileHover={{ y: -2 }}
-                transition={{ duration: 0.3 }}
-                className="group relative h-full bg-ink-900/80 p-7 transition-colors hover:bg-ink-850"
-              >
+              <div className="group relative h-full bg-ink-900/80 p-7 transition-all duration-300 hover:-translate-y-0.5 hover:bg-ink-850">
                 <div
                   className={cn(
                     'pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent to-transparent opacity-50 transition-opacity group-hover:opacity-100',
@@ -61,7 +58,7 @@ export function MetricGrid({ metrics, eyebrow }: { metrics: Metric[]; eyebrow?: 
                 {m.description && (
                   <p className="mt-2 text-xs leading-relaxed text-white/45">{m.description}</p>
                 )}
-              </motion.div>
+              </div>
             </Reveal>
           ))}
         </div>

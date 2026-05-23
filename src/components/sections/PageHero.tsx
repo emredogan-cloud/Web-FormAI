@@ -1,10 +1,21 @@
-'use client';
-
-import { motion, useReducedMotion } from 'framer-motion';
 import { Container } from '@/components/ui/Container';
 import { Mono } from '@/components/ui/Mono';
 import { GlowOrb } from '@/components/ui/GlowOrb';
 import { cn } from '@/lib/cn';
+
+// PR 4.3 — was a client component with Framer Motion fade-up animations.
+// Mount-time fade-up doesn't need a 50 KB animation library; Tailwind's
+// `animate-fade-up` keyframe (defined in tailwind.config.ts) + inline
+// animation-delay does the same job in pure CSS. Component is now a server
+// component again. prefers-reduced-motion is respected globally via the
+// @media block in globals.css that zeros all animations.
+
+const ACCENT_LINE = {
+  violet: 'bg-violet-400/70',
+  lime: 'bg-lime-500/70',
+  scan: 'bg-scan-500/70',
+  ember: 'bg-ember-500/70',
+} as const;
 
 export function PageHero({
   eyebrow,
@@ -21,13 +32,6 @@ export function PageHero({
   align?: 'left' | 'center';
   children?: React.ReactNode;
 }) {
-  const prefersReduced = useReducedMotion();
-  const fade = (delay = 0) => ({
-    initial: { opacity: 0, y: prefersReduced ? 0 : 24 },
-    animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.85, delay, ease: [0.16, 1, 0.3, 1] as const },
-  });
-
   return (
     <section className="relative isolate overflow-hidden pt-36 pb-20 sm:pt-44 sm:pb-28">
       <div aria-hidden className="pointer-events-none absolute inset-0">
@@ -37,28 +41,43 @@ export function PageHero({
 
       <Container className="relative">
         <div className={cn(align === 'center' ? 'mx-auto max-w-3xl text-center' : 'max-w-3xl')}>
-          <motion.div {...fade(0)} className={cn('flex items-center gap-2.5', align === 'center' && 'justify-center')}>
-            <span className={cn('h-px w-8', tone === 'lime' ? 'bg-lime-500/70' : tone === 'scan' ? 'bg-scan-500/70' : tone === 'ember' ? 'bg-ember-500/70' : 'bg-violet-400/70')} />
+          <div
+            className={cn(
+              'animate-fade-up flex items-center gap-2.5',
+              align === 'center' && 'justify-center'
+            )}
+          >
+            <span className={cn('h-px w-8', ACCENT_LINE[tone])} />
             <Mono tone={tone}>{eyebrow}</Mono>
-          </motion.div>
+          </div>
 
-          <motion.h1
-            {...fade(0.08)}
-            className="mt-5 font-display text-display-xl text-balance text-gradient"
+          <h1
+            className="animate-fade-up mt-5 font-display text-display-xl text-balance text-gradient"
+            style={{ animationDelay: '0.08s' }}
           >
             {title}
-          </motion.h1>
+          </h1>
 
           {description && (
-            <motion.p
-              {...fade(0.18)}
-              className={cn('mt-6 text-pretty text-base leading-relaxed text-white/65 sm:text-lg', align !== 'center' && 'max-w-2xl')}
+            <p
+              className={cn(
+                'animate-fade-up mt-6 text-pretty text-base leading-relaxed text-white/65 sm:text-lg',
+                align !== 'center' && 'max-w-2xl'
+              )}
+              style={{ animationDelay: '0.18s' }}
             >
               {description}
-            </motion.p>
+            </p>
           )}
 
-          {children && <motion.div {...fade(0.26)} className="mt-8">{children}</motion.div>}
+          {children && (
+            <div
+              className="animate-fade-up mt-8"
+              style={{ animationDelay: '0.26s' }}
+            >
+              {children}
+            </div>
+          )}
         </div>
       </Container>
     </section>

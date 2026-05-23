@@ -1,7 +1,4 @@
-'use client';
-
 import Image from 'next/image';
-import { motion } from 'framer-motion';
 import { Container } from '@/components/ui/Container';
 import { Eyebrow } from '@/components/ui/Eyebrow';
 import { Reveal } from '@/components/ui/Reveal';
@@ -105,11 +102,9 @@ function PhoneCard({ src, alt, tone }: { src: string; alt: string; tone: 'violet
 
   return (
     <div className="relative mx-auto w-full max-w-md">
-      <motion.div
-        whileHover={{ y: -6, rotate: -0.5 }}
-        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+      <div
         className={cn(
-          'relative aspect-[9/19.5] overflow-hidden rounded-[3rem] border bg-ink-900 p-1.5',
+          'relative aspect-[9/19.5] overflow-hidden rounded-[3rem] border bg-ink-900 p-1.5 transition-transform duration-500 ease-out-expo hover:-translate-y-1.5 hover:-rotate-[0.5deg]',
           ring
         )}
       >
@@ -117,7 +112,7 @@ function PhoneCard({ src, alt, tone }: { src: string; alt: string; tone: 'violet
           <Image src={src} alt={alt} fill sizes="(max-width: 1024px) 90vw, 480px" className="object-cover" />
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-transparent via-white/[0.03] to-white/[0.05]" />
         </div>
-      </motion.div>
+      </div>
     </div>
   );
 }
@@ -125,14 +120,10 @@ function PhoneCard({ src, alt, tone }: { src: string; alt: string; tone: 'violet
 function ImageCard({ src, alt }: { src: string; alt: string; tone: string }) {
   return (
     <div className="relative mx-auto w-full">
-      <motion.div
-        whileHover={{ y: -4 }}
-        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-        className="relative aspect-[4/5] w-full overflow-hidden rounded-3xl border border-white/[0.08] bg-ink-900 shadow-[0_50px_120px_-20px_rgba(0,0,0,0.7)]"
-      >
+      <div className="relative aspect-[4/5] w-full overflow-hidden rounded-3xl border border-white/[0.08] bg-ink-900 shadow-[0_50px_120px_-20px_rgba(0,0,0,0.7)] transition-transform duration-500 ease-out-expo hover:-translate-y-1">
         <Image src={src} alt={alt} fill sizes="(max-width: 1024px) 90vw, 560px" className="object-cover" />
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink-950/60 via-transparent to-transparent" />
-      </motion.div>
+      </div>
     </div>
   );
 }

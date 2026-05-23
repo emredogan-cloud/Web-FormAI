@@ -1,10 +1,11 @@
 'use client';
 
 import Image from 'next/image';
-import { motion } from 'framer-motion';
+import { useEffect } from 'react';
 import { Container } from '@/components/ui/Container';
 import { Eyebrow } from '@/components/ui/Eyebrow';
-import { Reveal } from '@/components/ui/Reveal';
+import { Reveal, RevealStagger, RevealItem } from '@/components/ui/Reveal';
+import { useIntersect } from '@/lib/use-intersect';
 import { Button } from '@/components/ui/Button';
 import { GlowOrb } from '@/components/ui/GlowOrb';
 
@@ -86,30 +87,25 @@ export function NutritionShowcase() {
                     </div>
                   </div>
 
-                  <ul className="mt-6 space-y-3">
-                    {meals.map((meal, i) => (
-                      <motion.li
-                        key={meal.name}
-                        initial={{ opacity: 0, y: 12 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, amount: 0.4 }}
-                        transition={{ duration: 0.5, delay: i * 0.08 }}
-                        className="group flex items-center gap-4 rounded-2xl border border-white/[0.05] bg-white/[0.02] p-3 transition-colors hover:border-white/[0.12] hover:bg-white/[0.04]"
-                      >
-                        <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-xl border border-white/10">
-                          <Image src={meal.img} alt={meal.name} fill sizes="56px" className="object-cover" />
+                  <RevealStagger className="mt-6 space-y-3" stagger={0.08} amount={0.4}>
+                    {meals.map((meal) => (
+                      <RevealItem key={meal.name}>
+                        <div className="group flex items-center gap-4 rounded-2xl border border-white/[0.05] bg-white/[0.02] p-3 transition-colors hover:border-white/[0.12] hover:bg-white/[0.04]">
+                          <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-xl border border-white/10">
+                            <Image src={meal.img} alt={meal.name} fill sizes="56px" className="object-cover" />
+                          </div>
+                          <div className="min-w-0 flex-1">
+                            <div className="font-mono text-[10px] uppercase tracking-widest text-violet-300/80">{meal.tag}</div>
+                            <div className="truncate font-display text-sm font-medium text-white">{meal.name}</div>
+                          </div>
+                          <div className="text-right">
+                            <div className="font-display text-sm font-semibold text-lime-400">{meal.kcal}</div>
+                            <div className="font-mono text-[10px] uppercase text-white/40">kcal</div>
+                          </div>
                         </div>
-                        <div className="min-w-0 flex-1">
-                          <div className="font-mono text-[10px] uppercase tracking-widest text-violet-300/80">{meal.tag}</div>
-                          <div className="truncate font-display text-sm font-medium text-white">{meal.name}</div>
-                        </div>
-                        <div className="text-right">
-                          <div className="font-display text-sm font-semibold text-lime-400">{meal.kcal}</div>
-                          <div className="font-mono text-[10px] uppercase text-white/40">kcal</div>
-                        </div>
-                      </motion.li>
+                      </RevealItem>
                     ))}
-                  </ul>
+                  </RevealStagger>
 
                   <div className="mt-6 rounded-2xl border border-violet-400/20 bg-violet-500/[0.08] p-4">
                     <div className="flex items-start gap-3">
@@ -146,6 +142,12 @@ function MacroBar({
   class: string;
 }) {
   const pct = Math.min(100, (current / target) * 100);
+  // PR 4.3 — IntersectionObserver hook + CSS width transition replaces the
+  // prior Framer Motion `motion.div initial whileInView` animation.
+  const { ref, inView } = useIntersect({ once: true, amount: 0.4 });
+  // Defensive no-op to silence the unused-import warning if React strips
+  // useEffect in some edge case; the hook itself uses useEffect internally.
+  useEffect(() => undefined, []);
   return (
     <div className="rounded-2xl border border-white/[0.06] bg-white/[0.02] p-5">
       <div className="flex items-end justify-between">
@@ -155,14 +157,14 @@ function MacroBar({
           <span className="text-white/40"> / {target}g</span>
         </span>
       </div>
-      <div className="relative mt-3 h-1.5 overflow-hidden rounded-full bg-white/[0.05]">
-        <motion.div
-          initial={{ width: 0 }}
-          whileInView={{ width: `${pct}%` }}
-          viewport={{ once: true, amount: 0.4 }}
-          transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-          className="absolute inset-y-0 left-0 rounded-full"
-          style={{ background: color, boxShadow: `0 0 12px ${color}` }}
+      <div ref={ref} className="relative mt-3 h-1.5 overflow-hidden rounded-full bg-white/[0.05]">
+        <div
+          className="absolute inset-y-0 left-0 rounded-full transition-[width] duration-[1200ms] ease-out-expo"
+          style={{
+            width: inView ? `${pct}%` : '0%',
+            background: color,
+            boxShadow: `0 0 12px ${color}`,
+          }}
         />
       </div>
     </div>

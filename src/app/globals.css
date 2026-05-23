@@ -99,7 +99,27 @@
     @apply font-mono text-[10px] tracking-[0.2em] uppercase text-violet-300/80;
   }
 
-  /* ── Reveal hidden state (used by Reveal client component) ──── */
+  /* ── Reveal — CSS-driven (PR 4.3 — replaces Framer Motion) ──────── */
+  /* The Reveal/RevealStagger/RevealItem components add these classes after
+     the IntersectionObserver fires. SSR ships hidden state; client flips
+     to .reveal--in-view when scrolled into view. */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition:
+      opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+  }
+  .reveal--up { transform: translateY(28px); }
+  .reveal--left { transform: translateX(28px); }
+  .reveal--right { transform: translateX(-28px); }
+  .reveal--none { transform: none; }
+  .reveal--in-view {
+    opacity: 1;
+    transform: translateY(0) translateX(0);
+  }
+  /* Legacy alias retained for any consumer still referring to it. */
   .reveal-hidden {
     opacity: 0;
     transform: translateY(24px);

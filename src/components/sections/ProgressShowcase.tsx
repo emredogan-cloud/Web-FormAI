@@ -1,6 +1,7 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { useIntersect } from '@/lib/use-intersect';
+import { cn } from '@/lib/cn';
 import { Container } from '@/components/ui/Container';
 import { Eyebrow } from '@/components/ui/Eyebrow';
 import { Reveal } from '@/components/ui/Reveal';
@@ -13,6 +14,11 @@ const completed = 7;
 const today = 8;
 
 export function ProgressShowcase() {
+  // PR 4.3 — IntersectionObserver replaces the per-cell motion.div that
+  // previously drove the 30-day calendar reveal. Single observer for the
+  // whole grid; cells stagger via CSS transition-delay tied to day index.
+  const calendar = useIntersect({ once: true, amount: 0.4 });
+
   return (
     <section className="relative isolate overflow-hidden py-24 sm:py-32 lg:py-40">
       <div aria-hidden className="pointer-events-none absolute inset-0">
@@ -38,34 +44,34 @@ export function ProgressShowcase() {
                   </div>
                 </div>
 
-                <div className="mt-6 grid grid-cols-7 gap-2">
+                <div ref={calendar.ref} className="mt-6 grid grid-cols-7 gap-2">
                   {days.map((d) => {
                     const isCompleted = d <= completed;
                     const isToday = d === today;
                     const isLocked = d > today;
                     return (
-                      <motion.div
+                      <div
                         key={d}
-                        initial={{ opacity: 0, scale: 0.6 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={{ once: true, amount: 0.4 }}
-                        transition={{ duration: 0.35, delay: d * 0.012, ease: [0.16, 1, 0.3, 1] }}
-                        className={[
-                          'relative flex aspect-square items-center justify-center rounded-xl border font-display text-sm font-medium transition-colors',
+                        className={cn(
+                          'relative flex aspect-square items-center justify-center rounded-xl border font-display text-sm font-medium transition-all duration-300 ease-out-back',
+                          calendar.inView ? 'opacity-100 scale-100' : 'opacity-0 scale-75',
                           isToday
                             ? 'border-violet-400/60 bg-violet-500/20 text-white shadow-[0_0_20px_rgba(124,92,255,0.45)]'
                             : isCompleted
                               ? 'border-violet-400/30 bg-violet-500/[0.08] text-violet-200'
                               : isLocked
                                 ? 'border-white/[0.04] bg-white/[0.015] text-white/25'
-                                : '',
-                        ].join(' ')}
+                                : ''
+                        )}
+                        style={{
+                          transitionDelay: calendar.inView ? `${d * 0.012}s` : '0s',
+                        }}
                       >
                         {isCompleted ? <CheckIcon /> : d}
                         {isToday && (
                           <span className="absolute -bottom-1 right-1 h-1.5 w-1.5 rounded-full bg-violet-400 animate-pulse" />
                         )}
-                      </motion.div>
+                      </div>
                     );
                   })}
                 </div>
