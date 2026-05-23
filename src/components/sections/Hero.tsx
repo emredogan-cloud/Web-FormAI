@@ -8,6 +8,7 @@ import { Mono } from '@/components/ui/Mono';
 import { GlowOrb } from '@/components/ui/GlowOrb';
 import { HudPanel } from '@/components/ui/HudPanel';
 import { AppRating } from '@/components/sections/AppRating';
+import { UserCountBadge, isUserCountReady } from '@/components/sections/UserCountBadge';
 
 export function Hero() {
   const prefersReduced = useReducedMotion();
@@ -66,14 +67,26 @@ export function Hero() {
               </Button>
             </motion.div>
 
-            <motion.dl
-              {...fade(0.36)}
-              className="mt-12 grid max-w-lg grid-cols-3 gap-6 border-t border-white/[0.06] pt-8"
-            >
-              <Stat value="138" label="egzersiz kataloğu" />
-              <Stat value="30 gün" label="kişisel program" />
-              <Stat value="On-device" label="pose analizi" />
-            </motion.dl>
+            {/* When site.userCount holds a real value ≥ minDisplayCount, swap
+                the static stats row for the live "Beta · X erken kullanıcı"
+                badge. Until then, render the stats row as before. */}
+            {isUserCountReady() ? (
+              <motion.div
+                {...fade(0.36)}
+                className="mt-12 border-t border-white/[0.06] pt-8"
+              >
+                <UserCountBadge />
+              </motion.div>
+            ) : (
+              <motion.dl
+                {...fade(0.36)}
+                className="mt-12 grid max-w-lg grid-cols-3 gap-6 border-t border-white/[0.06] pt-8"
+              >
+                <Stat value="138" label="egzersiz kataloğu" />
+                <Stat value="30 gün" label="kişisel program" />
+                <Stat value="On-device" label="pose analizi" />
+              </motion.dl>
+            )}
 
             {/* App-store rating badge — renders only when real ratings cross
                 the credibility threshold (see site.ratings). Today: invisible. */}

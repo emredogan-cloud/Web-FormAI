@@ -45,6 +45,29 @@ export const site = {
   },
 
   // ────────────────────────────────────────────────────────────────────────
+  // User-count badge — PR 1.6 trust signal.
+  //
+  // <UserCountBadge /> conditionally REPLACES the hero stats row when the
+  // count is real. Today: value is null → stats row keeps its current copy.
+  // When you set a real `value` AND it meets `minDisplayCount`, the hero
+  // swaps automatically to a single tasteful "Beta · X erken kullanıcı" line
+  // with the measurement date as caption.
+  //
+  // To activate (only when you have a verifiable count):
+  //   value:          real number of users (e.g. 1247)
+  //   capturedAt:     ISO date when the count was measured
+  //   stage:          'beta' | 'launch' | 'production' — drives the caveat
+  //                   pill text ("Beta", "Launch", "Production")
+  //   minDisplayCount: gate to avoid showing tiny early numbers (default 100)
+  // ────────────────────────────────────────────────────────────────────────
+  userCount: {
+    value: null as number | null,
+    capturedAt: null as string | null,
+    stage: 'beta' as 'beta' | 'launch' | 'production',
+    minDisplayCount: 100,
+  },
+
+  // ────────────────────────────────────────────────────────────────────────
   // App-store ratings — PR 1.3 trust badge data source.
   //
   // The <AppRating /> component is invisible by default and only renders when
