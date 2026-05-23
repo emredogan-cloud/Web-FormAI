@@ -35,15 +35,21 @@ npm start            # serve the production build locally
 
 Push to a Vercel-connected git remote. The Next.js framework is auto-detected; `vercel.json` already declares the build/install commands, the `fra1` region, security headers and long-cache headers for `/images/*` + `/screenshots/*`.
 
-See **VERCEL_DEPLOY_GUIDE.md** for a step-by-step walkthrough.
+See **[reports/VERCEL_DEPLOY_GUIDE.md](reports/VERCEL_DEPLOY_GUIDE.md)** for a step-by-step walkthrough.
 
 ## Architecture
 
-See **WEBSITE_ARCHITECTURE_REPORT.md** for routing, component strategy and structure decisions.
+See **[reports/WEBSITE_ARCHITECTURE_REPORT.md](reports/WEBSITE_ARCHITECTURE_REPORT.md)** for routing, component strategy and structure decisions.
 
 ## Brand & design
 
-See **WEB_BRANDING_DECISIONS.md** for the visual language, type stack, color tokens, motion system, and the reasoning behind them.
+See **[reports/WEB_BRANDING_DECISIONS.md](reports/WEB_BRANDING_DECISIONS.md)** for the visual language, type stack, color tokens, motion system, and the reasoning behind them.
+
+## Roadmap & reports
+
+- **[reports/WEBSITE_DEEP_REVIEW.md](reports/WEBSITE_DEEP_REVIEW.md)** — V1 audit (6.2/10) with scoring and prioritized findings.
+- **[reports/WEBSITE_EVOLUTION_MASTERPLAN.md](reports/WEBSITE_EVOLUTION_MASTERPLAN.md)** — V1→V2 execution roadmap (7 phases, 28 sub-PRs).
+- **[reports/PHASE_0_EXECUTION_REPORT.md](reports/PHASE_0_EXECUTION_REPORT.md)** — Phase 0 closure (launch blockers).
 
 ## Project structure
 
