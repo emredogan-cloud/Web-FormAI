@@ -104,11 +104,43 @@ export default function BaslatPage() {
                     <Pill tone="violet">Erken erişim önceliği</Pill>
                   </div>
                 </div>
-                <div className="relative">
-                  <div className="pointer-events-none absolute -inset-8 rounded-full bg-violet-500/25 blur-3xl" aria-hidden />
-                  <div className="relative mx-auto aspect-[9/19.5] w-full max-w-[300px] overflow-hidden rounded-[2.6rem] border border-violet-400/25 bg-ink-900 p-1.5">
-                    <div className="relative h-full w-full overflow-hidden rounded-[2.2rem] bg-ink-950">
-                      <Image src="/screenshots/welcome.jpg" alt="FormAI karşılama ekranı" fill sizes="300px" className="object-cover" />
+                {/* MP.6 — install-card visual: FormAI app icon (canonical
+                    brand mark) as the "this is the app you're getting"
+                    centerpiece. Replaces a phone-shaped frame containing a
+                    welcome-screen screenshot, which had become stale once
+                    PT_FORM (MP.2) consumed coach-imagery duties elsewhere.
+                    Rounded-square treatment mirrors iOS/Android icon
+                    presentation; ambient violet halo + outer hairline ring
+                    keep the premium dark-neon language. */}
+                <div className="relative flex items-center justify-center py-6 sm:py-8 lg:py-10">
+                  <div
+                    aria-hidden
+                    className="pointer-events-none absolute h-72 w-72 rounded-full bg-violet-500/30 blur-3xl sm:h-80 sm:w-80"
+                  />
+                  <div className="relative aspect-square w-full max-w-[220px] sm:max-w-[260px] lg:max-w-[280px]">
+                    {/* Outer rim ring */}
+                    <div
+                      aria-hidden
+                      className="absolute -inset-1 rounded-[28%] bg-gradient-to-b from-violet-400/40 via-violet-400/10 to-violet-700/30"
+                    />
+                    {/* Icon plate */}
+                    <div className="relative h-full w-full overflow-hidden rounded-[26%] border border-white/[0.08] bg-ink-900 shadow-[0_30px_80px_-20px_rgba(124,92,255,0.55)]">
+                      <Image
+                        src="/images/app-icon.webp"
+                        alt="FormAI uygulama ikonu"
+                        fill
+                        sizes="(max-width: 640px) 220px, (max-width: 1024px) 260px, 280px"
+                        className="object-cover object-center"
+                      />
+                      {/* Glass reflection */}
+                      <div
+                        aria-hidden
+                        className="pointer-events-none absolute inset-0 rounded-[26%] bg-gradient-to-tr from-transparent via-white/[0.05] to-white/[0.1]"
+                      />
+                    </div>
+                    {/* Caption */}
+                    <div className="absolute -bottom-7 left-0 right-0 flex justify-center font-mono text-[10px] uppercase tracking-[0.25em] text-white/40">
+                      FormAI · v1.0
                     </div>
                   </div>
                 </div>

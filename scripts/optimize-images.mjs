@@ -43,6 +43,17 @@ const JOBS = [
     deleteOriginal: true,
   },
   {
+    // MP.6 — canonical FormAI app icon. 1254×1254 PNG (1.9 MB) ships on
+    // /baslat install card as the "this is the app you're getting"
+    // brand mark. q88 preserves the legible "AI FITNESS COACH" bottom
+    // label + the skeleton-overlay neon-on-dark detail in the upper
+    // composition. Source PNG removed after encode.
+    src: 'public/images/app-icon.png',
+    op: 'webp',
+    opts: { quality: 88, effort: 6 },
+    deleteOriginal: true,
+  },
+  {
     // MP.3 — pose-analysis source is 853×1844 (resolution ceiling from the
     // FormAI app's marketing assets). At q78 (PR 4.1) the lossy compression
     // softened the HUD text overlays ("ML POSE DETECTION", joint labels)

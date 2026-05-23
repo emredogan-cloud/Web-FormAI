@@ -99,6 +99,41 @@
     @apply font-mono text-[10px] tracking-[0.2em] uppercase text-violet-300/80;
   }
 
+  /* ── Akış pipeline pulse (MP.6) ───────────────────────────────
+     Antrenman /antrenman page — 4-card pipeline. Each card receives
+     `--akis-delay` inline (0s / 2s / 4s / 6s). The status dot's
+     halo + the top accent line pulse on for ~25% of an 8s cycle —
+     producing a wave that travels through the four cards in order,
+     suggesting a live system processing each step in turn.
+     Hover state overrides the pulse cycle with a held-bright state. */
+  @keyframes akis-pulse {
+    0%, 100% { opacity: 0.18; }
+    16%, 28% { opacity: 1; }
+    44%      { opacity: 0.18; }
+  }
+  @keyframes akis-dot-ping {
+    0%, 100% { transform: scale(1); opacity: 0; }
+    16% { transform: scale(1); opacity: 0.6; }
+    28%      { transform: scale(2.6); opacity: 0; }
+  }
+  .akis-card .akis-accent {
+    opacity: 0.18;
+    animation: akis-pulse 8s ease-in-out infinite both;
+    animation-delay: var(--akis-delay, 0s);
+  }
+  .akis-card .akis-dot-ping {
+    animation: akis-dot-ping 8s ease-out infinite both;
+    animation-delay: var(--akis-delay, 0s);
+  }
+  .akis-card:hover .akis-accent {
+    opacity: 1;
+    animation: none;
+  }
+  .akis-card:hover .akis-dot-ping {
+    animation: none;
+    opacity: 0;
+  }
+
   /* ── Reveal — CSS-driven (PR 4.3 — replaces Framer Motion) ──────── */
   /* The Reveal/RevealStagger/RevealItem components add these classes after
      the IntersectionObserver fires. SSR ships hidden state; client flips

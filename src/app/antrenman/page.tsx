@@ -130,19 +130,54 @@ export default function AntrenmanPage() {
               </h2>
             </div>
           </Reveal>
-          <RevealStagger className="mt-14 grid gap-4 lg:grid-cols-4" stagger={0.08}>
-            {steps.map((s, i) => (
-              <RevealItem key={s.no}>
-                <div className="group relative h-full overflow-hidden rounded-3xl border border-white/[0.06] bg-white/[0.02] p-7 transition-all hover:border-violet-400/25 hover:bg-white/[0.04]">
-                  <div className="pointer-events-none absolute -top-px left-6 right-6 h-px bg-gradient-to-r from-transparent via-violet-400/60 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
-                  <Eyebrow>Adım {s.no}</Eyebrow>
-                  <h3 className="mt-6 font-display text-xl font-semibold text-white">{s.title}</h3>
-                  <p className="mt-3 text-sm leading-relaxed text-white/60">{s.body}</p>
-                  <div className="mt-8 font-mono text-[10px] text-white/30">{`> next_step(${i + 1})`}</div>
-                </div>
-              </RevealItem>
-            ))}
-          </RevealStagger>
+          {/* MP.6 — Akış 4-card pipeline.
+              Each card carries a "step status dot" that pulses in sequence
+              via a pure-CSS animation (akis-pulse @ globals.css, 8 s total
+              cycle = 4 cards × 2 s each, delayed per index). The cards
+              also share a continuous connecting line so they read as a
+              live system pipeline, not 4 isolated tiles. Hover lifts the
+              card + intensifies the ember accent. All ember-toned to
+              match the Antrenman pillar identity locked in MP.5. */}
+          <div className="mt-14 relative">
+            {/* Connector line — desktop: horizontal across the row;
+                mobile: vertical down the left. Sits behind the cards. */}
+            <div
+              aria-hidden
+              className="pointer-events-none absolute left-3 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-ember-500/30 to-transparent lg:left-0 lg:right-0 lg:top-1/2 lg:bottom-auto lg:h-px lg:w-auto lg:bg-gradient-to-r lg:from-transparent lg:via-ember-500/30 lg:to-transparent"
+            />
+
+            <RevealStagger className="relative grid gap-4 lg:grid-cols-4" stagger={0.08}>
+              {steps.map((s, i) => (
+                <RevealItem key={s.no}>
+                  <div
+                    className="group akis-card relative h-full overflow-hidden rounded-3xl border border-white/[0.06] bg-white/[0.02] p-7 transition-all duration-300 hover:-translate-y-0.5 hover:border-ember-500/30 hover:bg-white/[0.04] hover:shadow-glow-ember"
+                    style={{ ['--akis-delay' as string]: `${i * 2}s` }}
+                  >
+                    {/* Top accent line — base low opacity, pulses to full
+                        opacity during this card's active window in the
+                        sequence (handled by .akis-card CSS in globals.css). */}
+                    <span
+                      aria-hidden
+                      className="akis-accent pointer-events-none absolute -top-px left-6 right-6 h-px bg-gradient-to-r from-transparent via-ember-500/80 to-transparent"
+                    />
+
+                    {/* Header row: step status dot + step eyebrow */}
+                    <div className="flex items-center gap-3">
+                      <span aria-hidden className="relative flex h-2 w-2">
+                        <span className="akis-dot-ping absolute inline-flex h-full w-full rounded-full bg-ember-500" />
+                        <span className="akis-dot relative inline-flex h-2 w-2 rounded-full bg-ember-500/30" />
+                      </span>
+                      <Eyebrow tone="ember">Adım {s.no}</Eyebrow>
+                    </div>
+
+                    <h3 className="mt-6 font-display text-xl font-semibold text-white">{s.title}</h3>
+                    <p className="mt-3 text-sm leading-relaxed text-white/60">{s.body}</p>
+                    <div className="mt-8 font-mono text-[10px] text-white/30">{`> next_step(${i + 1})`}</div>
+                  </div>
+                </RevealItem>
+              ))}
+            </RevealStagger>
+          </div>
         </Container>
       </section>
 
