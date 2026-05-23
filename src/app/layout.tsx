@@ -4,6 +4,9 @@ import './globals.css';
 import { site } from '@/lib/site';
 import { Navbar } from '@/components/sections/Navbar';
 import { Footer } from '@/components/sections/Footer';
+import { ConsentProvider } from '@/components/consent/ConsentProvider';
+import { ConsentBanner } from '@/components/consent/ConsentBanner';
+import { ConsentSettings } from '@/components/consent/ConsentSettings';
 
 const inter = Inter({
   subsets: ['latin', 'latin-ext'],
@@ -73,17 +76,21 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="tr" className={`${inter.variable} ${mono.variable}`}>
       <body className="overflow-x-hidden">
-        <a
-          href="#main"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[999] focus:rounded-md focus:bg-violet-500 focus:px-4 focus:py-2 focus:text-white"
-        >
-          İçeriğe geç
-        </a>
-        <Navbar />
-        <main id="main" className="relative">
-          {children}
-        </main>
-        <Footer />
+        <ConsentProvider>
+          <a
+            href="#main"
+            className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[999] focus:rounded-md focus:bg-violet-500 focus:px-4 focus:py-2 focus:text-white"
+          >
+            İçeriğe geç
+          </a>
+          <Navbar />
+          <main id="main" className="relative">
+            {children}
+          </main>
+          <Footer />
+          <ConsentBanner />
+          <ConsentSettings />
+        </ConsentProvider>
       </body>
     </html>
   );

@@ -4,6 +4,7 @@ import { Container } from '@/components/ui/Container';
 import { Mono } from '@/components/ui/Mono';
 import { footerNav } from '@/lib/nav';
 import { site } from '@/lib/site';
+import { ConsentFooterLink } from '@/components/consent/ConsentFooterLink';
 
 export function Footer() {
   return (
@@ -48,9 +49,10 @@ export function Footer() {
           <p className="text-xs text-white/45">
             © {new Date().getFullYear()} {site.name}. Tüm hakları saklıdır.
           </p>
-          <p className="text-xs text-white/40">
-            Made with discipline. Powered by on-device AI.
-          </p>
+          <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-xs">
+            <ConsentFooterLink />
+            <span className="text-white/40">Made with discipline. Powered by on-device AI.</span>
+          </div>
         </div>
       </Container>
     </footer>
