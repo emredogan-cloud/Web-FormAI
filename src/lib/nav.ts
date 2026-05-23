@@ -23,8 +23,8 @@ export const footerNav = {
     { label: 'Güvenlik', href: '/destek#guvenlik' },
   ],
   Yasal: [
-    { label: 'Gizlilik politikası', href: '/destek#gizlilik' },
-    { label: 'Kullanım şartları', href: '/destek#sartlar' },
-    { label: 'KVKK', href: '/destek#kvkk' },
+    { label: 'Gizlilik politikası', href: '/gizlilik' },
+    { label: 'Kullanım şartları', href: '/sartlar' },
+    { label: 'KVKK aydınlatma metni', href: '/kvkk' },
   ],
 } as const;

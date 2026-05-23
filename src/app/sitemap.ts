@@ -3,11 +3,22 @@ import { site } from '@/lib/site';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
-  const routes = ['', '/antrenman', '/beslenme', '/gelisim', '/destek', '/baslat'];
+  const routes = [
+    '',
+    '/antrenman',
+    '/beslenme',
+    '/gelisim',
+    '/destek',
+    '/baslat',
+    '/gizlilik',
+    '/sartlar',
+    '/kvkk',
+  ];
+  const legalSet = new Set(['/gizlilik', '/sartlar', '/kvkk']);
   return routes.map((r) => ({
     url: `${site.url}${r}`,
     lastModified: now,
-    changeFrequency: r === '' ? 'weekly' : 'monthly',
-    priority: r === '' ? 1 : r === '/baslat' ? 0.9 : 0.7,
+    changeFrequency: r === '' ? 'weekly' : legalSet.has(r) ? 'yearly' : 'monthly',
+    priority: r === '' ? 1 : r === '/baslat' ? 0.9 : legalSet.has(r) ? 0.3 : 0.7,
   }));
 }
