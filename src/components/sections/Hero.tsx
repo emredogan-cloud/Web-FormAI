@@ -10,6 +10,7 @@ import { GlowOrb } from '@/components/ui/GlowOrb';
 import { HudPanel } from '@/components/ui/HudPanel';
 import { AppRating } from '@/components/sections/AppRating';
 import { UserCountBadge, isUserCountReady } from '@/components/sections/UserCountBadge';
+import { LQIP } from '@/lib/image-lqip';
 
 export function Hero() {
   const prefersReduced = useReducedMotion();
@@ -276,6 +277,8 @@ function DeviceFrame({ src, alt }: { src: string; alt: string }) {
             fill
             priority
             sizes="(max-width: 1024px) 280px, 310px"
+            placeholder={LQIP[src] ? 'blur' : 'empty'}
+            blurDataURL={LQIP[src]}
             className="object-cover object-center"
           />
           {/* Notch */}
@@ -328,6 +331,9 @@ function SatellitePhone({
             alt={alt}
             fill
             sizes="210px"
+            placeholder={LQIP[src] ? 'blur' : 'empty'}
+            blurDataURL={LQIP[src]}
+            loading="lazy"
             className="object-cover object-center opacity-90"
           />
           {/* Dim overlay so satellite reads as secondary, not competing */}

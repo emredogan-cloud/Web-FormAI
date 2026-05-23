@@ -37,7 +37,14 @@ export function CtaBlock({
 
             {imageSrc && (
               <div aria-hidden className="pointer-events-none absolute inset-y-0 right-0 hidden w-1/2 opacity-25 mask-radial lg:block">
-                <Image src={imageSrc} alt="" fill className="object-cover object-left" />
+                <Image
+                  src={imageSrc}
+                  alt=""
+                  fill
+                  sizes="(max-width: 1024px) 0px, 50vw"
+                  loading="lazy"
+                  className="object-cover object-left"
+                />
               </div>
             )}
 
