@@ -40,13 +40,22 @@ export function Hero() {
               <Mono>Pre-launch · Türkiye</Mono>
             </motion.div>
 
+            {/* Hero headline — 1-step parse, outcome + mechanism in two beats.
+                PR 2.2 replaces the prior "Sahaya çıkan yapay zekâ fitness koçun"
+                metaphor (W7 in the deep review). Other masterplan-approved
+                candidates kept here as easy A/B swaps:
+                  ALT-A: "Aynaya bak. Kameran seni hizalasın."
+                  ALT-B: "Yapay zekâ formunu izler. Sen sadece dene."
+                Emphasis word ("Kameran") carries the brand-defining mechanism
+                — the camera-based AI coach is what makes FormAI different. */}
             <motion.h1
               {...fade(0.08)}
               className="mt-6 font-display text-display-2xl text-balance"
             >
-              <span className="text-gradient">Sahaya çıkan </span>
-              <span className="text-gradient-violet">yapay zekâ </span>
-              <span className="text-gradient">fitness koçun.</span>
+              <span className="text-gradient">30 günde formuna kavuş.</span>
+              <br />
+              <span className="text-gradient-violet">Kameran </span>
+              <span className="text-gradient">koçun olsun.</span>
             </motion.h1>
 
             <motion.p
