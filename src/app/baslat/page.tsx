@@ -9,6 +9,7 @@ import { Card } from '@/components/ui/Card';
 import { Pill } from '@/components/ui/Pill';
 import { GlowOrb } from '@/components/ui/GlowOrb';
 import { site } from '@/lib/site';
+import { WaitlistForm } from '@/components/sections/WaitlistForm';
 
 export const metadata: Metadata = {
   title: 'Başla — Erken erişime katıl',
@@ -200,27 +201,15 @@ export default function BaslatPage() {
         <Container>
           <Reveal>
             <div className="rounded-3xl border border-violet-400/15 bg-ink-900/60 p-10 text-center backdrop-blur-md sm:p-16">
-              <Mono>Web bekleme listesi</Mono>
+              <Mono>Erken erişim listesi</Mono>
               <h2 className="mt-4 font-display text-display-md text-balance text-gradient">
-                Web koç paneline ilk erişen sen ol.
+                Mağazalar açıldığında <span className="text-gradient-violet">ilk haber alan sen ol.</span>
               </h2>
               <p className="mx-auto mt-5 max-w-xl text-base text-white/60">
-                Programını masaüstünden takip etmek istiyorsan,
-                hazır olduğunda haber vereceğiz. Spam yok, satış yok.
+                E-postanı bırak. App Store ve Play&apos;de yayında olduğumuzda davet linkini gönderiyoruz.
+                Pazarlama maili yok, sadece launch bildirimi.
               </p>
-              <form className="mx-auto mt-8 flex max-w-md flex-col gap-3 sm:flex-row" action="https://formspree.io/f/replace" method="POST">
-                <input
-                  type="email"
-                  name="email"
-                  required
-                  placeholder="ornek@formai.app"
-                  aria-label="E-posta"
-                  className="h-12 flex-1 rounded-full border border-white/[0.1] bg-white/[0.04] px-5 text-sm text-white placeholder:text-white/35 focus:border-violet-400/50 focus:outline-none focus:ring-2 focus:ring-violet-400/30"
-                />
-                <Button type="submit" variant="primary" size="md" arrow>
-                  Beni listeye ekle
-                </Button>
-              </form>
+              <WaitlistForm source="baslat" />
             </div>
           </Reveal>
         </Container>

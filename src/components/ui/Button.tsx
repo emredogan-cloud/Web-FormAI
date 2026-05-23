@@ -35,11 +35,19 @@ interface ButtonProps {
   onClick?: () => void;
   arrow?: boolean;
   external?: boolean;
+  disabled?: boolean;
+  ariaBusy?: boolean;
 }
 
 export const Button = forwardRef<HTMLAnchorElement | HTMLButtonElement, ButtonProps>(
-  ({ href, variant = 'primary', size = 'md', children, className, arrow, external, ...props }, ref) => {
-    const classes = cn(base, sizes[size], variants[variant], className);
+  ({ href, variant = 'primary', size = 'md', children, className, arrow, external, disabled, ariaBusy, ...props }, ref) => {
+    const classes = cn(
+      base,
+      sizes[size],
+      variants[variant],
+      disabled && 'cursor-not-allowed opacity-60 hover:translate-y-0 hover:shadow-none',
+      className
+    );
     const content = (
       <>
         <span className="relative z-10 flex items-center gap-2">{children}</span>
@@ -71,7 +79,13 @@ export const Button = forwardRef<HTMLAnchorElement | HTMLButtonElement, ButtonPr
       );
     }
     return (
-      <button ref={ref as React.Ref<HTMLButtonElement>} className={classes} {...props}>
+      <button
+        ref={ref as React.Ref<HTMLButtonElement>}
+        className={classes}
+        disabled={disabled}
+        aria-busy={ariaBusy}
+        {...props}
+      >
         {content}
       </button>
     );
