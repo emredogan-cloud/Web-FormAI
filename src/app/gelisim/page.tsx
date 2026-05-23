@@ -34,18 +34,18 @@ export default function GelisimPage() {
         eyebrow="Gelişim · streak intelligence"
         title={<>Disiplin bir histir.<br /><span className="text-ember-400">FormAI onu ölçüye çevirir.</span></>}
         description="Streak'ler, rozetler, haftalık retrospektif. Yapay zekâ koçun her sabah seni neyi geliştirmen gerektiğine yönlendirir. Motivasyon bir his değil, sürekli ölçülen bir veriye dönüşür."
-        tone="ember"
+        tone="violet"
       >
         <div className="flex flex-wrap gap-2">
-          <Pill tone="ember">7 günlük seri</Pill>
           <Pill tone="violet">30 günlük takvim</Pill>
+          <Pill tone="ember">7 günlük seri</Pill>
           <Pill tone="lime">Haftalık retrospektif</Pill>
         </div>
       </PageHero>
 
       {/* Big transformation card */}
       <section className="relative isolate py-12 sm:py-20">
-        <GlowOrb tone="ember" size="xl" className="-top-40 left-1/2 -translate-x-1/2 opacity-25" />
+        <GlowOrb tone="violet" size="xl" className="-top-40 left-1/2 -translate-x-1/2 opacity-25" />
         <Container className="relative">
           <Reveal>
             <Card padding="lg" className="overflow-hidden">

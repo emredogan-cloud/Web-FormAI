@@ -21,7 +21,8 @@ const pillars: Pillar[] = [
     title: 'Antrenman',
     description:
       'Kameran formunu okur, AI koçun gerçek zamanlı düzeltir. Salonsuz, fakat eğitmenli antrenman.',
-    tone: 'violet',
+    // MP.5 — Antrenman = energy / workout heat → ember
+    tone: 'ember',
     icon: <DumbbellIcon />,
     highlights: ['BlazePose ML', '138 egzersiz', 'Form skoru'],
   },
@@ -41,7 +42,8 @@ const pillars: Pillar[] = [
     title: 'Gelişim',
     description:
       'Streak, rozet, haftalık retrospektif. Yapay zekânın seni neyi geliştirmen gerektiğine yönlendirdiği bir takvim.',
-    tone: 'ember',
+    // MP.5 — Gelişim = growth / continuity → violet (brand primary)
+    tone: 'violet',
     icon: <FlameIcon />,
     highlights: ['30 gün takvim', 'Rozet sistemi', 'Haftalık retrospektif'],
   },

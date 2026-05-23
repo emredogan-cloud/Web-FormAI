@@ -44,19 +44,19 @@ export default function AntrenmanPage() {
         eyebrow="Antrenman zekâsı · BlazePose"
         title={<>Sahanda <span className="text-gradient-violet">eğitmen var.</span><br />Sadece görünmez.</>}
         description="FormAI'nin kamera çekirdeği, hareketi nicel hale getirir. Form skoru, açı sapması, tempo kilidi — hepsi kameran üzerinden anlık çalışır. Bulut yok. Gecikme yok. Gözetim yok."
-        tone="violet"
+        tone="ember"
       >
         <div className="flex flex-wrap gap-2">
-          <Pill tone="violet">8 pose analyzer</Pill>
+          <Pill tone="ember">8 pose analyzer</Pill>
           <Pill tone="lime">138 egzersiz</Pill>
           <Pill tone="scan">30 fps · on-device</Pill>
-          <Pill tone="ember">7s cold start</Pill>
+          <Pill tone="violet">7s cold start</Pill>
         </div>
       </PageHero>
 
       {/* Big interactive coach panel */}
       <section className="relative isolate py-12 sm:py-20">
-        <GlowOrb tone="violet" size="xl" className="-top-32 left-1/2 -translate-x-1/2 opacity-30" />
+        <GlowOrb tone="ember" size="xl" className="-top-32 left-1/2 -translate-x-1/2 opacity-30" />
         <Container className="relative">
           <Reveal>
             <div className="relative overflow-hidden rounded-[2.5rem] border border-violet-400/15 bg-gradient-to-b from-ink-800 to-ink-900 shadow-[0_60px_120px_-20px_rgba(124,92,255,0.4)]">

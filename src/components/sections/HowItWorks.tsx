@@ -44,7 +44,8 @@ const steps: Step[] = [
     ctaLabel: 'Antrenman zekâsı',
     imageSrc: '/images/pose-analysis.webp',
     imageAlt: 'FormAI plank analizi — gerçek zamanlı pose detection',
-    tone: 'violet',
+    // MP.5 — Antrenman = energy / workout heat → ember
+    tone: 'ember',
   },
   {
     no: '02',
@@ -68,7 +69,8 @@ const steps: Step[] = [
     ctaLabel: 'Gelişim sistemi',
     imageSrc: '/images/daily-challenge.webp',
     imageAlt: 'FormAI gelişim — günlük meydan okuma',
-    tone: 'ember',
+    // MP.5 — Gelişim = growth / continuity → violet (brand primary)
+    tone: 'violet',
   },
 ];
 
