@@ -9,6 +9,9 @@ import {
   LegalCallout,
   LegalStrong,
 } from '@/components/sections/LegalPageLayout';
+import { site } from '@/lib/site';
+
+const SUPPORT_EMAIL = site.team.contact.email;
 
 export const metadata: Metadata = {
   title: 'Kullanım şartları',
@@ -297,7 +300,7 @@ export default function SartlarPage() {
       <LegalSectionHeader id="iletisim" number={14}>İletişim</LegalSectionHeader>
       <LegalP>
         Bu Şartlarla ilgili sorularınız mı var? Bize{' '}
-        <a href="mailto:support@formai.app" className="text-violet-300 underline-offset-4 hover:underline">support@formai.app</a>{' '}
+        <a href={`mailto:${SUPPORT_EMAIL}`} className="text-violet-300 underline-offset-4 hover:underline">{SUPPORT_EMAIL}</a>{' '}
         adresinden ulaşın.
       </LegalP>
 

@@ -116,7 +116,11 @@ export const site = {
     location: 'Türkiye',
     status: 'Bağımsız · pre-launch',
     contact: {
-      email: 'support@formai.app',
+      // Single source of truth for the support email. Every Destek channel,
+      // every legal-page contact anchor, the FounderStrip strip, and the
+      // LegalPageLayout sidebar all read from here. To change the support
+      // address site-wide, change this one value.
+      email: 'formaisupport@proton.me',
       // Set to a real handle to surface a footer link in the strip; null hides it.
       github: null as string | null,
       twitter: null as string | null,

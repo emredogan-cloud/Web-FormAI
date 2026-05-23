@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { Container } from '@/components/ui/Container';
 import { Mono } from '@/components/ui/Mono';
 import { Eyebrow } from '@/components/ui/Eyebrow';
+import { site } from '@/lib/site';
 import { cn } from '@/lib/cn';
 
 export interface LegalSection {
@@ -16,7 +17,7 @@ export function LegalPageLayout({
   effective,
   intro,
   sections,
-  contactEmail = 'support@formai.app',
+  contactEmail = site.team.contact.email,
   children,
 }: {
   eyebrow: string;

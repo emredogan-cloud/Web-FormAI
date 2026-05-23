@@ -9,6 +9,9 @@ import {
   LegalCallout,
   LegalStrong,
 } from '@/components/sections/LegalPageLayout';
+import { site } from '@/lib/site';
+
+const SUPPORT_EMAIL = site.team.contact.email;
 
 export const metadata: Metadata = {
   title: 'Gizlilik politikası',
@@ -181,7 +184,7 @@ export default function GizlilikPage() {
       <LegalUL>
         <LegalLI>Hakkınızda tuttuğumuz kişisel verilere <LegalStrong>erişim</LegalStrong>;</LegalLI>
         <LegalLI>Yanlış verileri <LegalStrong>düzeltme</LegalStrong>;</LegalLI>
-        <LegalLI>Verilerinizi <LegalStrong>silme</LegalStrong> — Uygulama içinden doğrudan silebilirsiniz (Ayarlar → Hesap → Hesabı Sil). Uygulamayı kaldırdıysanız, hesabınızın ve ilişkili verilerin tam silinmesini support@formai.app adresinden talep edebilirsiniz;</LegalLI>
+        <LegalLI>Verilerinizi <LegalStrong>silme</LegalStrong> — Uygulama içinden doğrudan silebilirsiniz (Ayarlar → Hesap → Hesabı Sil). Uygulamayı kaldırdıysanız, hesabınızın ve ilişkili verilerin tam silinmesini {SUPPORT_EMAIL} adresinden talep edebilirsiniz;</LegalLI>
         <LegalLI>Verilerinizi makine tarafından okunabilir biçimde <LegalStrong>dışa aktarma</LegalStrong>;</LegalLI>
         <LegalLI>Belirli işlemeleri <LegalStrong>kısıtlama veya itiraz etme</LegalStrong>;</LegalLI>
         <LegalLI>İşleme açık rızaya dayandığında <LegalStrong>rızayı geri çekme</LegalStrong>;</LegalLI>
@@ -189,7 +192,7 @@ export default function GizlilikPage() {
       </LegalUL>
       <LegalP>
         Bu haklardan herhangi birini kullanmak için hesabınızla ilişkili adresten{' '}
-        <a href="mailto:support@formai.app" className="text-violet-300 underline-offset-4 hover:underline">support@formai.app</a>{' '}
+        <a href={`mailto:${SUPPORT_EMAIL}`} className="text-violet-300 underline-offset-4 hover:underline">{SUPPORT_EMAIL}</a>{' '}
         adresine e-posta gönderin. 30 gün içinde yanıtlıyoruz.
       </LegalP>
 
@@ -211,7 +214,7 @@ export default function GizlilikPage() {
       <LegalP>
         FormAI <LegalStrong>16 yaş altı çocuklara yönelik değildir</LegalStrong>. 16 yaş altı
         çocuklardan bilerek kişisel veri toplamıyoruz. Bir çocuğun bize kişisel veri sağladığını
-        düşünüyorsanız lütfen <a href="mailto:support@formai.app" className="text-violet-300 underline-offset-4 hover:underline">support@formai.app</a>{' '}
+        düşünüyorsanız lütfen <a href={`mailto:${SUPPORT_EMAIL}`} className="text-violet-300 underline-offset-4 hover:underline">{SUPPORT_EMAIL}</a>{' '}
         adresinden bizimle iletişime geçin; veriyi silelim.
       </LegalP>
 
@@ -233,7 +236,7 @@ export default function GizlilikPage() {
       <LegalSectionHeader id="iletisim" number={11}>İletişim</LegalSectionHeader>
       <LegalP>
         Gizlilik soruları, veri sahibi talepleri veya endişeleri bildirmek için bize{' '}
-        <a href="mailto:support@formai.app" className="text-violet-300 underline-offset-4 hover:underline">support@formai.app</a>{' '}
+        <a href={`mailto:${SUPPORT_EMAIL}`} className="text-violet-300 underline-offset-4 hover:underline">{SUPPORT_EMAIL}</a>{' '}
         adresinden ulaşın.
       </LegalP>
 

@@ -10,6 +10,12 @@ import { CtaBlock } from '@/components/sections/CtaBlock';
 import { FounderStrip } from '@/components/sections/FounderStrip';
 import { Button } from '@/components/ui/Button';
 import { faqGroups } from '@/data/faq';
+import { site } from '@/lib/site';
+
+// MP.1 — single support address. Both Destek channel cards route to the same
+// inbox (proton.me); the labels (E-posta / Veri talebi) keep their distinct
+// meanings so users can self-identify their request in the subject.
+const SUPPORT_EMAIL = site.team.contact.email;
 
 export const metadata: Metadata = {
   title: 'Destek — Sorularına cevap, yanına koç',
@@ -18,9 +24,9 @@ export const metadata: Metadata = {
 };
 
 const channels = [
-  { icon: 'mail', label: 'E-posta desteği', value: 'destek@formai.app', href: 'mailto:destek@formai.app', tone: 'violet' as const, body: 'Türkçe yanıt · 24 saat içinde.' },
-  { icon: 'shield', label: 'Veri talebi', value: 'kvkk@formai.app', href: 'mailto:kvkk@formai.app', tone: 'scan' as const, body: 'KVKK · hesap silme · veri dökümü.' },
-  { icon: 'doc', label: 'Yasal sayfalar', value: 'Gizlilik · Şartlar · KVKK', href: '#yasal', tone: 'lime' as const, body: 'Bağlı yasal hükümlerin tamamı.' },
+  { icon: 'mail',   label: 'E-posta desteği', value: SUPPORT_EMAIL,            href: `mailto:${SUPPORT_EMAIL}?subject=Destek`,        tone: 'violet' as const, body: 'Türkçe yanıt · 24 saat içinde.' },
+  { icon: 'shield', label: 'Veri talebi',     value: SUPPORT_EMAIL,            href: `mailto:${SUPPORT_EMAIL}?subject=KVKK%20veri%20talebi`, tone: 'scan'   as const, body: 'KVKK · hesap silme · veri dökümü.' },
+  { icon: 'doc',    label: 'Yasal sayfalar',  value: 'Gizlilik · Şartlar · KVKK', href: '#yasal',                                       tone: 'lime'   as const, body: 'Bağlı yasal hükümlerin tamamı.' },
 ];
 
 export default function DestekPage() {

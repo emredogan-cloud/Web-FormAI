@@ -8,6 +8,9 @@ import {
   LegalCallout,
   LegalStrong,
 } from '@/components/sections/LegalPageLayout';
+import { site } from '@/lib/site';
+
+const SUPPORT_EMAIL = site.team.contact.email;
 
 export const metadata: Metadata = {
   title: 'KVKK aydınlatma metni',
@@ -53,7 +56,7 @@ export default function KvkkPage() {
       </LegalP>
       <LegalP>
         <LegalStrong>İletişim:</LegalStrong>{' '}
-        <a href="mailto:support@formai.app" className="text-violet-300 underline-offset-4 hover:underline">support@formai.app</a>
+        <a href={`mailto:${SUPPORT_EMAIL}`} className="text-violet-300 underline-offset-4 hover:underline">{SUPPORT_EMAIL}</a>
       </LegalP>
 
       <LegalSectionHeader id="isleme-amaclari" number={2}>İşleme amaçları</LegalSectionHeader>
@@ -138,7 +141,7 @@ export default function KvkkPage() {
       <LegalSectionHeader id="basvuru" number={8}>Başvuru yöntemi</LegalSectionHeader>
       <LegalP>
         Yukarıdaki haklarınıza ilişkin taleplerinizi, hesabınızla ilişkili e-posta adresinden{' '}
-        <a href="mailto:support@formai.app" className="text-violet-300 underline-offset-4 hover:underline">support@formai.app</a>{' '}
+        <a href={`mailto:${SUPPORT_EMAIL}`} className="text-violet-300 underline-offset-4 hover:underline">{SUPPORT_EMAIL}</a>{' '}
         adresine ileterek bize iletebilirsiniz. Başvurunuzun KVKK md. 13 uyarınca{' '}
         <LegalStrong>en geç 30 gün</LegalStrong> içinde yanıtlanması esastır.
       </LegalP>
