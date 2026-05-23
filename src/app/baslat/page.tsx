@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
+import Link from 'next/link';
 import { PageHero } from '@/components/sections/PageHero';
 import { Container } from '@/components/ui/Container';
 import { Mono } from '@/components/ui/Mono';
@@ -12,6 +13,7 @@ import { site } from '@/lib/site';
 import { WaitlistForm } from '@/components/sections/WaitlistForm';
 import { Testimonials } from '@/components/sections/Testimonials';
 import { AppRating } from '@/components/sections/AppRating';
+import { PricingTrustStrip } from '@/components/sections/PricingTrustStrip';
 
 export const metadata: Metadata = {
   title: 'Başla — Erken erişime katıl',
@@ -156,13 +158,14 @@ export default function BaslatPage() {
                 Üç plan. Sıfır gizli ücret.
               </h2>
               <p className="mt-5 text-base leading-relaxed text-white/60">
-                Yıllık plan en uygun fiyat. Yedi gün ücretsiz; ödeme şimdi alınmaz.
-                İstediğin an mağazadan iptal edebilirsin.
+                Yıllık plan en uygun fiyat. Aşağıdaki üç söz seninle:
               </p>
             </div>
           </Reveal>
 
-          <RevealStagger className="mt-14 grid gap-5 sm:grid-cols-3" stagger={0.08}>
+          <PricingTrustStrip className="mt-10" />
+
+          <RevealStagger className="mt-12 grid gap-5 sm:grid-cols-3" stagger={0.08}>
             {plans.map((p) => (
               <RevealItem key={p.label}>
                 <div
@@ -198,7 +201,12 @@ export default function BaslatPage() {
 
           <Reveal delay={0.4}>
             <div className="mt-8 text-center">
-              <span className="font-mono text-xs uppercase tracking-widest text-white/40">Hiçbir abonelik şimdi ücretlendirilmez · 7 günün sonunda hatırlatılır</span>
+              <span className="font-mono text-xs uppercase tracking-widest text-white/40">
+                Faturalama Apple App Store / Google Play üzerinden ·{' '}
+                <Link href="/sartlar#abonelik" className="underline-offset-4 hover:text-violet-300 hover:underline">
+                  Şartlar
+                </Link>
+              </span>
             </div>
           </Reveal>
         </Container>
