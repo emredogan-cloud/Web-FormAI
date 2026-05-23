@@ -10,6 +10,7 @@ import { Pill } from '@/components/ui/Pill';
 import { GlowOrb } from '@/components/ui/GlowOrb';
 import { site } from '@/lib/site';
 import { WaitlistForm } from '@/components/sections/WaitlistForm';
+import { Testimonials } from '@/components/sections/Testimonials';
 
 export const metadata: Metadata = {
   title: 'Başla — Erken erişime katıl',
@@ -137,6 +138,8 @@ export default function BaslatPage() {
           </RevealStagger>
         </Container>
       </section>
+
+      <Testimonials variant="baslat" />
 
       {/* Plans */}
       <section className="relative py-24 sm:py-32" id="plans">

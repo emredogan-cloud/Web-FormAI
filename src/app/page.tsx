@@ -8,6 +8,7 @@ import { NutritionShowcase } from '@/components/sections/NutritionShowcase';
 import { ProgressShowcase } from '@/components/sections/ProgressShowcase';
 import { Manifesto } from '@/components/sections/Manifesto';
 import { MetricGrid } from '@/components/sections/MetricGrid';
+import { Testimonials } from '@/components/sections/Testimonials';
 import { CtaBlock } from '@/components/sections/CtaBlock';
 
 export const metadata: Metadata = {
@@ -35,6 +36,7 @@ export default function HomePage() {
           { value: '4 katman', label: 'hata muhafızı', description: 'Sentry, Zoned, FlutterError, ErrorWidget.', tone: 'ember' },
         ]}
       />
+      <Testimonials variant="home" />
       <Manifesto />
       <CtaBlock
         eyebrow="30 gün sonra"
