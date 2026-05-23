@@ -45,6 +45,34 @@ export const site = {
   },
 
   // ────────────────────────────────────────────────────────────────────────
+  // App-store ratings — PR 1.3 trust badge data source.
+  //
+  // The <AppRating /> component is invisible by default and only renders when
+  // a store has both an `average` AND a `count` that meets `minReviewCount`.
+  // This makes it impossible to ship a fabricated rating — the visual exists
+  // only once the underlying social proof is real.
+  //
+  // To activate (per store) once you have ≥100 verified reviews:
+  //   1. Set `average` (e.g. 4.7), `count` (e.g. 142), and a deep `url` to
+  //      the store reviews page.
+  //   2. Optionally raise `minReviewCount` if you want a higher credibility
+  //      threshold before going live.
+  // ────────────────────────────────────────────────────────────────────────
+  ratings: {
+    appStore: {
+      average: null as number | null,
+      count: null as number | null,
+      url: null as string | null,
+    },
+    play: {
+      average: null as number | null,
+      count: null as number | null,
+      url: null as string | null,
+    },
+    minReviewCount: 100,
+  },
+
+  // ────────────────────────────────────────────────────────────────────────
   // Team / human presence
   //
   // The FounderStrip component renders two variants based on this config:

@@ -11,6 +11,7 @@ import { GlowOrb } from '@/components/ui/GlowOrb';
 import { site } from '@/lib/site';
 import { WaitlistForm } from '@/components/sections/WaitlistForm';
 import { Testimonials } from '@/components/sections/Testimonials';
+import { AppRating } from '@/components/sections/AppRating';
 
 export const metadata: Metadata = {
   title: 'Başla — Erken erişime katıl',
@@ -58,13 +59,16 @@ export default function BaslatPage() {
         tone="violet"
         align="center"
       >
-        <div className="flex flex-wrap justify-center gap-3">
-          <Button href="#waitlist" variant="primary" size="lg" arrow>
-            Bekleme listesine katıl
-          </Button>
-          <Button href="#plans" variant="secondary" size="lg">
-            Planları karşılaştır
-          </Button>
+        <div className="flex flex-col items-center gap-5">
+          <div className="flex flex-wrap justify-center gap-3">
+            <Button href="#waitlist" variant="primary" size="lg" arrow>
+              Bekleme listesine katıl
+            </Button>
+            <Button href="#plans" variant="secondary" size="lg">
+              Planları karşılaştır
+            </Button>
+          </div>
+          <AppRating align="center" size="sm" />
         </div>
       </PageHero>
 

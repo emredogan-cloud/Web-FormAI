@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/Button';
 import { Mono } from '@/components/ui/Mono';
 import { GlowOrb } from '@/components/ui/GlowOrb';
 import { HudPanel } from '@/components/ui/HudPanel';
+import { AppRating } from '@/components/sections/AppRating';
 
 export function Hero() {
   const prefersReduced = useReducedMotion();
@@ -73,6 +74,12 @@ export function Hero() {
               <Stat value="30 gün" label="kişisel program" />
               <Stat value="On-device" label="pose analizi" />
             </motion.dl>
+
+            {/* App-store rating badge — renders only when real ratings cross
+                the credibility threshold (see site.ratings). Today: invisible. */}
+            <motion.div {...fade(0.44)} className="mt-8">
+              <AppRating size="sm" />
+            </motion.div>
           </div>
 
           {/* Visual column — coach + HUD */}
