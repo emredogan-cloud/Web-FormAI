@@ -18,13 +18,59 @@ export const metadata: Metadata = {
     'Streak intelligence, haftalık retrospektif ve rozet sistemiyle motivasyonunu veriyle besler. 30 günlük takvim her gün senin lehine kalibre olur.',
 };
 
+// MP.7 — badges now carry what/why/how-earned. The card reveals the
+// "why" + "how" on hover (desktop) OR focus (keyboard / mobile-tap).
+// Each entry stays compact in the data file so future additions are
+// trivial.
 const badges = [
-  { name: 'İlk Adım', criteria: '1 gün tamam', unlocked: true, tone: 'violet' as const },
-  { name: 'İlk 7 Gün', criteria: '7 günlük seri', unlocked: true, tone: 'ember' as const },
-  { name: 'Disiplinli', criteria: '%33 tamam', unlocked: false, tone: 'violet' as const },
-  { name: 'Kalori Avcısı', criteria: '5 hedef günü', unlocked: false, tone: 'lime' as const },
-  { name: '30 Gün Şampiyonu', criteria: 'Program bitti', unlocked: false, tone: 'scan' as const },
-  { name: 'Form Ustası', criteria: 'Form skoru 95+', unlocked: false, tone: 'violet' as const },
+  {
+    name: 'İlk Adım',
+    criteria: '1 gün tamam',
+    why: 'İlk adımı atmak, çoğu zaman planı başlatmaktan daha zor.',
+    how: '1 antrenmanı tamamla.',
+    unlocked: true,
+    tone: 'violet' as const,
+  },
+  {
+    name: 'İlk 7 Gün',
+    criteria: '7 günlük seri',
+    why: 'Bir hafta üst üste — alışkanlık oluşumunun eşiği.',
+    how: '7 gün boyunca her gün antrenman yap.',
+    unlocked: true,
+    tone: 'ember' as const,
+  },
+  {
+    name: 'Disiplinli',
+    criteria: '%33 tamam',
+    why: 'Programın üçte biri. Geri dönmek artık zor.',
+    how: '30 günlük programın %33’üne ulaş.',
+    unlocked: false,
+    tone: 'violet' as const,
+  },
+  {
+    name: 'Kalori Avcısı',
+    criteria: '5 hedef günü',
+    why: 'Beslenme hedefini sürekli tutturmak — disiplinin görünür şekli.',
+    how: '5 farklı günde kalori hedefini tutturmuş ol.',
+    unlocked: false,
+    tone: 'lime' as const,
+  },
+  {
+    name: '30 Gün Şampiyonu',
+    criteria: 'Program bitti',
+    why: 'Otuz gün önce başladığın versiyon artık geride.',
+    how: '30 günlük programı tamamla.',
+    unlocked: false,
+    tone: 'scan' as const,
+  },
+  {
+    name: 'Form Ustası',
+    criteria: 'Form skoru 95+',
+    why: 'Eğitmen artık seni izlemiyor — sen kendini izliyorsun.',
+    how: 'Antrenman ortalamasını 95+ skor’a çıkar.',
+    unlocked: false,
+    tone: 'violet' as const,
+  },
 ];
 
 export default function GelisimPage() {
@@ -236,23 +282,77 @@ export default function GelisimPage() {
             </div>
           </Reveal>
 
+          {/* MP.7 — each badge is now an expand-on-interaction button.
+              `:hover` on desktop and `:focus-within` on keyboard / mobile
+              tap both reveal the "why" + "how earned" detail in-place.
+              Pure CSS — no client JS, no Framer return. Mobile tap reads
+              cleanly: tap once to expand, tap elsewhere to collapse
+              (browser focus model). Plus a "Detay" caret chevron so the
+              affordance is visible at rest. */}
           <RevealStagger className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3" stagger={0.06}>
-            {badges.map((b) => (
-              <RevealItem key={b.name}>
-                <div className={`group relative overflow-hidden rounded-3xl border p-7 transition-all ${b.unlocked ? 'border-violet-400/25 bg-white/[0.04] shadow-glow-subtle' : 'border-white/[0.06] bg-white/[0.015]'}`}>
-                  <div className="flex items-center gap-4">
-                    <div className={`flex h-16 w-16 items-center justify-center rounded-2xl border ${b.unlocked ? (b.tone === 'lime' ? 'border-lime-500/40 bg-lime-500/15 text-lime-400 shadow-glow-lime' : b.tone === 'scan' ? 'border-scan-500/40 bg-scan-500/15 text-scan-400 shadow-glow-scan' : b.tone === 'ember' ? 'border-ember-500/40 bg-ember-500/15 text-ember-400 shadow-glow-ember' : 'border-violet-400/40 bg-violet-500/15 text-violet-300') : 'border-white/[0.08] bg-white/[0.025] text-white/30'}`}>
-                      {b.unlocked ? <TargetIcon /> : <LockIcon />}
+            {badges.map((b) => {
+              const iconTone = b.unlocked
+                ? b.tone === 'lime'
+                  ? 'border-lime-500/40 bg-lime-500/15 text-lime-400 shadow-glow-lime'
+                  : b.tone === 'scan'
+                    ? 'border-scan-500/40 bg-scan-500/15 text-scan-400 shadow-glow-scan'
+                    : b.tone === 'ember'
+                      ? 'border-ember-500/40 bg-ember-500/15 text-ember-400 shadow-glow-ember'
+                      : 'border-violet-400/40 bg-violet-500/15 text-violet-300'
+                : 'border-white/[0.08] bg-white/[0.025] text-white/30';
+
+              const cardBg = b.unlocked
+                ? 'border-violet-400/25 bg-white/[0.04] shadow-glow-subtle hover:border-violet-400/40 focus-within:border-violet-400/40'
+                : 'border-white/[0.06] bg-white/[0.015] hover:border-white/[0.14] focus-within:border-white/[0.14]';
+
+              return (
+                <RevealItem key={b.name}>
+                  <button
+                    type="button"
+                    aria-label={`${b.name} rozeti — detayları gör`}
+                    className={`badge group relative w-full text-left overflow-hidden rounded-3xl border p-7 transition-all duration-300 hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950 ${cardBg}`}
+                  >
+                    <div className="flex items-center gap-4">
+                      <div className={`flex h-16 w-16 items-center justify-center rounded-2xl border transition-transform duration-300 group-hover:scale-[1.04] group-focus-within:scale-[1.04] ${iconTone}`}>
+                        {b.unlocked ? <TargetIcon /> : <LockIcon />}
+                      </div>
+                      <div className="min-w-0 flex-1">
+                        <Eyebrow tone={b.unlocked ? b.tone : 'neutral'}>{b.unlocked ? 'Açıldı' : 'Kilitli'}</Eyebrow>
+                        <h3 className={`mt-1 font-display text-lg font-semibold ${b.unlocked ? 'text-white' : 'text-white/50'}`}>{b.name}</h3>
+                        <p className={`mt-1 text-sm ${b.unlocked ? 'text-white/65' : 'text-white/35'}`}>{b.criteria}</p>
+                      </div>
+                      <span
+                        aria-hidden
+                        className="badge-caret ml-auto inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-white/[0.08] text-white/40 transition-all duration-300 group-hover:border-violet-400/40 group-hover:text-violet-200 group-focus-within:border-violet-400/40 group-focus-within:text-violet-200"
+                      >
+                        <svg width="11" height="11" viewBox="0 0 12 12" fill="none">
+                          <path d="M3 4.5 L6 8 L9 4.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                      </span>
                     </div>
-                    <div>
-                      <Eyebrow tone={b.unlocked ? b.tone : 'neutral'}>{b.unlocked ? 'Açıldı' : 'Kilitli'}</Eyebrow>
-                      <h3 className={`mt-1 font-display text-lg font-semibold ${b.unlocked ? 'text-white' : 'text-white/50'}`}>{b.name}</h3>
-                      <p className={`mt-1 text-sm ${b.unlocked ? 'text-white/65' : 'text-white/35'}`}>{b.criteria}</p>
+
+                    {/* Reveal panel — slides down on hover/focus.
+                        prefers-reduced-motion still applies via globals.css. */}
+                    <div className="badge-detail mt-0 grid grid-rows-[0fr] opacity-0 transition-all duration-500 ease-out-expo group-hover:mt-5 group-hover:grid-rows-[1fr] group-hover:opacity-100 group-focus-within:mt-5 group-focus-within:grid-rows-[1fr] group-focus-within:opacity-100">
+                      <div className="overflow-hidden">
+                        <div className="border-t border-white/[0.05] pt-5">
+                          <Eyebrow tone={b.unlocked ? b.tone : 'neutral'}>Neden</Eyebrow>
+                          <p className={`mt-2 text-sm leading-relaxed ${b.unlocked ? 'text-white/75' : 'text-white/55'}`}>
+                            {b.why}
+                          </p>
+                          <Eyebrow tone={b.unlocked ? b.tone : 'neutral'} className="mt-4 block">
+                            Nasıl kazanılır
+                          </Eyebrow>
+                          <p className={`mt-2 text-sm leading-relaxed ${b.unlocked ? 'text-white/65' : 'text-white/45'}`}>
+                            {b.how}
+                          </p>
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </div>
-              </RevealItem>
-            ))}
+                  </button>
+                </RevealItem>
+              );
+            })}
           </RevealStagger>
         </Container>
       </section>
