@@ -80,7 +80,7 @@ export default function DestekPage() {
                   <h2 className="mb-6 font-display text-2xl font-semibold text-white sm:text-3xl">{g.title}</h2>
                 </Reveal>
                 <Reveal delay={0.05}>
-                  <FaqAccordion items={[...g.items]} />
+                  <FaqAccordion items={[...g.items]} tone={faqGroupTone(g.id)} />
                 </Reveal>
               </div>
             ))}
@@ -129,6 +129,25 @@ export default function DestekPage() {
       />
     </>
   );
+}
+
+// MP.9 — map each FAQ group id to its pillar tone so the accordion
+// chrome (number chip on open, left-rail accent, chevron) reinforces
+// the pillar identity established by MP.5 + the rest of the site.
+// Defaults to violet for the generic "sss" group + any future group.
+function faqGroupTone(id: string): 'violet' | 'ember' | 'lime' | 'scan' {
+  switch (id) {
+    case 'antrenman':
+      return 'ember';
+    case 'beslenme':
+      return 'lime';
+    case 'gelisim':
+      return 'violet';
+    case 'guvenlik':
+      return 'scan';
+    default:
+      return 'violet';
+  }
 }
 
 function TrustItem({ title, body }: { title: string; body: string }) {
