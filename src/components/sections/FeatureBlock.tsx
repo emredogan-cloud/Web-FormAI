@@ -3,9 +3,8 @@
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { Container } from '@/components/ui/Container';
-import { Mono } from '@/components/ui/Mono';
+import { Eyebrow } from '@/components/ui/Eyebrow';
 import { Reveal } from '@/components/ui/Reveal';
-import { GlowOrb } from '@/components/ui/GlowOrb';
 import { cn } from '@/lib/cn';
 
 interface Feature {
@@ -47,10 +46,6 @@ export function FeatureBlock({
       <Container>
         <div className={cn('grid items-center gap-16 lg:grid-cols-2', flip && 'lg:[&>:first-child]:order-2')}>
           <Reveal className="relative">
-            <div className="absolute -inset-8 pointer-events-none">
-              <GlowOrb tone={tone} size="lg" className="opacity-30 -top-12 -left-8" />
-            </div>
-
             {imageMode === 'phone' ? (
               <PhoneCard src={imageSrc} alt={imageAlt} tone={tone} />
             ) : imageMode === 'card' ? (
@@ -64,7 +59,7 @@ export function FeatureBlock({
             <Reveal>
               <div className="flex items-center gap-2">
                 <span className={cn('h-px w-8', accent.dot.replace('bg-', 'bg-'))} />
-                <Mono tone={accent.mono}>{eyebrow}</Mono>
+                <Eyebrow tone={accent.mono}>{eyebrow}</Eyebrow>
               </div>
             </Reveal>
             <Reveal delay={0.05}>

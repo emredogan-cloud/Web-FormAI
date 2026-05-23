@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { motion, useReducedMotion } from 'framer-motion';
 import { Container } from '@/components/ui/Container';
 import { Mono } from '@/components/ui/Mono';
+import { Eyebrow } from '@/components/ui/Eyebrow';
 import { Reveal } from '@/components/ui/Reveal';
 import { HudPanel } from '@/components/ui/HudPanel';
 import { StatRing } from '@/components/ui/StatRing';
@@ -72,7 +73,7 @@ export function CoachShowcase() {
             <Reveal>
               <div className="flex items-center gap-2">
                 <span className="h-px w-8 bg-violet-400/70" />
-                <Mono>AI Coach · gerçek zamanlı</Mono>
+                <Eyebrow>AI Coach · gerçek zamanlı</Eyebrow>
               </div>
             </Reveal>
             <Reveal delay={0.05}>

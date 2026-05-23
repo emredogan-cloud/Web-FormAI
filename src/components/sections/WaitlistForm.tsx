@@ -2,7 +2,7 @@
 
 import { useState, useId } from 'react';
 import { Button } from '@/components/ui/Button';
-import { Mono } from '@/components/ui/Mono';
+import { Eyebrow } from '@/components/ui/Eyebrow';
 import { cn } from '@/lib/cn';
 import { isValidEmail, type WaitlistResponse } from '@/lib/waitlist';
 
@@ -125,7 +125,7 @@ export function WaitlistForm({
       >
         {message}
         {status === 'idle' && !message && (
-          <Mono tone="neutral">Spam yok · istediğin an çık</Mono>
+          <Eyebrow tone="neutral">Spam yok · istediğin an çık</Eyebrow>
         )}
       </div>
     </form>

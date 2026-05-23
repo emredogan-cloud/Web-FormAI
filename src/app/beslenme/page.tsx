@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import { PageHero } from '@/components/sections/PageHero';
 import { Container } from '@/components/ui/Container';
-import { Mono } from '@/components/ui/Mono';
+import { Eyebrow } from '@/components/ui/Eyebrow';
 import { Reveal, RevealItem, RevealStagger } from '@/components/ui/Reveal';
 import { Card } from '@/components/ui/Card';
 import { Pill } from '@/components/ui/Pill';
@@ -66,7 +66,7 @@ export default function BeslenmePage() {
 
                 {/* Middle: macros */}
                 <div className="space-y-4">
-                  <Mono tone="lime">Makro dağılımı</Mono>
+                  <Eyebrow tone="lime">Makro dağılımı</Eyebrow>
                   <MacroRow name="Protein" current={60} target={174} color="#1FCFFF" />
                   <MacroRow name="Karbonhidrat" current={87} target={131} color="#FF3D8E" />
                   <MacroRow name="Yağ" current={29} target={58} color="#E0FF1A" />
@@ -74,7 +74,7 @@ export default function BeslenmePage() {
 
                 {/* Right: smart suggestion */}
                 <div className="hud-panel min-w-[220px] max-w-xs space-y-3 p-5">
-                  <Mono tone="violet">AI önerisi</Mono>
+                  <Eyebrow tone="violet">AI önerisi</Eyebrow>
                   <div className="font-display text-base font-semibold text-white">
                     Akşam için Izgara Bonfile + bulgur pilavı.
                   </div>
@@ -93,7 +93,7 @@ export default function BeslenmePage() {
             <div className="flex flex-col gap-5">
               <div className="flex items-center gap-2">
                 <span className="h-px w-12 bg-lime-500/70" />
-                <Mono tone="lime">Mutfak kütüphanesi</Mono>
+                <Eyebrow tone="lime">Mutfak kütüphanesi</Eyebrow>
               </div>
               <h2 className="max-w-2xl text-display-lg font-display text-balance text-gradient">
                 Tarif değil. <span className="text-lime-400">Bir günün ritmi.</span>
@@ -137,7 +137,7 @@ export default function BeslenmePage() {
             <div className="max-w-2xl">
               <div className="mb-5 flex items-center gap-2">
                 <span className="h-px w-12 bg-lime-500/70" />
-                <Mono tone="lime">Diyet profilleri</Mono>
+                <Eyebrow tone="lime">Diyet profilleri</Eyebrow>
               </div>
               <h2 className="text-display-lg font-display text-balance text-gradient">
                 Dört yaklaşım. <span className="text-lime-400">Aynı zekâ.</span>
@@ -148,7 +148,7 @@ export default function BeslenmePage() {
             {dietProfiles.map((p) => (
               <RevealItem key={p.tag}>
                 <div className={`relative overflow-hidden rounded-3xl border border-white/[0.06] bg-gradient-to-b ${p.color} p-6`}>
-                  <Mono tone={p.tone}>{p.tag}</Mono>
+                  <Eyebrow tone={p.tone}>{p.tag}</Eyebrow>
                   <div className="mt-6 font-display text-3xl font-semibold text-white">{p.kcal}</div>
                   <p className="mt-2 text-sm text-white/55">Ortalama günlük hedef · profile göre +/- 200 kcal</p>
                 </div>
@@ -165,7 +165,7 @@ export default function BeslenmePage() {
             <div className="max-w-2xl">
               <div className="mb-5 flex items-center gap-2">
                 <span className="h-px w-12 bg-lime-500/70" />
-                <Mono tone="lime">Akış</Mono>
+                <Eyebrow tone="lime">Akış</Eyebrow>
               </div>
               <h2 className="text-display-lg font-display text-balance text-gradient">
                 Beslenme bir liste değil. <span className="text-lime-400">Yaşayan bir döngüdür.</span>
@@ -176,7 +176,7 @@ export default function BeslenmePage() {
             {flow.map((s) => (
               <RevealItem key={s.no}>
                 <div className="relative h-full overflow-hidden rounded-3xl border border-white/[0.06] bg-white/[0.02] p-7">
-                  <Mono tone="lime">Adım {s.no}</Mono>
+                  <Eyebrow tone="lime">Adım {s.no}</Eyebrow>
                   <h3 className="mt-5 font-display text-xl font-semibold text-white">{s.title}</h3>
                   <p className="mt-3 text-sm leading-relaxed text-white/60">{s.body}</p>
                 </div>

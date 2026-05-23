@@ -1,5 +1,5 @@
 import { cn } from '@/lib/cn';
-import { Mono } from './Mono';
+import { Eyebrow } from './Eyebrow';
 import { Reveal } from './Reveal';
 
 export function SectionHeader({
@@ -30,7 +30,7 @@ export function SectionHeader({
         <Reveal>
           <div className="flex items-center gap-2">
             <span className={cn('h-px w-8', monoTone === 'lime' ? 'bg-lime-500/70' : monoTone === 'scan' ? 'bg-scan-500/70' : monoTone === 'ember' ? 'bg-ember-500/70' : 'bg-violet-400/70')} />
-            <Mono tone={monoTone}>{eyebrow}</Mono>
+            <Eyebrow tone={monoTone}>{eyebrow}</Eyebrow>
           </div>
         </Reveal>
       )}

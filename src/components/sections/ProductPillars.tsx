@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { Container } from '@/components/ui/Container';
-import { Mono } from '@/components/ui/Mono';
+import { Eyebrow } from '@/components/ui/Eyebrow';
 import { Reveal, RevealItem, RevealStagger } from '@/components/ui/Reveal';
 import { cn } from '@/lib/cn';
 
@@ -56,7 +56,7 @@ export function ProductPillars() {
             <div className="max-w-2xl">
               <div className="mb-5 flex items-center gap-2">
                 <span className="h-px w-12 bg-violet-400/70" />
-                <Mono>Üç sütun · tek koç</Mono>
+                <Eyebrow>Üç sütun · tek koç</Eyebrow>
               </div>
               <h2 className="text-display-lg font-display text-balance text-gradient">
                 Antrenman. Beslenme. Gelişim. <br />
@@ -108,7 +108,7 @@ export function ProductPillars() {
                 />
 
                 <div className="flex items-center justify-between">
-                  <Mono tone={p.tone}>{p.index}</Mono>
+                  <Eyebrow tone={p.tone}>{p.index}</Eyebrow>
                   <span
                     className={cn(
                       'flex h-11 w-11 items-center justify-center rounded-2xl border transition-transform group-hover:scale-105',

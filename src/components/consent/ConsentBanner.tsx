@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { useConsent } from './ConsentProvider';
 import { Button } from '@/components/ui/Button';
-import { Mono } from '@/components/ui/Mono';
+import { Eyebrow } from '@/components/ui/Eyebrow';
 import { cn } from '@/lib/cn';
 
 export function ConsentBanner() {
@@ -39,7 +39,7 @@ export function ConsentBanner() {
 
               <div className="grid gap-4 sm:grid-cols-[1fr_auto] sm:items-center">
                 <div className="space-y-1.5">
-                  <Mono>Çerez tercihleri</Mono>
+                  <Eyebrow>Çerez tercihleri</Eyebrow>
                   <p className="text-sm leading-relaxed text-white/75 sm:text-[14.5px]">
                     Yalnızca işlevsel çerezler varsayılan olarak açıktır. Analitik ve pazarlama
                     çerezlerini açmak senin tercihin —{' '}

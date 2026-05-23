@@ -32,7 +32,6 @@ export function PageHero({
     <section className="relative isolate overflow-hidden pt-36 pb-20 sm:pt-44 sm:pb-28">
       <div aria-hidden className="pointer-events-none absolute inset-0">
         <GlowOrb tone={tone} size="xl" className="-top-32 left-1/2 -translate-x-1/2 opacity-40" />
-        <GlowOrb tone={tone === 'violet' ? 'scan' : 'violet'} size="md" className="top-24 -right-20 opacity-20" />
         <div className="absolute inset-0 bg-grid-violet mask-fade-b opacity-50" />
       </div>
 

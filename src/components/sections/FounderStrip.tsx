@@ -1,9 +1,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { Container } from '@/components/ui/Container';
-import { Mono } from '@/components/ui/Mono';
+import { Eyebrow } from '@/components/ui/Eyebrow';
 import { Reveal } from '@/components/ui/Reveal';
-import { GlowOrb } from '@/components/ui/GlowOrb';
 import { site } from '@/lib/site';
 import { cn } from '@/lib/cn';
 
@@ -48,10 +47,6 @@ export function FounderStrip({ className }: { className?: string }) {
 
   return (
     <section className={cn('relative isolate py-24 sm:py-32', className)} id="yapan-kim">
-      <div aria-hidden className="pointer-events-none absolute inset-0">
-        <GlowOrb tone="violet" size="md" className="-top-20 left-1/2 -translate-x-1/2 opacity-15" />
-      </div>
-
       <Container className="relative">
         <div className="grid items-start gap-12 lg:grid-cols-[1.05fr_1fr] lg:gap-16">
           {/* Copy column */}
@@ -59,7 +54,7 @@ export function FounderStrip({ className }: { className?: string }) {
             <Reveal>
               <div className="flex items-center gap-2">
                 <span className="h-px w-8 bg-violet-400/70" />
-                <Mono>Yapan kim</Mono>
+                <Eyebrow>Yapan kim</Eyebrow>
               </div>
             </Reveal>
 
@@ -88,7 +83,7 @@ export function FounderStrip({ className }: { className?: string }) {
 
             <Reveal delay={0.22}>
               <div className="mt-8 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm">
-                <Mono>İletişim</Mono>
+                <Eyebrow>İletişim</Eyebrow>
                 <a
                   href={`mailto:${team.contact.email}`}
                   className="text-violet-300 transition-colors hover:text-violet-200 underline-offset-4 hover:underline"

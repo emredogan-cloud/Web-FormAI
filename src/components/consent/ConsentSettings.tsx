@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { useConsent } from './ConsentProvider';
 import { Button } from '@/components/ui/Button';
-import { Mono } from '@/components/ui/Mono';
+import { Eyebrow } from '@/components/ui/Eyebrow';
 import { cn } from '@/lib/cn';
 
 interface Category {
@@ -113,7 +113,7 @@ export function ConsentSettings() {
 
               <div className="flex items-start justify-between gap-4 border-b border-white/[0.06] p-6">
                 <div>
-                  <Mono>Çerez tercihleri</Mono>
+                  <Eyebrow>Çerez tercihleri</Eyebrow>
                   <h2
                     id="consent-settings-title"
                     className="mt-2 font-display text-xl font-semibold text-white"

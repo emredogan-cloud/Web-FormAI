@@ -5,6 +5,7 @@ import { motion, useReducedMotion } from 'framer-motion';
 import { Container } from '@/components/ui/Container';
 import { Button } from '@/components/ui/Button';
 import { Mono } from '@/components/ui/Mono';
+import { Eyebrow } from '@/components/ui/Eyebrow';
 import { GlowOrb } from '@/components/ui/GlowOrb';
 import { HudPanel } from '@/components/ui/HudPanel';
 import { AppRating } from '@/components/sections/AppRating';
@@ -24,7 +25,6 @@ export function Hero() {
       <div aria-hidden className="pointer-events-none absolute inset-0">
         <GlowOrb tone="violet" size="xl" className="-top-32 left-1/2 -translate-x-1/2 opacity-50" />
         <GlowOrb tone="scan" size="lg" className="top-40 -right-40 opacity-30" />
-        <GlowOrb tone="lime" size="md" className="top-[28rem] -left-20 opacity-20" />
         <div className="absolute inset-0 bg-grid-violet mask-fade-b opacity-50" />
       </div>
 
@@ -221,7 +221,7 @@ export function Hero() {
         <motion.div {...fade(0.5)} className="mt-24 lg:mt-32">
           <div className="flex items-center gap-4">
             <span className="h-px flex-1 bg-gradient-to-r from-transparent to-white/10" />
-            <Mono className="whitespace-nowrap">Yerleşik teknoloji yığını</Mono>
+            <Eyebrow className="whitespace-nowrap">Yerleşik teknoloji yığını</Eyebrow>
             <span className="h-px flex-1 bg-gradient-to-l from-transparent to-white/10" />
           </div>
           <ul className="mt-8 grid grid-cols-2 gap-x-8 gap-y-6 text-center sm:grid-cols-3 lg:grid-cols-6">

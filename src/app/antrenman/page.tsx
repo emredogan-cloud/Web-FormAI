@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import { PageHero } from '@/components/sections/PageHero';
 import { Container } from '@/components/ui/Container';
-import { Mono } from '@/components/ui/Mono';
+import { Eyebrow } from '@/components/ui/Eyebrow';
 import { Reveal, RevealItem, RevealStagger } from '@/components/ui/Reveal';
 import { Card } from '@/components/ui/Card';
 import { Pill } from '@/components/ui/Pill';
@@ -66,7 +66,7 @@ export default function AntrenmanPage() {
                   <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-ink-950/80 via-ink-950/20 to-ink-900" />
                 </div>
                 <div className="relative flex flex-col justify-center gap-6 p-10 sm:p-14">
-                  <Mono tone="violet">Live readout</Mono>
+                  <Eyebrow tone="violet">Live readout</Eyebrow>
                   <h2 className="font-display text-display-md text-balance text-gradient">
                     Plank · 00:42 / 01:00
                   </h2>
@@ -99,7 +99,7 @@ export default function AntrenmanPage() {
             <div className="max-w-2xl">
               <div className="mb-5 flex items-center gap-2">
                 <span className="h-px w-12 bg-violet-400/70" />
-                <Mono>Akış · saniyede 30 kez</Mono>
+                <Eyebrow>Akış · saniyede 30 kez</Eyebrow>
               </div>
               <h2 className="text-display-lg font-display text-balance text-gradient">
                 Hareket başladığında <span className="text-gradient-violet">FormAI çoktan ölçüyor.</span>
@@ -111,7 +111,7 @@ export default function AntrenmanPage() {
               <RevealItem key={s.no}>
                 <div className="group relative h-full overflow-hidden rounded-3xl border border-white/[0.06] bg-white/[0.02] p-7 transition-all hover:border-violet-400/25 hover:bg-white/[0.04]">
                   <div className="pointer-events-none absolute -top-px left-6 right-6 h-px bg-gradient-to-r from-transparent via-violet-400/60 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
-                  <Mono>Adım {s.no}</Mono>
+                  <Eyebrow>Adım {s.no}</Eyebrow>
                   <h3 className="mt-6 font-display text-xl font-semibold text-white">{s.title}</h3>
                   <p className="mt-3 text-sm leading-relaxed text-white/60">{s.body}</p>
                   <div className="mt-8 font-mono text-[10px] text-white/30">{`> next_step(${i + 1})`}</div>
@@ -130,7 +130,7 @@ export default function AntrenmanPage() {
               <div>
                 <div className="mb-5 flex items-center gap-2">
                   <span className="h-px w-12 bg-violet-400/70" />
-                  <Mono>Analyzer kataloğu</Mono>
+                  <Eyebrow>Analyzer kataloğu</Eyebrow>
                 </div>
                 <h2 className="text-display-lg font-display text-balance text-gradient">
                   Sekiz pose analyzer. <br />
@@ -152,7 +152,7 @@ export default function AntrenmanPage() {
                 <div className="group relative overflow-hidden rounded-2xl border border-white/[0.06] bg-white/[0.02] p-5 transition-all hover:border-white/[0.15] hover:bg-white/[0.04]">
                   <div className="flex items-start justify-between">
                     <div>
-                      <Mono tone={a.tone}>POSE</Mono>
+                      <Eyebrow tone={a.tone}>POSE</Eyebrow>
                       <h3 className="mt-3 font-display text-lg font-semibold text-white">{a.name}</h3>
                     </div>
                     <span className={`flex h-2 w-2 rounded-full ${a.tone === 'lime' ? 'bg-lime-500' : a.tone === 'scan' ? 'bg-scan-500' : a.tone === 'ember' ? 'bg-ember-500' : 'bg-violet-400'} animate-pulse`} />
@@ -176,7 +176,7 @@ export default function AntrenmanPage() {
                   <div className="absolute inset-0 bg-gradient-to-t from-ink-950 via-transparent to-transparent" />
                 </div>
                 <div className="p-8">
-                  <Mono tone="ember">HIIT · sınırlarını zorla</Mono>
+                  <Eyebrow tone="ember">HIIT · sınırlarını zorla</Eyebrow>
                   <h3 className="mt-3 font-display text-2xl font-semibold text-white">Belirgin karın kasları için 12dk HIIT</h3>
                   <p className="mt-3 text-sm leading-relaxed text-white/60">
                     Tabata + intervalli core devresi. Kalp hızı zonun otomatik hesaplanır,
@@ -192,7 +192,7 @@ export default function AntrenmanPage() {
                   <div className="absolute inset-0 bg-gradient-to-t from-ink-950 via-transparent to-transparent" />
                 </div>
                 <div className="p-8">
-                  <Mono tone="violet">Strength · paket gücü</Mono>
+                  <Eyebrow tone="violet">Strength · paket gücü</Eyebrow>
                   <h3 className="mt-3 font-display text-2xl font-semibold text-white">Üst gövde strength devresi</h3>
                   <p className="mt-3 text-sm leading-relaxed text-white/60">
                     Push, pull ve press analyzer&apos;ı aynı devrede.

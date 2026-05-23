@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { PageHero } from '@/components/sections/PageHero';
 import { Container } from '@/components/ui/Container';
-import { Mono } from '@/components/ui/Mono';
+import { Eyebrow } from '@/components/ui/Eyebrow';
 import { Reveal, RevealItem, RevealStagger } from '@/components/ui/Reveal';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
@@ -81,7 +81,7 @@ export default function BaslatPage() {
             <Card padding="lg" className="overflow-hidden">
               <div className="grid items-center gap-10 lg:grid-cols-[1.3fr_1fr]">
                 <div>
-                  <Mono>Erken erişim · pre-launch</Mono>
+                  <Eyebrow>Erken erişim · pre-launch</Eyebrow>
                   <h2 className="mt-4 font-display text-display-md text-balance text-gradient">
                     iOS ve Android · <span className="text-gradient-violet">yakında.</span>
                   </h2>
@@ -123,7 +123,7 @@ export default function BaslatPage() {
         <Container>
           <Reveal>
             <div className="text-center max-w-2xl mx-auto">
-              <Mono>Üç adımda</Mono>
+              <Eyebrow>Üç adımda</Eyebrow>
               <h2 className="mt-4 font-display text-display-md text-balance text-gradient">
                 İlk antrenmana 90 saniyede.
               </h2>
@@ -153,7 +153,7 @@ export default function BaslatPage() {
         <Container className="relative">
           <Reveal>
             <div className="text-center max-w-2xl mx-auto">
-              <Mono>Planlar</Mono>
+              <Eyebrow>Planlar</Eyebrow>
               <h2 className="mt-4 font-display text-display-lg text-balance text-gradient">
                 Üç plan. Sıfır gizli ücret.
               </h2>
@@ -176,7 +176,7 @@ export default function BaslatPage() {
                       Popüler
                     </span>
                   )}
-                  <Mono tone={p.popular ? 'violet' : 'neutral'}>{p.label}</Mono>
+                  <Eyebrow tone={p.popular ? 'violet' : 'neutral'}>{p.label}</Eyebrow>
                   <div className="mt-6 flex items-baseline gap-2">
                     <span className={`font-display text-4xl font-semibold ${p.popular ? 'text-gradient-violet' : 'text-white'}`}>{p.price}</span>
                     <span className="text-sm text-white/45">{p.sub}</span>
@@ -216,7 +216,7 @@ export default function BaslatPage() {
         <Container>
           <Reveal>
             <div className="rounded-3xl border border-violet-400/15 bg-ink-900/60 p-10 text-center backdrop-blur-md sm:p-16">
-              <Mono>Erken erişim listesi</Mono>
+              <Eyebrow>Erken erişim listesi</Eyebrow>
               <h2 className="mt-4 font-display text-display-md text-balance text-gradient">
                 Mağazalar açıldığında <span className="text-gradient-violet">ilk haber alan sen ol.</span>
               </h2>

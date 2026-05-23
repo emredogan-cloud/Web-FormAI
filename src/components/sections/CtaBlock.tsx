@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { Container } from '@/components/ui/Container';
 import { Button } from '@/components/ui/Button';
-import { Mono } from '@/components/ui/Mono';
+import { Eyebrow } from '@/components/ui/Eyebrow';
 import { Reveal } from '@/components/ui/Reveal';
 import { GlowOrb } from '@/components/ui/GlowOrb';
 
@@ -42,7 +42,7 @@ export function CtaBlock({
             )}
 
             <div className="relative max-w-2xl">
-              <Mono>{eyebrow}</Mono>
+              <Eyebrow>{eyebrow}</Eyebrow>
               <h2 className="mt-5 text-display-xl font-display text-balance text-gradient">
                 {title}
               </h2>

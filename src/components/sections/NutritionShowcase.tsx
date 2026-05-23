@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { Container } from '@/components/ui/Container';
-import { Mono } from '@/components/ui/Mono';
+import { Eyebrow } from '@/components/ui/Eyebrow';
 import { Reveal } from '@/components/ui/Reveal';
 import { Button } from '@/components/ui/Button';
 import { GlowOrb } from '@/components/ui/GlowOrb';
@@ -36,7 +36,7 @@ export function NutritionShowcase() {
             <Reveal>
               <div className="flex items-center gap-2">
                 <span className="h-px w-8 bg-lime-500/70" />
-                <Mono tone="lime">Beslenme · adaptive</Mono>
+                <Eyebrow tone="lime">Beslenme · adaptive</Eyebrow>
               </div>
             </Reveal>
             <Reveal delay={0.05}>
@@ -76,7 +76,7 @@ export function NutritionShowcase() {
                 <div className="rounded-2xl bg-ink-950 p-6">
                   <div className="flex items-center justify-between">
                     <div>
-                      <Mono tone="lime">Bugünün menüsü</Mono>
+                      <Eyebrow tone="lime">Bugünün menüsü</Eyebrow>
                       <div className="mt-1 font-display text-lg font-semibold text-white">
                         4 öğün · 1420 kcal
                       </div>

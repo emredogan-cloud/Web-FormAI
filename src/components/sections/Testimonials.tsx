@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { Container } from '@/components/ui/Container';
-import { Mono } from '@/components/ui/Mono';
+import { Eyebrow } from '@/components/ui/Eyebrow';
 import { Reveal, RevealItem, RevealStagger } from '@/components/ui/Reveal';
 import { GlowOrb } from '@/components/ui/GlowOrb';
 import { Button } from '@/components/ui/Button';
@@ -37,7 +37,6 @@ export function Testimonials({
     >
       <div aria-hidden className="pointer-events-none absolute inset-0">
         <GlowOrb tone="violet" size="lg" className="-top-24 -right-32 opacity-20" />
-        <GlowOrb tone="lime" size="md" className="bottom-0 -left-20 opacity-10" />
       </div>
 
       <Container className="relative">
@@ -60,7 +59,7 @@ function PopulatedGrid({ items, variant }: { items: Testimonial[]; variant: 'hom
         <div className="mb-12 max-w-2xl">
           <div className="flex items-center gap-2">
             <span className="h-px w-12 bg-violet-400/70" />
-            <Mono>Erken kullanıcılar</Mono>
+            <Eyebrow>Erken kullanıcılar</Eyebrow>
           </div>
           <h2 className="mt-5 text-display-lg font-display text-balance text-gradient">
             {variant === 'baslat' ? (
@@ -165,7 +164,7 @@ function EmptyState({ variant }: { variant: 'home' | 'baslat' }) {
           <div>
             <div className="flex items-center gap-2">
               <span className="h-px w-8 bg-violet-400/70" />
-              <Mono>Sosyal kanıt · birazdan</Mono>
+              <Eyebrow>Sosyal kanıt · birazdan</Eyebrow>
             </div>
             <h2 className="mt-5 font-display text-display-md text-balance text-gradient sm:text-display-lg">
               {variant === 'baslat' ? (

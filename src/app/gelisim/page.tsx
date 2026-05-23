@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import { PageHero } from '@/components/sections/PageHero';
 import { Container } from '@/components/ui/Container';
-import { Mono } from '@/components/ui/Mono';
+import { Eyebrow } from '@/components/ui/Eyebrow';
 import { Reveal, RevealItem, RevealStagger } from '@/components/ui/Reveal';
 import { Card } from '@/components/ui/Card';
 import { Pill } from '@/components/ui/Pill';
@@ -66,7 +66,7 @@ export default function GelisimPage() {
                 </div>
 
                 <div>
-                  <Mono tone="ember">30 günlük değişim</Mono>
+                  <Eyebrow tone="ember">30 günlük değişim</Eyebrow>
                   <h2 className="mt-4 font-display text-display-md text-balance text-gradient">
                     Her gün küçük. Otuz günde belirgin.
                   </h2>
@@ -97,7 +97,7 @@ export default function GelisimPage() {
                   <div className="rounded-2xl bg-ink-950 p-6">
                     <div className="flex items-center justify-between">
                       <div>
-                        <Mono tone="ember">Aktif seri</Mono>
+                        <Eyebrow tone="ember">Aktif seri</Eyebrow>
                         <div className="mt-2 font-display text-5xl font-semibold text-ember-400">7 gün</div>
                       </div>
                       <StatRing value={70} tone="ember" size={96} stroke={8} />
@@ -112,7 +112,7 @@ export default function GelisimPage() {
                     </div>
 
                     <div className="mt-6 rounded-2xl border border-violet-400/20 bg-violet-500/[0.06] p-4">
-                      <Mono>Seri uyarısı</Mono>
+                      <Eyebrow>Seri uyarısı</Eyebrow>
                       <div className="mt-2 font-display text-base font-medium text-white">
                         Bugün 22:00&apos;ye kadar 12dk Core yaparsan seri 8&apos;e çıkar.
                       </div>
@@ -126,7 +126,7 @@ export default function GelisimPage() {
               <Reveal>
                 <div className="flex items-center gap-2">
                   <span className="h-px w-8 bg-ember-500/70" />
-                  <Mono tone="ember">Streak intelligence</Mono>
+                  <Eyebrow tone="ember">Streak intelligence</Eyebrow>
                 </div>
               </Reveal>
               <Reveal delay={0.05}>
@@ -162,7 +162,7 @@ export default function GelisimPage() {
             <div className="max-w-2xl">
               <div className="mb-5 flex items-center gap-2">
                 <span className="h-px w-12 bg-violet-400/70" />
-                <Mono>Rozet sistemi</Mono>
+                <Eyebrow>Rozet sistemi</Eyebrow>
               </div>
               <h2 className="text-display-lg font-display text-balance text-gradient">
                 Disiplinin <span className="text-gradient-violet">sembollere dönüştüğü an.</span>
@@ -179,7 +179,7 @@ export default function GelisimPage() {
                       {b.unlocked ? <TargetIcon /> : <LockIcon />}
                     </div>
                     <div>
-                      <Mono tone={b.unlocked ? b.tone : 'neutral'}>{b.unlocked ? 'Açıldı' : 'Kilitli'}</Mono>
+                      <Eyebrow tone={b.unlocked ? b.tone : 'neutral'}>{b.unlocked ? 'Açıldı' : 'Kilitli'}</Eyebrow>
                       <h3 className={`mt-1 font-display text-lg font-semibold ${b.unlocked ? 'text-white' : 'text-white/50'}`}>{b.name}</h3>
                       <p className={`mt-1 text-sm ${b.unlocked ? 'text-white/65' : 'text-white/35'}`}>{b.criteria}</p>
                     </div>
@@ -218,7 +218,7 @@ function MiniCard({ value, label, tone }: { value: string; label: string; tone: 
 function Insight({ label, body }: { label: string; body: string }) {
   return (
     <div className="rounded-2xl border border-white/[0.06] bg-white/[0.02] p-5">
-      <Mono>{label}</Mono>
+      <Eyebrow>{label}</Eyebrow>
       <p className="mt-3 text-sm leading-relaxed text-white/65">{body}</p>
     </div>
   );

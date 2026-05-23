@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { Container } from '@/components/ui/Container';
-import { Mono } from '@/components/ui/Mono';
+import { Eyebrow } from '@/components/ui/Eyebrow';
 import { Reveal } from '@/components/ui/Reveal';
 import { cn } from '@/lib/cn';
 
@@ -20,7 +20,7 @@ export function MetricGrid({ metrics, eyebrow }: { metrics: Metric[]; eyebrow?: 
         {eyebrow && (
           <div className="mb-10 flex items-center gap-3">
             <span className="h-px w-12 bg-gradient-to-r from-violet-400/60 to-transparent" />
-            <Mono>{eyebrow}</Mono>
+            <Eyebrow>{eyebrow}</Eyebrow>
           </div>
         )}
         <div className="grid gap-px overflow-hidden rounded-3xl border border-white/[0.06] bg-white/[0.04] sm:grid-cols-2 lg:grid-cols-4">

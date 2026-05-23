@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { PageHero } from '@/components/sections/PageHero';
 import { Container } from '@/components/ui/Container';
-import { Mono } from '@/components/ui/Mono';
+import { Eyebrow } from '@/components/ui/Eyebrow';
 import { Reveal, RevealItem, RevealStagger } from '@/components/ui/Reveal';
 import { Card } from '@/components/ui/Card';
 import { FaqAccordion } from '@/components/sections/FaqAccordion';
@@ -46,7 +46,7 @@ export default function DestekPage() {
                   <div className={`flex h-11 w-11 items-center justify-center rounded-2xl border ${c.tone === 'lime' ? 'border-lime-500/40 bg-lime-500/10 text-lime-400' : c.tone === 'scan' ? 'border-scan-500/40 bg-scan-500/10 text-scan-400' : 'border-violet-400/40 bg-violet-500/15 text-violet-300'}`}>
                     {c.icon === 'mail' ? <MailIcon /> : c.icon === 'shield' ? <ShieldIcon /> : <DocIcon />}
                   </div>
-                  <Mono tone={c.tone}>{c.label}</Mono>
+                  <Eyebrow tone={c.tone}>{c.label}</Eyebrow>
                   <div className="font-display text-lg font-semibold text-white">{c.value}</div>
                   <p className="text-sm text-white/55">{c.body}</p>
                 </Link>
@@ -64,7 +64,7 @@ export default function DestekPage() {
           <Reveal>
             <div className="mb-12 flex items-center gap-3">
               <span className="h-px w-12 bg-violet-400/70" />
-              <Mono>Sıkça sorulanlar</Mono>
+              <Eyebrow>Sıkça sorulanlar</Eyebrow>
             </div>
           </Reveal>
           <div className="grid gap-12">
@@ -89,7 +89,7 @@ export default function DestekPage() {
             <Card padding="lg" className="overflow-hidden">
               <div className="grid items-start gap-10 lg:grid-cols-[1fr_1.2fr]">
                 <div>
-                  <Mono tone="scan">Privacy by build</Mono>
+                  <Eyebrow tone="scan">Privacy by build</Eyebrow>
                   <h2 className="mt-4 font-display text-display-md text-balance text-gradient">
                     Veri seninle kalır. <br />
                     <span className="text-scan-400">Sahte güvence yok.</span>

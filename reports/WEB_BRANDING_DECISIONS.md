@@ -40,13 +40,32 @@ display-md    clamp(1.75rem, 3vw, 2.75rem) Sub-heading
 
 Letter-spacing tightens with size (`-0.04em` on display-2xl, `-0.025em` on display-md) — a small detail that produces the "premium SaaS" feeling without extra effort.
 
-### Mono treatment
+### Mono vs Eyebrow — usage rules (PR 3.1)
 
-Monospace is reserved for **HUD readouts** and **eyebrow labels** (`POSE DETECTION · LIVE`). This mirrors the in-app overlays (form scores, hip alignment %). Used everywhere it would lose its meaning, so it's gated to:
+Two primitives carry small uppercase tracked labels. They look similar but
+serve distinct roles. Mixing them was the V1 mistake (W6 in the deep review)
+— 66 Mono instances flattened the rhythm and diluted the HUD aesthetic.
 
-1. Eyebrow tags above section headings.
-2. HUD panels (`HudPanel`, `StatRing` label).
-3. Data values inside the coach showcase.
+| Primitive   | Font            | Color saturation                                       | Use for                                           |
+|-------------|-----------------|--------------------------------------------------------|---------------------------------------------------|
+| `<Mono>`    | JetBrains Mono  | Full brand-color (e.g. `text-violet-300/80`)            | HUD data readouts inside `HudPanel`, the *single* eyebrow per page hero (`Hero`, `PageHero`, `LegalPageLayout`), `Footer` column titles. **Cap at ≤18 site-wide.** |
+| `<Eyebrow>` | Inter (sans)    | Muted (e.g. `text-violet-300/70` or `text-white/45`)    | Section eyebrows above a heading, sidebar labels, category labels, channel labels, any "small uppercase" that is NOT data and NOT the single page-hero eyebrow. |
+
+**The rule of one:** every page gets **one** Mono eyebrow at the top
+(via `<PageHero>`, `<Hero>`, or `<LegalPageLayout>`). Every other section
+eyebrow uses `<Eyebrow>`. This keeps the HUD treatment legible as "data,
+system, code-adjacent" rather than dissolving into decoration.
+
+**Audit cadence:** when adding a new section, reach for `<Eyebrow>`. Only
+reach for `<Mono>` when you can answer "yes" to *"is this a data point
+or a system tag?"*
+
+Original Mono placements (still valid for HUD/data contexts):
+
+1. HUD panels (`HudPanel`, `StatRing` label).
+2. Live data readouts inside the coach showcase.
+3. The single page-hero eyebrow.
+4. Footer column titles (treated as system-tag categories).
 
 ---
 
@@ -101,7 +120,14 @@ Glow is the single biggest "premium" tell on a dark UI — but it is also the mo
 | `shadow-glow-focal`  | high   | hero coach card, primary button hover      |
 | `shadow-glow-<tone>` | tonal  | accent-specific glow tied to lime/ember/scan |
 
-Backgrounds use **GlowOrb** (a blurred coloured circle) for ambient lighting — placed *outside* the viewport edges and masked so they never become a focal point. Each section gets at most 2-3 orbs.
+Backgrounds use **GlowOrb** (a blurred coloured circle) for ambient lighting — placed *outside* the viewport edges and masked so they never become a focal point.
+
+**GlowOrb usage rules (PR 3.1 diet):** cap site-wide at **≤16 instances**.
+
+- **Up to 2 orbs** per section if it's a major narrative beat (`Hero`, `CtaBlock`, `CoachShowcase`, `NutritionShowcase`).
+- **1 orb** for everything else (page heroes, focal product cards, secondary conversion sections).
+- **0 orbs** in restrained surfaces: legal pages (`LegalPageLayout`), `Manifesto`, `FounderStrip`, `Testimonials`, `FeatureBlock`. The typography + grid background carry the atmosphere there. Adding an orb crowds the type.
+- Orbs always live behind real content (`pointer-events-none absolute inset-0`), always with explicit opacity ≤0.5, always offset to at least one viewport edge (`-top-32`, `-right-40`, etc.) so they never compete with a focal element.
 
 ---
 

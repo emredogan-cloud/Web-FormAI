@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { Container } from '@/components/ui/Container';
 import { Mono } from '@/components/ui/Mono';
-import { GlowOrb } from '@/components/ui/GlowOrb';
+import { Eyebrow } from '@/components/ui/Eyebrow';
 import { cn } from '@/lib/cn';
 
 export interface LegalSection {
@@ -33,7 +33,6 @@ export function LegalPageLayout({
       {/* Hero */}
       <section className="relative isolate overflow-hidden pt-36 pb-12 sm:pt-44 sm:pb-16">
         <div aria-hidden className="pointer-events-none absolute inset-0">
-          <GlowOrb tone="violet" size="lg" className="-top-32 left-1/2 -translate-x-1/2 opacity-25" />
           <div className="absolute inset-0 bg-grid-violet mask-fade-b opacity-30" />
         </div>
         <Container className="relative">
@@ -66,7 +65,7 @@ export function LegalPageLayout({
             {/* TOC */}
             <aside className="hidden lg:block">
               <nav aria-label="İçindekiler" className="sticky top-28">
-                <Mono className="mb-4 block">İçindekiler</Mono>
+                <Eyebrow className="mb-4 block">İçindekiler</Eyebrow>
                 <ol className="space-y-2.5 text-sm">
                   {sections.map((s, i) => (
                     <li key={s.id}>
@@ -84,7 +83,7 @@ export function LegalPageLayout({
                 </ol>
 
                 <div className="mt-8 border-t border-white/[0.06] pt-6">
-                  <Mono className="mb-3 block">İletişim</Mono>
+                  <Eyebrow className="mb-3 block">İletişim</Eyebrow>
                   <a
                     href={`mailto:${contactEmail}`}
                     className="text-sm text-violet-300 transition-colors hover:text-violet-200"

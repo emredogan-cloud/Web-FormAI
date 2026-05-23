@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { Container } from '@/components/ui/Container';
-import { Mono } from '@/components/ui/Mono';
+import { Eyebrow } from '@/components/ui/Eyebrow';
 import { Reveal } from '@/components/ui/Reveal';
 import { Button } from '@/components/ui/Button';
 import { GlowOrb } from '@/components/ui/GlowOrb';
@@ -16,7 +16,6 @@ export function ProgressShowcase() {
   return (
     <section className="relative isolate overflow-hidden py-24 sm:py-32 lg:py-40">
       <div aria-hidden className="pointer-events-none absolute inset-0">
-        <GlowOrb tone="ember" size="lg" className="top-20 -right-32 opacity-25" />
         <GlowOrb tone="violet" size="xl" className="-bottom-40 -left-40 opacity-30" />
       </div>
 
@@ -28,7 +27,7 @@ export function ProgressShowcase() {
               <div className="rounded-2xl bg-ink-950 p-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <Mono tone="ember">30 günlük program</Mono>
+                    <Eyebrow tone="ember">30 günlük program</Eyebrow>
                     <div className="mt-1 font-display text-lg font-semibold text-white">
                       Gün {today} · 23 gün kaldı
                     </div>
@@ -86,7 +85,7 @@ export function ProgressShowcase() {
             <Reveal>
               <div className="flex items-center gap-2">
                 <span className="h-px w-8 bg-ember-500/70" />
-                <Mono tone="ember">Gelişim · streak</Mono>
+                <Eyebrow tone="ember">Gelişim · streak</Eyebrow>
               </div>
             </Reveal>
             <Reveal delay={0.05}>
@@ -106,7 +105,7 @@ export function ProgressShowcase() {
             <div className="mt-10 grid grid-cols-2 gap-5">
               <Reveal delay={0.18}>
                 <div className="rounded-2xl border border-white/[0.06] bg-white/[0.02] p-5">
-                  <Mono tone="ember">Aktif seri</Mono>
+                  <Eyebrow tone="ember">Aktif seri</Eyebrow>
                   <div className="mt-3 flex items-center gap-3">
                     <span className="font-display text-4xl font-semibold text-ember-400">7</span>
                     <span className="text-sm text-white/55">gün</span>
@@ -116,7 +115,7 @@ export function ProgressShowcase() {
               </Reveal>
               <Reveal delay={0.24}>
                 <div className="rounded-2xl border border-white/[0.06] bg-white/[0.02] p-5">
-                  <Mono>Açılan rozet</Mono>
+                  <Eyebrow>Açılan rozet</Eyebrow>
                   <div className="mt-3 flex items-center gap-3">
                     <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-b from-violet-400 to-violet-700 shadow-[0_0_24px_rgba(124,92,255,0.5)]">
                       <TargetIcon />
@@ -132,7 +131,7 @@ export function ProgressShowcase() {
                 <div className="col-span-2 rounded-2xl border border-white/[0.06] bg-white/[0.02] p-5">
                   <div className="flex items-start justify-between gap-4">
                     <div>
-                      <Mono>Haftalık retrospektif</Mono>
+                      <Eyebrow>Haftalık retrospektif</Eyebrow>
                       <p className="mt-2 text-sm text-white/65">
                         Push gücün %12 arttı. Hip alignment sapması son 3 antrenmanda 5°&apos;ye düştü.
                       </p>

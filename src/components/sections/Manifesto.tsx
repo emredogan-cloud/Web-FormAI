@@ -1,14 +1,12 @@
 import Image from 'next/image';
 import { Container } from '@/components/ui/Container';
-import { Mono } from '@/components/ui/Mono';
+import { Eyebrow } from '@/components/ui/Eyebrow';
 import { Reveal } from '@/components/ui/Reveal';
-import { GlowOrb } from '@/components/ui/GlowOrb';
 
 export function Manifesto() {
   return (
     <section id="manifesto" className="relative isolate overflow-hidden py-24 sm:py-32 lg:py-40">
       <div aria-hidden className="pointer-events-none absolute inset-0">
-        <GlowOrb tone="violet" size="xl" className="-top-32 left-1/2 -translate-x-1/2 opacity-25" />
         <div className="absolute inset-0 bg-grid-violet mask-fade-b opacity-30" />
       </div>
 
@@ -18,7 +16,7 @@ export function Manifesto() {
             <Reveal>
               <div className="flex items-center gap-2">
                 <span className="h-px w-12 bg-violet-400/70" />
-                <Mono>Manifesto</Mono>
+                <Eyebrow>Manifesto</Eyebrow>
               </div>
             </Reveal>
             <Reveal delay={0.05}>
@@ -46,7 +44,7 @@ export function Manifesto() {
                 <Image src="/images/coach-portrait.webp" alt="FormAI AI Coach portresi" fill sizes="(max-width: 1024px) 80vw, 480px" className="object-cover" />
                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink-950 via-ink-950/30 to-transparent" />
                 <div className="absolute inset-x-5 bottom-5 hud-panel p-4">
-                  <Mono tone="violet">Form AI · Coach Module</Mono>
+                  <Eyebrow tone="violet">Form AI · Coach Module</Eyebrow>
                   <div className="mt-2 font-display text-lg font-semibold text-white">&ldquo;Senin disiplinini ölçen değil, sürdüren bir zekâ.&rdquo;</div>
                 </div>
               </div>
@@ -61,7 +59,7 @@ export function Manifesto() {
 function Principle({ no, title, body }: { no: string; title: string; body: string }) {
   return (
     <div className="rounded-2xl border border-white/[0.06] bg-white/[0.02] p-5">
-      <Mono>{no}</Mono>
+      <Eyebrow>{no}</Eyebrow>
       <h3 className="mt-3 font-display text-base font-semibold text-white">{title}</h3>
       <p className="mt-2 text-sm leading-relaxed text-white/55">{body}</p>
     </div>

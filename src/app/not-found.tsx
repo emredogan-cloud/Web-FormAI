@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { Container } from '@/components/ui/Container';
 import { Button } from '@/components/ui/Button';
-import { Mono } from '@/components/ui/Mono';
+import { Eyebrow } from '@/components/ui/Eyebrow';
 import { GlowOrb } from '@/components/ui/GlowOrb';
 
 export default function NotFound() {
@@ -9,7 +9,7 @@ export default function NotFound() {
     <section className="relative isolate flex min-h-[80vh] items-center overflow-hidden">
       <GlowOrb tone="violet" size="xl" className="-top-32 left-1/2 -translate-x-1/2 opacity-30" />
       <Container className="relative text-center">
-        <Mono>404 · Sayfa bulunamadı</Mono>
+        <Eyebrow>404 · Sayfa bulunamadı</Eyebrow>
         <h1 className="mt-6 font-display text-display-xl text-gradient">
           Bu rotayı henüz programa eklemedik.
         </h1>
