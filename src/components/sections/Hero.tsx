@@ -95,69 +95,88 @@ export function Hero() {
             </motion.div>
           </div>
 
-          {/* Visual column — coach + HUD */}
+          {/* Visual column — real product proof
+              Replaces the prior CG robot (pt-form.png) with the actual
+              FormAI app welcome screen on a device frame. The screenshot
+              itself shows live ML pose detection with the "HIP ALIGNMENT:
+              5° DEVIATION" overlay — so the hero literally demonstrates
+              the product instead of describing it. Two satellite phones
+              show additional shipping surfaces (program + nutrition). */}
           <motion.div
-            initial={{ opacity: 0, scale: prefersReduced ? 1 : 0.95 }}
+            initial={{ opacity: 0, scale: prefersReduced ? 1 : 0.96 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1.4, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
             className="relative mx-auto w-full max-w-md lg:max-w-none"
           >
-            <div className="relative aspect-[3/4] w-full">
-              {/* Conic glow ring behind */}
-              <div className="pointer-events-none absolute -inset-12 rounded-full conic-ring animate-orbit" />
+            <div className="relative mx-auto flex h-[640px] w-full max-w-[460px] items-center justify-center lg:h-[680px]">
+              {/* Conic glow ring behind everything */}
+              <div className="pointer-events-none absolute inset-0 rounded-full conic-ring animate-orbit" />
 
-              {/* Coach image */}
-              <div className="relative h-full w-full overflow-hidden rounded-[2.5rem] border border-violet-400/15 bg-gradient-to-b from-ink-800 to-ink-950 shadow-[0_60px_120px_-20px_rgba(124,92,255,0.45)]">
-                <Image
-                  src="/images/pt-form.png"
-                  alt="FormAI Coach — yapay zekâ destekli fitness koçu"
-                  fill
-                  priority
-                  sizes="(max-width: 1024px) 90vw, 540px"
-                  className="object-cover object-center"
+              {/* Satellite phone — left (program / dashboard)
+                  Hidden on small mobiles to keep the central proof readable. */}
+              <motion.div
+                initial={{ opacity: 0, x: prefersReduced ? 0 : -28, rotate: prefersReduced ? -8 : -14 }}
+                animate={{ opacity: 1, x: 0, rotate: -8 }}
+                transition={{ duration: 1.4, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                className="absolute left-[-2%] top-1/2 hidden -translate-y-1/2 sm:block lg:left-[-10%]"
+                aria-hidden
+              >
+                <SatellitePhone src="/screenshots/dashboard.jpg" alt="" tone="violet" />
+              </motion.div>
+
+              {/* Satellite phone — right (nutrition) */}
+              <motion.div
+                initial={{ opacity: 0, x: prefersReduced ? 0 : 28, rotate: prefersReduced ? 8 : 14 }}
+                animate={{ opacity: 1, x: 0, rotate: 8 }}
+                transition={{ duration: 1.4, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                className="absolute right-[-2%] top-1/2 hidden -translate-y-1/2 sm:block lg:right-[-10%]"
+                aria-hidden
+              >
+                <SatellitePhone src="/screenshots/nutrition.jpg" alt="" tone="lime" />
+              </motion.div>
+
+              {/* Main device — actual product welcome screen with live ML overlay */}
+              <div className="relative z-20">
+                <DeviceFrame
+                  src="/screenshots/welcome.jpg"
+                  alt="FormAI uygulaması — kamera tabanlı pose detection ve canlı form analizi"
                 />
-                {/* Inner film grade */}
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink-950 via-ink-950/30 to-transparent" />
-                <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_30%,transparent_40%,rgba(5,3,12,0.5)_100%)]" />
-
-                {/* HUD overlay panels */}
-                <div className="absolute inset-x-6 top-6 flex items-start justify-between">
-                  <div className="hud-panel px-3 py-2">
-                    <Mono tone="violet">FORM AI · v1.0</Mono>
-                    <div className="mt-1 font-mono text-[11px] text-white/70">scan: live · 30 fps</div>
-                  </div>
-                  <div className="hud-panel px-3 py-2">
-                    <Mono tone="lime">STATUS</Mono>
-                    <div className="mt-1 flex items-center gap-1.5">
-                      <span className="h-1.5 w-1.5 rounded-full bg-lime-500 animate-pulse" />
-                      <span className="font-mono text-[11px] text-lime-400">tracking</span>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Floating bottom hud */}
-                <div className="absolute inset-x-6 bottom-6 flex items-end justify-between gap-3">
-                  <HudPanel label="Postür" value="98" unit="/100" tone="violet" status="optimal" className="min-w-[120px]" />
-                  <HudPanel label="Tempo" value="OK" tone="lime" status="active" className="min-w-[100px]" />
-                </div>
               </div>
 
-              {/* Floating callouts */}
+              {/* Floating callouts — desktop only, point INTO the device
+                  from outside (premium SaaS pattern). All four values match
+                  what's literally visible in the welcome screenshot. */}
+              <motion.div
+                initial={{ opacity: 0, x: prefersReduced ? 0 : -24 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 1, delay: 0.85 }}
+                className="absolute left-[-12%] top-[18%] z-30 hidden lg:block"
+              >
+                <HudPanel label="ML Pose · live" value="30" unit="fps" tone="violet" status="active" />
+              </motion.div>
               <motion.div
                 initial={{ opacity: 0, x: prefersReduced ? 0 : 24 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 1, delay: 0.7 }}
-                className="absolute -right-6 top-1/3 hidden lg:block"
+                transition={{ duration: 1, delay: 0.95 }}
+                className="absolute right-[-12%] top-[34%] z-30 hidden lg:block"
               >
                 <HudPanel label="Hip alignment" value="5°" unit="dev" tone="scan" status="warn" />
               </motion.div>
               <motion.div
                 initial={{ opacity: 0, x: prefersReduced ? 0 : -24 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 1, delay: 0.85 }}
-                className="absolute -left-8 top-2/3 hidden lg:block"
+                transition={{ duration: 1, delay: 1.05 }}
+                className="absolute left-[-10%] bottom-[18%] z-30 hidden lg:block"
               >
-                <HudPanel label="Rep" value="12" unit="/15" tone="ember" status="active" />
+                <HudPanel label="Postür" value="82" unit="%" tone="violet" status="optimal" />
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, x: prefersReduced ? 0 : 24 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 1, delay: 1.15 }}
+                className="absolute right-[-10%] bottom-[28%] z-30 hidden lg:block"
+              >
+                <HudPanel label="Tracking" value="OK" tone="lime" status="active" />
               </motion.div>
             </div>
           </motion.div>
@@ -195,6 +214,94 @@ function Stat({ value, label }: { value: string; label: string }) {
     <div className="flex flex-col gap-1">
       <dt className="font-display text-2xl font-semibold text-white sm:text-3xl">{value}</dt>
       <dd className="text-xs uppercase tracking-widest text-white/45">{label}</dd>
+    </div>
+  );
+}
+
+// ── Device frame primitives — local to the hero composition ──────────────
+// Not promoted to /ui/ yet because they're specialized: the main DeviceFrame
+// carries the hero scan line + violet glow; SatellitePhone is a smaller,
+// dimmer, rotated variant. If a second surface ever needs the same look,
+// extract then.
+
+function DeviceFrame({ src, alt }: { src: string; alt: string }) {
+  return (
+    <div className="relative">
+      {/* Outer ambient glow */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -inset-10 rounded-[3rem] bg-violet-500/30 blur-3xl"
+      />
+      {/* Bezel */}
+      <div className="relative h-[600px] w-[280px] overflow-hidden rounded-[2.8rem] border border-violet-400/25 bg-gradient-to-b from-ink-700 to-ink-900 p-[3px] shadow-[0_60px_120px_-20px_rgba(124,92,255,0.55),0_0_0_1px_rgba(124,92,255,0.18)] lg:h-[660px] lg:w-[310px]">
+        <div className="relative h-full w-full overflow-hidden rounded-[2.55rem] bg-ink-950">
+          <Image
+            src={src}
+            alt={alt}
+            fill
+            priority
+            sizes="(max-width: 1024px) 280px, 310px"
+            className="object-cover object-center"
+          />
+          {/* Notch */}
+          <div
+            aria-hidden
+            className="absolute left-1/2 top-2 z-10 h-5 w-24 -translate-x-1/2 rounded-full bg-ink-950 ring-1 ring-white/5"
+          />
+          {/* Animated scan line — reinforces "live ML pose detection" */}
+          <motion.div
+            aria-hidden
+            className="pointer-events-none absolute inset-x-2 h-px bg-gradient-to-r from-transparent via-violet-400/80 to-transparent shadow-[0_0_24px_rgba(124,92,255,0.7)]"
+            initial={{ top: '15%' }}
+            animate={{ top: ['15%', '85%', '15%'] }}
+            transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
+          />
+          {/* Glass reflection */}
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-0 rounded-[2.55rem] bg-gradient-to-tr from-transparent via-white/[0.03] to-white/[0.07]"
+          />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function SatellitePhone({
+  src,
+  alt,
+  tone,
+}: {
+  src: string;
+  alt: string;
+  tone: 'violet' | 'lime' | 'scan';
+}) {
+  const ring = {
+    violet: 'border-violet-400/15 shadow-[0_30px_80px_-20px_rgba(124,92,255,0.35)]',
+    lime: 'border-lime-500/15 shadow-[0_30px_80px_-20px_rgba(200,255,0,0.25)]',
+    scan: 'border-scan-500/15 shadow-[0_30px_80px_-20px_rgba(31,207,255,0.3)]',
+  }[tone];
+
+  return (
+    <div className="relative">
+      <div
+        className={`relative h-[440px] w-[210px] overflow-hidden rounded-[2.2rem] border bg-gradient-to-b from-ink-800 to-ink-950 p-[3px] ${ring}`}
+      >
+        <div className="relative h-full w-full overflow-hidden rounded-[2rem] bg-ink-950">
+          <Image
+            src={src}
+            alt={alt}
+            fill
+            sizes="210px"
+            className="object-cover object-center opacity-90"
+          />
+          {/* Dim overlay so satellite reads as secondary, not competing */}
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-0 rounded-[2rem] bg-gradient-to-b from-ink-950/30 via-transparent to-ink-950/60"
+          />
+        </div>
+      </div>
     </div>
   );
 }
