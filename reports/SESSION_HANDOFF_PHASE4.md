@@ -1,174 +1,155 @@
-# SESSION HANDOFF — PHASE 4 COMPLETE → PHASE 5
+# SESSION HANDOFF — PHASE 5 COMPLETE → PHASE 6
 
 > **Purpose:** durable continuation point for the FormAI website build. Written to survive a full context reset — a future session with **zero conversational memory** must be able to resume safely from this file alone.
-> **Written after:** Phase 4 fully shipped (PR 4.1–4.5) + the Phase 4 closure docs.
+> **Written after:** Phase 5 fully shipped (PR 5.1–5.5) + the Phase 5 closure docs.
 > **Repo:** `Web-FormAI` (GitHub: `emredogan-cloud/Web-FormAI`), branch `main`.
 > **Working dir:** `/home/emre/Downloads/Web-FormAI`
-> **Last code commit:** `43c5a6f` — `PR 4.5: real-user monitoring — Vercel Analytics + Speed Insights, consent-gated`. This handoff + `reports/PHASE_4_EXECUTION_REPORT.md` are the **docs-closure commit sitting on top of it**.
+> **Last code commit:** `69ce604` — `PR 5.5: press / media kit page`. This handoff + `reports/PHASE_5_EXECUTION_REPORT.md` are the **docs-closure commit on top of it**.
 > **Tree state:** clean, `main` in sync with `origin/main`.
-> **(Filename note:** kept as `SESSION_HANDOFF_PHASE4.md` for pointer stability, but it now covers the **Phase 4→5 boundary**. Next work is Phase 5.)
+> **(Filename note:** still `SESSION_HANDOFF_PHASE4.md` for pointer stability; it now covers the **Phase 5→6 boundary**. Next work is Phase 6, the final phase.)
 
 ---
 
 ## 1. CURRENT CANONICAL STATE
 
 ### Project shape
-FormAI Fitness marketing website. Next.js 14.2.18 (App Router) + TypeScript 5.6 + Tailwind 3.4. Turkish-language, dark-neon cinematic aesthetic. Deploys to Vercel. The companion mobile app source lives at `/home/emre/Downloads/FormAI-FitnessKoçu` (Flutter) — used as **ground-truth reference** for product behaviour. Do not modify the app; read-only reference.
+FormAI Fitness marketing website. Next.js 14.2.18 (App Router) + TypeScript 5.6 + Tailwind 3.4. Turkish, dark-neon cinematic. Deploys to Vercel. Companion Flutter app at `/home/emre/Downloads/FormAI-FitnessKoçu` is **read-only ground-truth reference** for product behaviour. Do not modify it.
 
 ### Execution model
-7-phase roadmap in `reports/WEBSITE_EVOLUTION_MASTERPLAN.md`, derived from the critique in `reports/WEBSITE_DEEP_REVIEW.md`. Each phase = a set of small sub-PRs. Work proceeds **one sub-PR at a time, stop after each, await approval** (unless the user explicitly authorises a specific multi-step batch).
+7-phase roadmap (Phases 0–6) in `reports/WEBSITE_EVOLUTION_MASTERPLAN.md`, from the critique in `reports/WEBSITE_DEEP_REVIEW.md`. Each phase = small sub-PRs. **One sub-PR at a time, stop after each, await approval** (unless the user explicitly authorises a specific batch).
 
 ### Phases — completed vs remaining
 
 | Phase | Title | Status |
 |---|---|---|
-| Phase 0 | Launch blockers | ✅ COMPLETE (PR 0.1–0.4 + report) |
-| Phase 1 | Trust layer | ✅ COMPLETE (PR 1.1–1.6 + report) |
-| Phase 2 | Hero + identity | ✅ COMPLETE (PR 2.1–2.3 + report) |
-| Phase 3 | Narrative + density | ✅ COMPLETE (PR 3.1–3.5 + report) |
-| Micro Polish | 9-PR UX/visual batch (interjected, paused Phase 4 after 4.3) | ✅ COMPLETE (MP.1–MP.9 + closure report) |
-| **Phase 4** | Performance + delivery | ✅ **COMPLETE — 4.1 ✅ 4.2 ✅ 4.3 ✅ 4.4 ✅ 4.5 ✅ + `PHASE_4_EXECUTION_REPORT.md`** |
-| **Phase 5** | SEO + observability | **🟡 STARTING — 5.1 NEXT (not started). Then 5.2–5.5.** |
-| Phase 6 | Signature interactions | ⬜ NOT STARTED (6.1 hero skeleton overlay, 6.2 manifesto parallax, 6.3 live form-score demo, 6.4 badge unlock micro-interaction) |
+| Phase 0 | Launch blockers | ✅ COMPLETE (+ report) |
+| Phase 1 | Trust layer | ✅ COMPLETE (+ report) |
+| Phase 2 | Hero + identity | ✅ COMPLETE (+ report) |
+| Phase 3 | Narrative + density | ✅ COMPLETE (+ report) |
+| Micro Polish | 9-PR UX/visual batch | ✅ COMPLETE (+ closure report) |
+| Phase 4 | Performance + delivery | ✅ COMPLETE (4.1–4.5 + `PHASE_4_EXECUTION_REPORT.md`) |
+| **Phase 5** | SEO + observability | ✅ **COMPLETE — 5.1 ✅ 5.2 ✅ 5.3 ✅ 5.4 ✅ 5.5 ✅ + `PHASE_5_EXECUTION_REPORT.md`** |
+| **Phase 6** | Signature interactions | **🟡 STARTING — 6.1 NEXT (not started). Final phase.** |
 
 ### EXACT NEXT STEP
-**Phase 5 → SUB-PR 5.1 — JSON-LD structured data.** Not yet executed. See §5 for the full brief.
+**Phase 6 → SUB-PR 6.1 — Hover-driven skeleton overlay on hero.** Not yet executed. See §5.
 
-### Phase 5 sub-PR map (from masterplan)
-- **5.1** JSON-LD structured data (Organization + WebSite on layout; FAQPage on `/destek`; SoftwareApplication on `/baslat`). ← NEXT
-- **5.2** Per-page OG variation (parameterized `opengraph-image`).
-- **5.3** Canonical URLs + hreflang (`tr-TR`).
-- **5.4** Error tracking (Sentry-or-similar, `beforeSend` consent-gated — mirror the analytics consent posture from 4.5).
-- **5.5** Press kit page (`/press`).
+### Phase 6 sub-PR map (from masterplan, all NOT started)
+- **6.1** Hover-driven 33-keypoint BlazePose skeleton overlay on the hero image (Canvas/SVG, "locks onto" joints near cursor). New `components/ui/SkeletonOverlay.tsx` + `Hero.tsx`. Effort **L**. ← NEXT
+- **6.2** Scroll-tied parallax on the Manifesto image + line-by-line text fade-in. `Manifesto.tsx`. Effort M.
+- **6.3** Live form-score widget — in-page MediaPipe Pose demo, camera permission, 60s, click-gated. New `components/sections/LiveDemo.tsx` + MediaPipe/TF.js dep. Effort **L (significant)**.
+- **6.4** Badge-unlock micro-interaction — in-app-style "Web ziyaretçisi" badge pops at a scroll milestone. New `components/BadgeUnlock.tsx`, mounted in layout. Effort M.
 
 ### Completed PR ledger (most recent first)
 ```
-<docs>   docs: Phase 4 closure — PHASE_4_EXECUTION_REPORT.md + handoff refresh  ← HEAD (this commit)
+<docs>   docs: Phase 5 closure — PHASE_5_EXECUTION_REPORT.md + handoff refresh  ← HEAD (this commit)
+69ce604  PR 5.5: press / media kit page (/press)
+37bbac6  PR 5.4: consent-gated error monitoring (Sentry) — privacy-first, inert by default
+7a02a96  PR 5.3: canonical URLs + hreflang — shared, truthful, single-language honest
+613d7b4  PR 5.2: per-page Open Graph system — parameterized opengraph-image per route
+8f50b84  PR 5.1: JSON-LD structured data — audited, truthful, single-sourced
+beec00c  docs: Phase 4 closure — PHASE_4_EXECUTION_REPORT.md + handoff refresh
 43c5a6f  PR 4.5: real-user monitoring — Vercel Analytics + Speed Insights, consent-gated
 65b7113  PR 4.4: GPU-friendly background animations — MotionGate viewport pause
-e5c4425  docs: Phase 4 session handoff — durable continuation point
-8dee878  docs: micro polish closure report (MP.1 → MP.9)
-e596361  MP.9: Destek FAQ redesign — pillar-toned accordion, Framer Motion off
-aaccf7b  MP.8: Beslenme meal card — macro tiles + coach-note reveal
-bbb5820  MP.7: Gelişim badge interaction — what / why / how-earned reveal
-e51197d  MP.6: Antrenman Akış pipeline interaction + /baslat APP_ICON swap
-871a570  MP.5: pillar color realignment — semantic palette per product surface
-c512f31  MP.4: progress transformation clarity — pre-crop + re-encode + audit
-57a10c8  MP.3: workout image blur — root cause + q95 re-encode + phone-frame display
-82989f3  MP.2: canonical AI-coach image — pt-form.webp single source of truth
-52c0912  MP.1: consolidate support email → formaisupport@proton.me
-37ba038  PR 4.3: framer motion diet — -36 KB on 4 routes, IO+CSS replaces FM
-00b4c1a  PR 4.2: image priority + lazy hints + LQIP placeholders
-70d86c3  PR 4.1: image format pass — 3.7 MB shaved from referenced assets
-b40b2f0  docs(phase-3): execution report
-...      (Phases 0–3 below — see PHASE_X_EXECUTION_REPORT.md per phase)
+e5c4425  docs: Phase 4 session handoff
+...      (4.1–4.3, Micro Polish MP.1–9, Phases 0–3 — see each PHASE_X_EXECUTION_REPORT.md)
 ```
 
-### Routes (9 marketing + utility)
-`/` · `/antrenman` · `/beslenme` · `/gelisim` · `/baslat` · `/destek` · `/gizlilik` · `/kvkk` · `/sartlar` (+ `/api/waitlist`, dynamic OG/icon routes, robots, sitemap). All return 200 as of HEAD.
+### Routes (10 marketing/utility — `/press` added in 5.5)
+`/` · `/antrenman` · `/beslenme` · `/gelisim` · `/baslat` · `/destek` · `/press` · `/gizlilik` · `/kvkk` · `/sartlar` (+ `/api/waitlist`, per-route OG image routes, `/icon`, `/apple-icon`, robots, sitemap). All 200 as of HEAD.
 
 ---
 
 ## 2. STANDING RULES (NON-NEGOTIABLE)
 
-These persist across all future PRs. Established/hardened across Phases 0–4 + Micro Polish. **Do not violate without explicit user approval.**
+Persist across all future PRs. **Do not violate without explicit user approval.**
 
-1. **NO blurry images anywhere.** Established MP.4 as an explicit hard rule. Every PR that touches imagery performs a secondary visual/blur audit; fix in scope if safe. Root-cause blur (resolution ceiling vs over-compression via bpp density) before re-encoding — see MP.3/MP.4 commits for the method.
+1. **NO blurry images anywhere.** (MP.4) Per-PR blur audit on any imagery; root-cause (resolution vs over-compression) before re-encoding. Generated/vector assets (OG `ImageResponse`, SVG marks) are inherently sharp.
 
-2. **No Framer Motion in interactions.** Established PR 4.3, hardened by MP.7/MP.8/MP.9 + the Phase 4 motion doctrine. New interactions use **IntersectionObserver + CSS transitions** (the `grid-rows-[0fr] → [1fr]` reveal + `useIntersect` hook at `@/lib/use-intersect`; `.reveal` classes in globals.css). Framer Motion is allowed ONLY on: `Hero.tsx`, `FaqAccordion.tsx` (auto-height collapse), and the dynamic-imported consent components. Do not reintroduce FM elsewhere. Always-on ambient motion must stay viewport-gated via `MotionGate` (PR 4.4).
+2. **No Framer Motion in interactions.** (PR 4.3) Use IntersectionObserver + CSS (`grid-rows-[0fr]→[1fr]`; `useIntersect` at `@/lib/use-intersect`; `.reveal` classes). FM allowed ONLY on `Hero.tsx`, `FaqAccordion.tsx`, and the dynamic-imported consent components. Always-on ambient motion stays viewport-gated via `MotionGate` (PR 4.4). **Phase 6 note:** new interactions (6.1 skeleton overlay, 6.2 parallax, 6.4 badge) must use Canvas/SVG + rAF / IO + CSS — NOT Framer Motion — even though 6.1/6.2 touch FM-allowed files.
 
-3. **Pillar identity color mapping.** Established MP.5, reinforced through MP.9. Sacred:
-   - **Antrenman = ember** (`#FF7A1A`)
-   - **Beslenme = lime** (`#C8FF00`)
-   - **Gelişim = violet** (`#7C5CFF`)
-   - **Güvenlik / Trust = scan** (`#1FCFFF`)
-   - Macro tile convention (from the app, used on /beslenme): Protein=scan, Karb=ember, Yağ=lime, Calories=violet.
-   No new color tokens.
+3. **Pillar identity colors.** (MP.5) Antrenman=ember `#FF7A1A`, Beslenme=lime `#C8FF00`, Gelişim=violet `#7C5CFF`, Güvenlik/Trust=scan `#1FCFFF`. Macro tiles: Protein=scan, Karb=ember, Yağ=lime, Calories=violet. No new color tokens. (Brand hexes also encoded in `src/lib/og-template.tsx` palette.)
 
-4. **Mobile + desktop parity.** Every interaction ships with `:focus-within` mirroring `:hover` so touch users get equivalent behaviour. Mobile-first discipline throughout. Never ship a hover-only state inaccessible to touch.
+4. **Mobile + desktop parity.** `:focus-within` mirrors `:hover`; mobile-first. Never ship a hover-only state inaccessible to touch. **Phase 6 note:** 6.1 is "hover-driven" — it MUST have a touch/no-hover fallback (e.g., an idle auto-animation or focus/tap trigger) so mobile (the largest traffic surface) gets an equivalent moment.
 
-5. **Single source of truth.** Site-wide config lives in `src/lib/site.ts` (support email = `formaisupport@proton.me` via `site.team.contact.email`; store URLs; beta/ratings/userCount config blocks). Per-page data arrays (meals, badges, faq, faqGroupTone) are the single source for their surface. Never hardcode a value that has a config home. **For 5.1: schema must draw from these same sources (e.g. FAQPage from the `/destek` faq data, Organization from `site.ts`) — do not duplicate strings.**
+5. **Single source of truth.** Site config in `src/lib/site.ts` (support email `formaisupport@proton.me` via `site.team.contact.email`). Per-page data arrays own their surface. Phase 5 added single-source helper modules — reuse them: `src/lib/schema.ts` (JSON-LD), `src/lib/metadata.ts` (`alternatesFor(path)` canonical+hreflang), `src/lib/og-template.tsx` (OG renderer + palette). Nav in `src/lib/nav.ts`; routes in `src/app/sitemap.ts` (manual list — add new routes there).
 
-6. **Validation discipline.** Every PR ends GREEN: `npx next build` clean + `npx next lint --max-warnings 0` clean + all 9 routes return 200. No exceptions. For UI/motion, also smoke-test in a running server; if a real browser can't be driven, **say so explicitly**. **Server hygiene: kill smoke-test servers PORT-SCOPED (`pkill -f "next start -p <port>"` or by PID), never a blanket `pkill -f next-server` — that can hit unrelated projects' dev servers (learned in 4.5).**
+6. **Validation discipline.** Every PR ends GREEN: `npx next build` clean + `npx next lint --max-warnings 0` clean + all routes 200 (now 10). Smoke-test UI on a running server; if no browser, say so explicitly. **Server hygiene: kill smoke servers PORT-SCOPED (`fuser <port>/tcp` → kill, or `pkill -f "next start -p <port>"`), never a blanket `pkill -f next-server`** (it hit an unrelated project's server once).
 
-7. **Truthful-content policy.** No fabricated quotes, ratings, founder bios, credentials, or user counts. Trust elements are config-gated to swap in real data when available. **For 5.1 this is critical: NO `aggregateRating`, NO `review`, NO fake `ratingValue`/`reviewCount` in any schema. Only emit structured data for facts that are actually true and present on the page. No SEO theater.**
+7. **Truthful-content policy.** No fabricated quotes, ratings, founder, credentials, user counts, partnerships, press logos, investors. Trust/telemetry elements config-gated. This extended through all of Phase 5: schema emits only real facts; hreflang declares only the real language (tr-TR); the press kit has no "as seen in"/investors.
 
-8. **Premium aesthetic + dark neon palette preserved.** Don't flatten the identity for perf or simplicity. Efficient ≠ static.
+8. **Premium aesthetic + dark neon preserved.** Efficient ≠ static.
+
+**Consent/telemetry posture (4.5 + 5.4):** all optional telemetry gates on `useConsent().state?.analytics === true`, loads dynamic `ssr:false`, is inert without its config (DSN / dashboard toggle), and DNT is enforced upstream. Mirror this for any future telemetry.
 
 ---
 
-## 3. LATEST SHIPPED STATE (Phase 4 — complete through PR 4.5)
+## 3. LATEST SHIPPED STATE (Phase 5 — complete through PR 5.5)
 
-Full detail in `reports/PHASE_4_EXECUTION_REPORT.md`. Compact recap:
+Full detail in `reports/PHASE_5_EXECUTION_REPORT.md`. Compact recap:
 
-- **4.1** Image format pass — `sharp` converter (`npm run optimize-images`); ~6 MB off deploy weight; LCP image 44 KB AVIF; `public/` images ~2 MB. **W8 closed.**
-- **4.2** Priority/lazy hints + LQIP — audit-first; `CtaBlock` `sizes` fix; LQIP pipeline (`npm run lqip` → `src/lib/image-lqip.ts`); ~945 B blur-up for 3 above-fold images; 1 preload on home only.
-- **4.3** Framer Motion diet — **−34 to −36 KB First Load JS** on the 4 pillar/conversion routes. `useIntersect` hook + `.reveal` CSS replaced FM; FM reserved for `Hero`/`FaqAccordion`/dynamic consent UI. **W14 closed.**
-- **4.4** GPU-friendly bg animations — shared `MotionGate` IO pauses ambient motion off-screen (dominant cost was `text-gradient-violet` ×30 repaints). Identity preserved; `prefers-reduced-motion`/`-data` honoured.
-- **4.5** Real-User Monitoring — `@vercel/analytics` + `@vercel/speed-insights`, consent-gated via `src/components/util/ConsentedAnalytics.tsx` (renders both only when **`useConsent().state?.analytics === true`** — note the read path is `.state?.analytics`, NOT a top-level `.analytics`), dynamic-imported `ssr:false` in layout. Default-deny; DNT enforced upstream; 0 beacons pre-consent verified.
+- **5.1** JSON-LD — `<JsonLd>` (`src/components/util/Schema.tsx`) + builders (`src/lib/schema.ts`): Organization+WebSite `@graph` site-wide, FAQPage `/destek` (16 Q&A), SoftwareApplication `/baslat`. Truthful omissions documented (no ratings/searchaction/offers/sameAs/breadcrumb). **W13 closed.**
+- **5.2** Per-page OG — shared `renderOgImage()` (`src/lib/og-template.tsx`) + per-route `opengraph-image.tsx` (/, antrenman, beslenme, gelisim, baslat, destek). **Fixed dead `/og/og-default.png`** (removed from layout + `site.ogImage`). Distinct truthful og:image + twitter:image per route. **W11 closed.**
+- **5.3** Canonical+hreflang — `alternatesFor()` (`src/lib/metadata.ts`) on all 9 (now via /press too) pages: self-canonical + truthful `tr-TR` + `x-default`. No fake languages.
+- **5.4** Error monitoring — `ErrorMonitor.tsx` (`@sentry/browser`), gated on DSN + analytics consent + `beforeSend` PII strip; dynamic ssr:false; SDK code-split (not in First Load JS); inert without `NEXT_PUBLIC_SENTRY_DSN`. Reused `analytics` consent (ConsentSettings copy updated to "Analitik ve tanılama"). Matches the site's published Sentry commitments.
+- **5.5** Press kit — `/press` (brand assets, palette, screenshots, künye, single-source contact); downloads link to canonical assets (no dup); added to sitemap + footer "Şirket". Pre-launch honest.
 
-### Open items carried forward (low risk, owner-actionable)
-- **Lighthouse ≥ 95 / 4G LCP < 2 s unconfirmed** — needs a real-device Lighthouse run. Code targets it; not proven.
-- **4.4 scroll-pause + 4.5 opt-in beacon not eyeballed** in a real browser (no headless browser available these sessions). Verified statically + at HTTP level.
-- **Vercel dashboard:** Analytics + Speed Insights must be toggled ON for post-deploy data (no code).
-- **Pre-existing `npm audit` advisories** (unrelated to the analytics packages) — future dependency pass.
+### Open items carried forward (operator-actionable, low risk)
+- **`NEXT_PUBLIC_SENTRY_DSN`** not set → error monitoring inert until provisioned (use EU/Frankfurt Sentry org per KVKK). **Vercel dashboard** Analytics + Speed Insights toggle for post-deploy data (from Phase 4).
+- **Pre-existing apple-touch-icon bug** (found in 5.5, NOT fixed — out of scope): `layout.tsx` emits `apple-touch-icon href="/apple-icon.png"` but the generated icon serves at `/apple-icon` → `/apple-icon.png` 404s. Recommended one-line standalone fix in the layout `icons` config.
+- **Lighthouse ≥95 / 4G LCP <2s** (Phase 4) still unconfirmed — needs a real-device run.
+- Live-browser-only checks (OG previews, Sentry opt-in beacon, 4.4 scroll-pause) verified statically/at HTTP level, not eyeballed (no headless browser these sessions).
 
 ---
 
 ## 4. REPO + EXECUTION PROTOCOL
 
-This is the working contract the user enforces. Follow it exactly.
+The working contract the user enforces. Follow exactly.
 
 ### Before every sub-PR
-1. **Re-read the canon docs**: `reports/WEBSITE_EVOLUTION_MASTERPLAN.md` (the PR's spec) + `reports/WEBSITE_DEEP_REVIEW.md` (the rationale) + the relevant prior phase/closure report. Do this every time — do not work from memory.
+1. **Re-read the canon docs**: `reports/WEBSITE_EVOLUTION_MASTERPLAN.md` (the PR's spec) + `reports/WEBSITE_DEEP_REVIEW.md` (rationale) + the relevant prior phase/closure report. Every time — not from memory.
 2. Re-read this handoff + §2 standing rules.
 
 ### During
-3. **One sub-PR boundary at a time.** Never batch multiple PRs. Never silently bundle scope. If a paired/batched pass is explicitly requested (e.g. "Phase 4 closure + 5.1 ONLY"), do exactly that and nothing more.
-4. **Physical work only.** Real code changes, no theory-only deliverables.
-5. **No speculative redesign.** Don't add features/abstractions/refactors beyond the PR's scope.
-6. **Standing-rule compliance** (§2) on every change, including the per-PR blur audit when imagery is touched.
+3. **One sub-PR at a time.** Never batch/bundle unless the user explicitly authorises a specific set.
+4. **Physical work only**, no theory-only deliverables.
+5. **No speculative redesign** beyond the PR's scope (e.g., 5.5 found a pre-existing icon bug and FLAGGED it rather than fixing it).
+6. **Standing-rule compliance** (§2) on every change, incl. the per-PR blur audit when imagery is touched, and the **audit-first** discipline (Phase 5 used it on every sub-PR).
 
 ### Closing every sub-PR
-7. **Validate**: `npx next build` clean → `npx next lint --max-warnings 0` clean → all 9 routes 200. Smoke-test UI on a running server; kill the server PORT-SCOPED after.
-8. **Commit** with a detailed HEREDOC message (what + why + audit + validation + manual-input). Co-author trailer: `Co-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>`.
+7. **Validate**: build clean → lint `--max-warnings 0` clean → all 10 routes 200. Smoke-test on a running server; kill it **port-scoped**.
+8. **Commit** (detailed HEREDOC: what + why + audit + validation + manual-input). Trailer: `Co-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>`.
 9. **Push** to `origin/main` always.
-10. **STOP. Report. Await approval.** Do not auto-continue unless the user pre-authorised the next step.
+10. **STOP. Report. Await approval.** End the report with a 🛑 stop line naming the next awaited task. Don't auto-advance unless pre-authorised.
 
 ### Report format (per sub-PR)
-Numbered: 1. What changed · 2. Files changed · 3. (Research/audit findings) · 4. Interaction/motion logic · 5. Blur audit findings · 6. Validation · 7. Commit + push · 8. Manual input needed. End with an explicit **🛑 stop line** naming the next awaited task.
+Numbered: What changed · Files changed · Audit/research findings · Interaction/motion logic · Blur audit · Validation · Commit+push · Manual input. (Match the section list the user requests per PR.)
 
-### Phase reports
-After a FULL phase completes (not per sub-PR), generate `reports/PHASE_X_EXECUTION_REPORT.md`. Done: Phases 0–4 + Micro Polish. **Phase 5 will need `PHASE_5_EXECUTION_REPORT.md` once 5.5 ships.**
-
-### Docs commits
-Documentation closure (phase reports, handoff refreshes) is committed **separately from code** — no code changes mixed into a docs commit, and vice-versa.
+### Phase reports & docs commits
+After a FULL phase completes, generate `reports/PHASE_X_EXECUTION_REPORT.md` and refresh THIS handoff — as a **docs-only commit, no code mixed in**. Done: Phases 0–5 + Micro Polish. **Phase 6 will need `PHASE_6_EXECUTION_REPORT.md` once 6.4 ships** — and it's the FINAL phase, so that report closes the build.
 
 ---
 
 ## 5. CONTINUATION INSTRUCTION
 
-> ### NEXT TASK: PHASE 5 — SUB-PR 5.1 (JSON-LD structured data)
-> **If resuming cold: do not start without the user's go-ahead. (In the session that wrote this, 5.1 was authorised to run immediately after the Phase 4 docs push.)**
+> ### NEXT TASK: PHASE 6 — SUB-PR 6.1 (Hover-driven skeleton overlay on hero)
+> **Do not start without the user's go-ahead.**
 
-### PR 5.1 brief (from masterplan)
-- **Action:** Add a `<Schema>` component injecting `application/ld+json`:
-  - `Organization` — root layout
-  - `WebSite` (with site-search potential) — root layout
-  - `FAQPage` — `/destek`, auto-generated from the page's faq data
-  - `SoftwareApplication` — `/baslat`
-- **Touches:** new `src/components/Schema.tsx` (or `components/util/`), `src/app/layout.tsx`, `src/app/destek/page.tsx`, `src/app/baslat/page.tsx`.
-- **Effort:** M.
+### PR 6.1 brief (from masterplan)
+- **Action:** A Canvas or SVG overlay that draws the **33-keypoint BlazePose skeleton** on the hero image, animated to "lock onto" key joints when the cursor is near them — mimicking the actual pose-detection feature (the site's signature capability).
+- **Touches:** new `src/components/ui/SkeletonOverlay.tsx`, `src/components/sections/Hero.tsx`.
+- **Effort:** L.
 
-### Hard constraints for 5.1 (from the user + standing rules)
-- **Audit before adding.** Only emit schema that is **truthful, supported by on-page content, and maintainable**. Add `Breadcrumb` only where genuinely justified.
-- **NO fake ratings / reviews / `aggregateRating`** — the product is pre-launch with no real testimonials (Standing Rule #7). No SEO theater.
-- **Prefer layout-level, shared, maintainable.** Drive schema from existing single-source data (`site.ts`, the faq array) — do not duplicate strings (Standing Rule #5).
-- **Validate:** JSON-LD correctness (valid `@context`/`@type`, parseable), build, lint, 9 routes 200, and confirm the `ld+json` actually renders in the served HTML.
+### Hard constraints for 6.1 (§2 standing rules)
+- **No Framer Motion for the overlay interaction** — use Canvas/SVG + `requestAnimationFrame` (or IO + CSS). FM is allowed *elsewhere* in `Hero.tsx`, but the new interaction must follow the no-FM-in-interactions rule.
+- **Mobile/touch parity (#4):** "hover-driven" needs a touch fallback — e.g., an idle auto-demo loop or focus/tap trigger — so phones (largest traffic) get an equivalent moment. Mobile-first.
+- **Performance (#8 + Phase 4 budget):** respect `prefers-reduced-motion` / `prefers-reduced-data`; keep it GPU-friendly and off the critical path; don't regress the hero LCP.
+- **Truthful (#7):** the skeleton should represent the real 33-keypoint BlazePose topology, consistent with what the app does.
+- **Premium dark-neon (#8 + #3):** use the existing palette; the hero is violet-tone.
 
-### After 5.1
-- STOP and await approval (next: PR 5.2 — per-page OG variation).
-- Phase 5 closes after 5.5 → then generate `reports/PHASE_5_EXECUTION_REPORT.md`.
+### After 6.1
+- STOP, await approval (next: 6.2 manifesto parallax).
+- Phase 6 closes after 6.4 → generate `reports/PHASE_6_EXECUTION_REPORT.md`. **Phase 6 is the final roadmap phase.**
 
 ---
 
@@ -176,11 +157,11 @@ Documentation closure (phase reports, handoff refreshes) is committed **separate
 
 A future session may have **zero memory of this conversation**. To resume safely:
 
-1. **Read this file first**, then `reports/WEBSITE_EVOLUTION_MASTERPLAN.md` (Phase 5 section) + `reports/PHASE_4_EXECUTION_REPORT.md`.
-2. Confirm git state: `git log --oneline | head -5` should show the Phase 4 docs-closure commit at/near HEAD on top of `43c5a6f` (PR 4.5), tree clean, `main` synced.
-3. Internalise §2 standing rules — non-negotiable, not all derivable from code. **Note especially #7 for 5.1: truthful schema only.**
-4. Internalise §4 protocol — one-PR-at-a-time, stop-and-await, commit+push-always. Never auto-advance unless explicitly pre-authorised.
-5. The next task is **Phase 5 PR 5.1** (§5).
+1. **Read this file first**, then `reports/WEBSITE_EVOLUTION_MASTERPLAN.md` (Phase 6 section) + `reports/PHASE_5_EXECUTION_REPORT.md`.
+2. Confirm git state: `git log --oneline | head -5` should show the Phase 5 docs-closure commit at/near HEAD on top of `69ce604` (PR 5.5), tree clean, `main` synced.
+3. Internalise §2 standing rules — non-negotiable, not all derivable from code. For Phase 6 especially: **no FM in the new interactions, and touch parity for hover-driven moments.**
+4. Internalise §4 protocol — one-PR-at-a-time, audit-first, stop-and-await, commit+push-always, port-scoped server kills. Never auto-advance unless pre-authorised.
+5. The next task is **Phase 6 PR 6.1** (§5).
 6. When in doubt about scope, ask — the user prefers a clarifying question over speculative work.
 
-**— Handoff refreshed at Phase 4 closure (on top of commit `43c5a6f`). Resume point: Phase 5, PR 5.1 (JSON-LD).**
+**— Handoff refreshed at Phase 5 closure (on top of commit `69ce604`). Resume point: Phase 6, PR 6.1 (hero skeleton overlay) — the final phase.**
