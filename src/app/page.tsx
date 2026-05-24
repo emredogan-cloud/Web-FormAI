@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
+import dynamic from 'next/dynamic';
 import { alternatesFor } from '@/lib/metadata';
+import { site } from '@/lib/site';
 import { Hero } from '@/components/sections/Hero';
 import { MarqueeBand } from '@/components/sections/MarqueeBand';
 import { FounderStrip } from '@/components/sections/FounderStrip';
@@ -11,6 +13,14 @@ import { Testimonials } from '@/components/sections/Testimonials';
 import { MetricGrid } from '@/components/sections/MetricGrid';
 import { TypographicQuote } from '@/components/sections/TypographicQuote';
 import { CtaBlock } from '@/components/sections/CtaBlock';
+
+// PR 6.3 — live BlazePose demo. Code-split into its own chunk (the heavy
+// @mediapipe/tasks-vision runtime is further dynamic-imported only on the user's
+// Start click), and only requested when site.features.liveDemo is on. Default
+// OFF → zero cost + nothing rendered until a real-device QA pass enables it.
+const LiveDemo = dynamic(() =>
+  import('@/components/sections/LiveDemo').then((m) => m.LiveDemo)
+);
 
 export const metadata: Metadata = {
   title: 'FormAI — Kişisel yapay zekâ fitness koçun',
@@ -43,6 +53,9 @@ export default function HomePage() {
       <Manifesto />
       <ProductPillars />
       <HowItWorks />
+      {/* PR 6.3 — try-it-yourself live pose demo, right after "how it works".
+          Flag-gated (default OFF) until real-device QA; renders nothing when off. */}
+      {site.features.liveDemo && <LiveDemo />}
       <TransformationStrip />
       <Testimonials variant="home" />
       <MetricGrid

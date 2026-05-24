@@ -4,15 +4,19 @@
   "private": true,
   "description": "FormAI — AI fitness coach. Production web experience.",
   "scripts": {
+    "predev": "node scripts/setup-mediapipe-assets.mjs",
     "dev": "next dev",
+    "prebuild": "node scripts/setup-mediapipe-assets.mjs",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "mediapipe-assets": "node scripts/setup-mediapipe-assets.mjs",
     "optimize-images": "node scripts/optimize-images.mjs",
     "lqip": "node scripts/generate-lqip.mjs",
     "transformation": "node scripts/_transformation-crop.mjs"
   },
   "dependencies": {
+    "@mediapipe/tasks-vision": "^0.10.35",
     "@sentry/browser": "^10.53.1",
     "@vercel/analytics": "^2.0.1",
     "@vercel/speed-insights": "^2.0.0",

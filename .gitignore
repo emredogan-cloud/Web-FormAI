@@ -2,6 +2,11 @@ node_modules
 .next
 out
 .env*.local
+
+# PR 6.3 — self-hosted MediaPipe runtime (BlazePose wasm + model), generated at
+# predev/prebuild from the pinned @mediapipe/tasks-vision dep + a build-time
+# model fetch. Regenerable, so kept out of git (no multi-MB binaries committed).
+public/mediapipe/
 .vercel
 *.log
 .DS_Store

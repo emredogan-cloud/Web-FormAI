@@ -125,6 +125,23 @@ export const site = {
       twitter: null as string | null,
     },
   },
+
+  // ────────────────────────────────────────────────────────────────────────
+  // Feature flags — build-then-verify gating (same posture as ratings /
+  // userCount above: ship the code, reveal it only once it's verified).
+  //
+  // liveDemo (PR 6.3): the in-browser BlazePose live form-score demo
+  // (<LiveDemo />). It runs the camera + ML pose engine ON-DEVICE only —
+  // nothing is uploaded or stored, auto-stops after ~60s. Default OFF because
+  // the camera/inference runtime needs a real-device QA pass (camera
+  // permission, GPU inference, mobile browsers) before it's shown publicly.
+  //
+  // To activate after QA: set liveDemo to true. (Assets self-host at build via
+  // `npm run mediapipe-assets`; see scripts/setup-mediapipe-assets.mjs.)
+  // ────────────────────────────────────────────────────────────────────────
+  features: {
+    liveDemo: false as boolean,
+  },
 } as const;
 
 export type SiteConfig = typeof site;
