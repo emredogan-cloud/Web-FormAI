@@ -11,6 +11,8 @@ import { FounderStrip } from '@/components/sections/FounderStrip';
 import { Button } from '@/components/ui/Button';
 import { faqGroups } from '@/data/faq';
 import { site } from '@/lib/site';
+import { JsonLd } from '@/components/util/Schema';
+import { faqPageSchema } from '@/lib/schema';
 
 // MP.1 — single support address. Both Destek channel cards route to the same
 // inbox (proton.me); the labels (E-posta / Veri talebi) keep their distinct
@@ -32,6 +34,9 @@ const channels = [
 export default function DestekPage() {
   return (
     <>
+      {/* PR 5.1 — FAQPage JSON-LD, auto-generated from faqGroups (the same
+          source the accordion below renders). */}
+      <JsonLd data={faqPageSchema()} />
       <PageHero
         eyebrow="Destek · Türkçe öncelikli"
         title={<>Sorun yok. <br /><span className="text-gradient-violet">Sadece sorular ve cevapları var.</span></>}

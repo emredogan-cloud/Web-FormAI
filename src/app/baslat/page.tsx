@@ -14,6 +14,8 @@ import { WaitlistForm } from '@/components/sections/WaitlistForm';
 import { Testimonials } from '@/components/sections/Testimonials';
 import { AppRating } from '@/components/sections/AppRating';
 import { PricingTrustStrip } from '@/components/sections/PricingTrustStrip';
+import { JsonLd } from '@/components/util/Schema';
+import { softwareApplicationSchema } from '@/lib/schema';
 
 export const metadata: Metadata = {
   title: 'Başla — Erken erişime katıl',
@@ -54,6 +56,9 @@ const plans = [
 export default function BaslatPage() {
   return (
     <>
+      {/* PR 5.1 — SoftwareApplication JSON-LD. Truthful core only: no offers
+          (pre-launch) and no aggregateRating (no real ratings yet). */}
+      <JsonLd data={softwareApplicationSchema()} />
       <PageHero
         eyebrow="Başla · 90 saniye"
         title={<>Tek karar.<br /><span className="text-gradient-violet">30 günlük dönüşüm.</span></>}

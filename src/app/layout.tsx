@@ -7,6 +7,8 @@ import { Navbar } from '@/components/sections/Navbar';
 import { Footer } from '@/components/sections/Footer';
 import { ConsentProvider } from '@/components/consent/ConsentProvider';
 import { MotionGate } from '@/components/util/MotionGate';
+import { JsonLd } from '@/components/util/Schema';
+import { siteGraph } from '@/lib/schema';
 
 // PR 4.3 — ConsentBanner + ConsentSettings are the only layout-level surfaces
 // that still depend on Framer Motion (the slide-up banner + the modal use
@@ -103,6 +105,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="tr" className={`${inter.variable} ${mono.variable}`}>
       <body className="overflow-x-hidden">
+        {/* PR 5.1 — Organization + WebSite JSON-LD (@graph, @id-linked). Site-wide. */}
+        <JsonLd data={siteGraph()} />
         <ConsentProvider>
           <a
             href="#main"
