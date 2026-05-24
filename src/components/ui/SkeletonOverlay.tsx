@@ -96,14 +96,16 @@ const BONES: ReadonlyArray<readonly [number, number]> = [
 // Normalised bounding box of the authored pose, for exact centring.
 const NX_MIN = 0.284, NX_MID = 0.5, NY_MIN = 0.072, NY_MID = 0.507, NY_SPAN = 0.87;
 
-// ── Tunables — conservative defaults (this layer is intentionally an ambient
-// backdrop, so being slightly off in scale/placement still reads as intentional
-// texture; a real-browser eyeball can dial these up if more prominence is
-// wanted). ────────────────────────────────────────────────────────────────────
-const HEIGHT_FRAC = 0.9; // figure height ÷ canvas height
-const LOCK_RADIUS_FRAC = 0.24; // detection radius ÷ figure height
-const BASE_BONE_ALPHA = 0.17;
-const BASE_JOINT_ALPHA = 0.32;
+// ── Tunables — dialled for "AI intelligence presence": the resting wireframe
+// should read as a deliberate, calm pose layer (not an invisible texture, not
+// gaming VFX). Values bumped after the operator eyeball (PR 6.1 tune): larger
+// figure + more visible resting bones/joints + a slower, more legible idle
+// sweep; the lock-on/reticle stay restrained so the signature comes from
+// PRESENCE, not flash. ──────────────────────────────────────────────────────
+const HEIGHT_FRAC = 0.97; // figure height ÷ canvas height
+const LOCK_RADIUS_FRAC = 0.26; // detection radius ÷ figure height
+const BASE_BONE_ALPHA = 0.26;
+const BASE_JOINT_ALPHA = 0.46;
 const POINTER_IDLE_MS = 2000; // cursor still this long → resume idle scan
 
 type Pt = { x: number; y: number };
@@ -184,7 +186,7 @@ export function SkeletonOverlay({ className }: { className?: string }) {
         // Idle "scan" focus: travels head→feet with a gentle sine, slight sway —
         // the auto-demo that gives touch / no-hover users an equivalent moment.
         if (!pointerActive) {
-          const e = 0.5 - 0.5 * Math.cos(now * 0.00026 * Math.PI * 2);
+          const e = 0.5 - 0.5 * Math.cos(now * 0.0002 * Math.PI * 2);
           const fy = pts[0].y + (pts[31].y - pts[0].y) * e;
           const fx = W / 2 + Math.sin(now * 0.0006) * figH * 0.07;
           focus.x += (fx - focus.x) * (1 - Math.exp(-dt / 220));
@@ -217,7 +219,7 @@ export function SkeletonOverlay({ className }: { className?: string }) {
           ctx!.shadowBlur = 0;
         }
         ctx!.strokeStyle = rgba(col, (BASE_BONE_ALPHA + 0.72 * e) * intro);
-        ctx!.lineWidth = 1.1 + 1.7 * e;
+        ctx!.lineWidth = 1.3 + 1.7 * e;
         ctx!.beginPath();
         ctx!.moveTo(pts[a].x, pts[a].y);
         ctx!.lineTo(pts[b].x, pts[b].y);
@@ -231,7 +233,7 @@ export function SkeletonOverlay({ className }: { className?: string }) {
         const a = act[i];
         if (a > lockVal) { lockVal = a; lockIdx = i; }
         const isFace = i <= 10;
-        const r = (isFace ? 1.2 : 2.0) + 3.6 * a;
+        const r = (isFace ? 1.4 : 2.3) + 3.4 * a;
         const col = mix(mix(VIOLET, SCAN, a), WHITE, a * 0.55);
         if (a > 0.35) {
           ctx!.shadowColor = rgba(SCAN, 0.85 * intro);

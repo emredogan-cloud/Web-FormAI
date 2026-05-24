@@ -128,7 +128,7 @@ export function Hero() {
                 FM's transform; aria-hidden + pointer-events-none keep it inert
                 to a11y and clicks. Touch/no-hover gets an idle scan + tap focus;
                 reduced-motion/data renders one static frame. */}
-            <SkeletonOverlay className="pointer-events-none absolute -inset-x-6 -top-12 -bottom-12 -z-10" />
+            <SkeletonOverlay className="pointer-events-none absolute -inset-x-8 -top-16 -bottom-16 -z-10" />
 
             {/* Mobile HUD ribbon — ABOVE the device (lg:hidden).
                 Restores the data-readout signaling that desktop floating
