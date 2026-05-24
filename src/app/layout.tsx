@@ -25,6 +25,16 @@ const ConsentSettings = dynamic(
   { ssr: false }
 );
 
+// PR 4.5 — Real-User Monitoring (Vercel Analytics + Speed Insights),
+// consent-gated. Dynamic + ssr:false keeps the analytics SDK out of every
+// route's initial payload; the component itself only emits beacons once
+// useConsent().state?.analytics === true. Mounted inside <ConsentProvider>
+// below because it reads that consent context.
+const ConsentedAnalytics = dynamic(
+  () => import('@/components/util/ConsentedAnalytics').then((m) => m.ConsentedAnalytics),
+  { ssr: false }
+);
+
 const inter = Inter({
   subsets: ['latin', 'latin-ext'],
   variable: '--font-sans',
@@ -107,6 +117,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <Footer />
           <ConsentBanner />
           <ConsentSettings />
+          {/* PR 4.5 — RUM, gated on analytics consent. Renders null until granted. */}
+          <ConsentedAnalytics />
           {/* PR 4.4 — pauses off-viewport ambient animations. Renders null. */}
           <MotionGate />
         </ConsentProvider>
