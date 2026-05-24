@@ -8,6 +8,7 @@ import { Mono } from '@/components/ui/Mono';
 import { Eyebrow } from '@/components/ui/Eyebrow';
 import { GlowOrb } from '@/components/ui/GlowOrb';
 import { HudPanel } from '@/components/ui/HudPanel';
+import { SkeletonOverlay } from '@/components/ui/SkeletonOverlay';
 import { AppRating } from '@/components/sections/AppRating';
 import { UserCountBadge, isUserCountReady } from '@/components/sections/UserCountBadge';
 import { LQIP } from '@/lib/image-lqip';
@@ -116,8 +117,19 @@ export function Hero() {
             initial={{ opacity: 0, scale: prefersReduced ? 1 : 0.96 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1.4, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="relative mx-auto w-full max-w-md lg:max-w-none"
+            className="relative isolate mx-auto w-full max-w-md lg:max-w-none"
           >
+            {/* PR 6.1 — signature pose-detection interaction. A BlazePose
+                33-keypoint wireframe (Canvas + rAF, no Framer Motion) sits as
+                the backmost layer of the visual column; a detection focus tracks
+                the cursor and locks onto nearby joints, mirroring the app's pose
+                engine. `isolate` pins this layer's stacking context so the
+                negative-z canvas stays behind the device/ribbons regardless of
+                FM's transform; aria-hidden + pointer-events-none keep it inert
+                to a11y and clicks. Touch/no-hover gets an idle scan + tap focus;
+                reduced-motion/data renders one static frame. */}
+            <SkeletonOverlay className="pointer-events-none absolute -inset-x-6 -top-12 -bottom-12 -z-10" />
+
             {/* Mobile HUD ribbon — ABOVE the device (lg:hidden).
                 Restores the data-readout signaling that desktop floating
                 callouts (lg:block) carry. Mobile users now see the same
