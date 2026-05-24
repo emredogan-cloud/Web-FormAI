@@ -19,7 +19,6 @@ export const site = {
   description:
     'FormAI; kameranla formunu izleyen, 30 günde kişisel programını kuran ve beslenmenden gelişimine her adımda yanında olan yapay zekâ destekli fitness koçun.',
   url: 'https://formai.app',
-  ogImage: '/og/og-default.png',
   locale: 'tr-TR',
   twitter: '@formai_app',
 

@@ -84,13 +84,16 @@ export const metadata: Metadata = {
     siteName: site.name,
     title: `${site.name} — ${site.tagline}`,
     description: site.description,
-    images: [{ url: site.ogImage, width: 1200, height: 630, alt: site.name }],
+    // PR 5.2 — og:image comes from the file-based opengraph-image.tsx
+    // convention (root cascades; per-route files override). No static image
+    // path here: the previous '/og/og-default.png' did not exist (dead ref).
   },
   twitter: {
     card: 'summary_large_image',
     title: `${site.name} — ${site.tagline}`,
     description: site.description,
-    images: [site.ogImage],
+    // No twitter image set: summary_large_image falls back to og:image, which
+    // the per-route opengraph-image generators provide.
     creator: site.twitter,
   },
   robots: { index: true, follow: true, googleBot: { index: true, follow: true } },
