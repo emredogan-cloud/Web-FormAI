@@ -10,6 +10,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/gelisim',
     '/destek',
     '/baslat',
+    '/press',
     '/gizlilik',
     '/sartlar',
     '/kvkk',
@@ -19,6 +20,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     url: `${site.url}${r}`,
     lastModified: now,
     changeFrequency: r === '' ? 'weekly' : legalSet.has(r) ? 'yearly' : 'monthly',
-    priority: r === '' ? 1 : r === '/baslat' ? 0.9 : legalSet.has(r) ? 0.3 : 0.7,
+    priority:
+      r === '' ? 1 : r === '/baslat' ? 0.9 : r === '/press' ? 0.5 : legalSet.has(r) ? 0.3 : 0.7,
   }));
 }

@@ -15,6 +15,7 @@ export const footerNav = {
   Şirket: [
     { label: 'Hakkımızda', href: '/#manifesto' },
     { label: 'Manifesto', href: '/#manifesto' },
+    { label: 'Basın & Medya', href: '/press' },
     { label: 'İletişim', href: '/destek#iletisim' },
   ],
   Kaynaklar: [
