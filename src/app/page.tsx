@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { alternatesFor } from '@/lib/metadata';
 import { Hero } from '@/components/sections/Hero';
 import { MarqueeBand } from '@/components/sections/MarqueeBand';
 import { FounderStrip } from '@/components/sections/FounderStrip';
@@ -15,6 +16,7 @@ export const metadata: Metadata = {
   title: 'FormAI — Kişisel yapay zekâ fitness koçun',
   description:
     'Kameran formunu izler, AI koçun seni hizalar, 30 günlük programın seninle birlikte öğrenir. FormAI; antrenman, beslenme ve gelişimi tek bir zekâda birleştirir.',
+  alternates: alternatesFor('/'),
 };
 
 // ─────────────────────────────────────────────────────────────────────────────

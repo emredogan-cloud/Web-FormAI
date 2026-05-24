@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { alternatesFor } from '@/lib/metadata';
 import {
   LegalPageLayout,
   LegalSectionHeader,
@@ -17,7 +18,7 @@ export const metadata: Metadata = {
   title: 'Gizlilik politikası',
   description:
     'FormAI gizlilik politikası — hangi verileri topladığımız, nasıl kullandığımız, üçüncü taraf işleyiciler, KVKK ve GDPR hakları, veri saklama ve iletişim.',
-  alternates: { canonical: '/gizlilik' },
+  alternates: alternatesFor('/gizlilik'),
 };
 
 const sections = [

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { alternatesFor } from '@/lib/metadata';
 import Link from 'next/link';
 import { PageHero } from '@/components/sections/PageHero';
 import { Container } from '@/components/ui/Container';
@@ -23,6 +24,7 @@ export const metadata: Metadata = {
   title: 'Destek — Sorularına cevap, yanına koç',
   description:
     'FormAI hakkında sıkça sorulanlar, gizlilik notları ve doğrudan iletişim. Türkçe destek, 24 saat içinde yanıt.',
+  alternates: alternatesFor('/destek'),
 };
 
 const channels = [

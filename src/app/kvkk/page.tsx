@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { alternatesFor } from '@/lib/metadata';
 import {
   LegalPageLayout,
   LegalSectionHeader,
@@ -16,7 +17,7 @@ export const metadata: Metadata = {
   title: 'KVKK aydınlatma metni',
   description:
     '6698 sayılı KVKK kapsamında veri sorumlusu sıfatıyla FormAI tarafından hazırlanan aydınlatma metni — toplanan kişisel veriler, işleme amaçları, aktarımlar ve KVKK madde 11 hakları.',
-  alternates: { canonical: '/kvkk' },
+  alternates: alternatesFor('/kvkk'),
 };
 
 const sections = [

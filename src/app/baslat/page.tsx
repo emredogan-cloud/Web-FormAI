@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { alternatesFor } from '@/lib/metadata';
 import Image from 'next/image';
 import Link from 'next/link';
 import { PageHero } from '@/components/sections/PageHero';
@@ -21,6 +22,7 @@ export const metadata: Metadata = {
   title: 'Başla — Erken erişime katıl',
   description:
     'FormAI şu anda kapalı beta’da. Bekleme listesine katıl, mağazalar açıldığında ilk sen haber al. Lansmanda 7 gün ücretsiz.',
+  alternates: alternatesFor('/baslat'),
 };
 
 const steps = [

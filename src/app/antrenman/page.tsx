@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { alternatesFor } from '@/lib/metadata';
 import Image from 'next/image';
 import { PageHero } from '@/components/sections/PageHero';
 import { Container } from '@/components/ui/Container';
@@ -17,6 +18,7 @@ export const metadata: Metadata = {
   title: 'Antrenman — Kameran formunu okur',
   description:
     'BlazePose tabanlı pose detection ile gerçek zamanlı form düzeltme. 138 egzersiz, 8 analiz modülü, 30 günlük adaptif program.',
+  alternates: alternatesFor('/antrenman'),
 };
 
 const steps = [

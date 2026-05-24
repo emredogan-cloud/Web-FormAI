@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { alternatesFor } from '@/lib/metadata';
 import {
   LegalPageLayout,
   LegalSectionHeader,
@@ -17,7 +18,7 @@ export const metadata: Metadata = {
   title: 'Kullanım şartları',
   description:
     'FormAI kullanım şartları — uygunluk, hesap, abonelik ve otomatik yenileme, tıbbi sorumluluk reddi, kabul edilebilir kullanım, fikri mülkiyet, yetkili mahkeme.',
-  alternates: { canonical: '/sartlar' },
+  alternates: alternatesFor('/sartlar'),
 };
 
 const sections = [

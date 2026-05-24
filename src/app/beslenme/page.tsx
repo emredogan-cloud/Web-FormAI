@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { alternatesFor } from '@/lib/metadata';
 import Image from 'next/image';
 import { PageHero } from '@/components/sections/PageHero';
 import { Container } from '@/components/ui/Container';
@@ -15,6 +16,7 @@ export const metadata: Metadata = {
   title: 'Beslenme — Makroların seninle birlikte düşünür',
   description:
     'Türk mutfağıyla eğitilmiş beslenme zekâsı. Makrolar günün hedefine göre dengelenir, alerji ve damak zevkin baştan filtrelenir.',
+  alternates: alternatesFor('/beslenme'),
 };
 
 const dietProfiles = [

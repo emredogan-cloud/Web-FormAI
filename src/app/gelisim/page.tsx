@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { alternatesFor } from '@/lib/metadata';
 import Image from 'next/image';
 import { PageHero } from '@/components/sections/PageHero';
 import { Container } from '@/components/ui/Container';
@@ -16,6 +17,7 @@ export const metadata: Metadata = {
   title: 'Gelişim — Disiplinini ölçen değil, sürdüren bir zekâ',
   description:
     'Streak intelligence, haftalık retrospektif ve rozet sistemiyle motivasyonunu veriyle besler. 30 günlük takvim her gün senin lehine kalibre olur.',
+  alternates: alternatesFor('/gelisim'),
 };
 
 // MP.7 — badges now carry what/why/how-earned. The card reveals the
