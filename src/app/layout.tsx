@@ -45,6 +45,16 @@ const ErrorMonitor = dynamic(
   { ssr: false }
 );
 
+// PR 6.4 — final signature micro-interaction. A one-time "keşif" badge that pops
+// in the corner when the visitor reaches the footer. Client-only delight (no SSR
+// value), dynamic so it stays out of every page's initial bundle until it
+// mounts. Reads useConsent() (to avoid stacking with the cookie banner) →
+// mounted inside <ConsentProvider> below.
+const BadgeUnlock = dynamic(
+  () => import('@/components/BadgeUnlock').then((m) => m.BadgeUnlock),
+  { ssr: false }
+);
+
 const inter = Inter({
   subsets: ['latin', 'latin-ext'],
   variable: '--font-sans',
@@ -143,6 +153,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <ErrorMonitor />
           {/* PR 4.4 — pauses off-viewport ambient animations. Renders null. */}
           <MotionGate />
+          {/* PR 6.4 — one-time "keşif" badge on reaching the footer. Renders
+              null until that milestone (and only ever once per browser). */}
+          <BadgeUnlock />
         </ConsentProvider>
       </body>
     </html>
