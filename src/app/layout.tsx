@@ -107,7 +107,12 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true, googleBot: { index: true, follow: true } },
   icons: {
     icon: [{ url: '/favicon.svg', type: 'image/svg+xml' }],
-    apple: '/apple-icon.png',
+    // The apple touch icon is the generated route from app/apple-icon.tsx,
+    // which Next serves at /apple-icon (180×180 image/png). Defining
+    // metadata.icons suppresses the file-convention auto-link, so we point at
+    // the real route explicitly. The previous '/apple-icon.png' was a dead ref
+    // (no such file) → 404. Single source: the apple-icon.tsx generator.
+    apple: '/apple-icon',
   },
   manifest: '/site.webmanifest',
 };
