@@ -24,9 +24,9 @@ const CATEGORIES: Category[] = [
   },
   {
     id: 'analytics',
-    title: 'Analitik',
+    title: 'Analitik ve tanılama',
     description:
-      'Hangi sayfaların işe yaradığını anlamamızı sağlayan anonim ürün analitiği. Bireysel kimliği tanımlamaz; pazarlama ağlarıyla paylaşılmaz.',
+      'Hangi sayfaların işe yaradığını anlamamızı sağlayan anonim ürün analitiği ve çökme/hata teşhisi (Sentry). Bireysel kimliği tanımlamaz, IP saklanmaz; pazarlama ağlarıyla paylaşılmaz.',
   },
   {
     id: 'marketing',

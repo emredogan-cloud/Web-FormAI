@@ -37,6 +37,14 @@ const ConsentedAnalytics = dynamic(
   { ssr: false }
 );
 
+// PR 5.4 — consent-gated Sentry error monitoring. Same dynamic+ssr:false shape;
+// the @sentry/browser chunk only loads once analytics consent is granted AND a
+// DSN is configured. Reads useConsent() → mounted inside <ConsentProvider>.
+const ErrorMonitor = dynamic(
+  () => import('@/components/util/ErrorMonitor').then((m) => m.ErrorMonitor),
+  { ssr: false }
+);
+
 const inter = Inter({
   subsets: ['latin', 'latin-ext'],
   variable: '--font-sans',
@@ -126,6 +134,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <ConsentSettings />
           {/* PR 4.5 — RUM, gated on analytics consent. Renders null until granted. */}
           <ConsentedAnalytics />
+          {/* PR 5.4 — error monitoring, gated on analytics consent + DSN. Renders null. */}
+          <ErrorMonitor />
           {/* PR 4.4 — pauses off-viewport ambient animations. Renders null. */}
           <MotionGate />
         </ConsentProvider>
