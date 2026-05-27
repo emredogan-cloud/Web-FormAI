@@ -62,15 +62,21 @@ export function Manifesto() {
                   the two layers separate into depth. */}
               <div className="pointer-events-none absolute -inset-10 rounded-full bg-violet-500/25 blur-3xl" aria-hidden />
               {/* PR 6.2 — scroll-tied parallax. The whole panel translates (no
-                  zoom) so the landscape source is never upscaled further — the
-                  blur rule (#1) stays intact. Reduced-motion/data → static. */}
+                  zoom), so the source is never scaled by the motion itself.
+                  Reduced-motion/data → static.
+                  Blur audit (IMAGE_QUALITY_ROOT_CAUSE_REPORT): pt-form is a
+                  1672×941 *landscape* render. It previously sat in a portrait 3:4
+                  cover-box, which height-starved it (941px source vs the box's
+                  ~1280 physical px at 2× DPR) → ~2.1× vertical upscale. The box is
+                  now 4:3 (landscape, matching the source orientation) and `sizes`
+                  asks for a larger candidate → the source downscales → sharp. */}
               <ParallaxLayer amplitude={32}>
-                <div className="relative aspect-[3/4] overflow-hidden rounded-3xl border border-violet-400/20 bg-ink-900">
+                <div className="relative aspect-[4/3] overflow-hidden rounded-3xl border border-violet-400/20 bg-ink-900">
                   <Image
                     src="/images/pt-form.webp"
                     alt="FormAI · AI Coach"
                     fill
-                    sizes="(max-width: 1024px) 80vw, 480px"
+                    sizes="(max-width: 1024px) 80vw, 560px"
                     className="object-cover object-center"
                   />
                   <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink-950 via-ink-950/30 to-transparent" />

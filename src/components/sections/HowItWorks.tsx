@@ -42,8 +42,14 @@ const steps: Step[] = [
       'BlazePose ile 33 anahtar nokta saniyede 30 kez ölçülür. Omuz, dirsek, kalça, diz — açı sapması fark edildiği anda sesli komut gelir. Hareket tamamlanmadan müdahale.',
     href: '/antrenman',
     ctaLabel: 'Antrenman zekâsı',
-    imageSrc: '/images/pose-analysis.webp',
-    imageAlt: 'FormAI plank analizi — gerçek zamanlı pose detection',
+    // Blur audit (IMAGE_QUALITY_ROOT_CAUSE_REPORT): pose-analysis is a tall
+    // 9:19.5 phone-UI render (853px-wide ceiling). Force-cropped into this 4:3
+    // landscape box it was capped at 853w and browser-upscaled ~1.38× (logo +
+    // labels also cropped off). Swapped to the 2816×1536 landscape training
+    // render, which downscales → sharp. The in-app pose HUD still appears on the
+    // Hero device frame + the /antrenman live panel (where it IS correctly sized).
+    imageSrc: '/images/power-card.webp',
+    imageAlt: 'Ağırlıkla squat çalışan sporcu — FormAI antrenman modülü',
     // MP.5 — Antrenman = energy / workout heat → ember
     tone: 'ember',
   },
@@ -55,8 +61,12 @@ const steps: Step[] = [
       'Türk mutfağıyla eğitilmiş kütüphane: tarhana, bulgur, ızgara tavuk. Protein hedefini kaçırırsan akşam menüsü o gece yeniden hesaplanır. Diyet değil, hizalanmış bir gün.',
     href: '/beslenme',
     ctaLabel: 'Beslenme zekâsı',
-    imageSrc: '/images/meal-lunch-1.jpeg',
-    imageAlt: 'FormAI beslenme — Etli Tarhana Çorbası',
+    // Blur audit: meal-lunch is a 750px-wide portrait source — too low-res for
+    // this ~587px-wide 4:3 surface at 2× DPR (capped at 750w → ~1.57× upscale).
+    // Swapped to the 2048×1365 dinner photo, which downscales → sharp. alt
+    // describes the actual image (avocado-egg toast), not the data label (truth rule).
+    imageSrc: '/images/meal-dinner-1.jpeg',
+    imageAlt: 'Avokado ezmeli tam tahıllı tost ve haşlanmış yumurta — FormAI beslenme',
     tone: 'lime',
   },
   {
